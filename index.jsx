@@ -4,6 +4,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 // Create a React Component
 const App = () => {
   return <div>Hi there!</div>;
