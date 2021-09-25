@@ -151,3 +151,91 @@ Str="I like Ubuntu and bash"
 subStr=${Str:7:6}
 echo $subStr
 
+# Scripts were taken from: https://www.fubuntupit.com/simple-yet-effective-linux-shell-script-examples/
+
+# 18 Adding two values
+((sum=25+35))
+#Print the result
+echo $sum
+
+# 19 More Control Using If Else
+echo -n "Enter a number: "
+read n
+if [ $n -lt 10 ];
+then
+echo "It is a one digit number"
+else
+echo "It is a two digit number"
+fi
+
+# 20 Using the AND Operator
+echo -n "Enter Number: "
+read num
+if [[ ( $num -lt 10 ) && ( $num%2 -eq 0 ) ]]; then
+echo "Even Number"
+else
+echo "Odd Number"
+fi
+
+# 21 Using the OR Operator
+echo -n "Enter any number: "
+read n
+
+if [[ ( $n -eq 15 || $n -eq 45 ) ]]
+then
+echo "You won"
+else
+echo "You lost!"
+fi
+
+# 22 Using Elif
+echo -n "Enter a number: "
+read num
+
+if [[ $num -gt 10 ]]
+then
+echo "Number is greater than 10."
+elif [[ $num -eq 10 ]]
+then
+echo "Number is equal to 10."
+else
+echo "Number is less than 10."
+fi
+
+# 23 Adding Two Values
+echo -n "Enter first number: "
+read x
+echo -n "Enter second number: "
+read y
+(( sum=x+y ))
+echo "The result of addition=$sum"
+
+# 24 Functions in Bash
+function Add()
+{
+echo -n "Enter a Number: "
+read x
+echo -n "Enter an Another Number: "
+read y
+echo "Addition is: $(( x+y ))"
+}
+Add
+
+# 25 Parsing Date and Time
+year=`date +%Y`
+month=`date +%m`
+day=`date +%d`
+hour=`date +%H`
+minute=`date +%M`
+second=`date +%S`
+echo `date`
+echo "Current Date is: $day-$month-$year"
+echo "Current Time is: $hour:$minute:$second"
+
+# Another Scripts
+
+# 26 Generate a random number between 1 and 100 (inclusive)
+echo $((1 + $RANDOM % 100))
+
+# 27 Bash generate random 32 character alphanumeric string
+cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1
