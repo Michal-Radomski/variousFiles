@@ -1,7 +1,7 @@
 {
-  "name": "03-async-vs-sync-js",
+  "name": "asyncJS-this-extras",
   "version": "1.0.0",
-  "description": "Async JS",
+  "description": "Async JS, this and extras",
   "main": "asyncJS.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

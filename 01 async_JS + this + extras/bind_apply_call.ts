@@ -1,14 +1,15 @@
+export {};
 //- Tutorial: https://www.youtube.com/watch?v=TQXZL4bvw9Q
 
-const human = {
+const human: any = {
   name: "Michal",
   sayName() {
     console.log(`My name is ${this.name}`);
   },
-  sayFullName: function (surname) {
+  sayFullName: function (surname: string) {
     console.log(`My name is ${this.name} ${this.surname ? this.surname : surname}`);
   },
-  sayFullName2: function (surname) {
+  sayFullName2: function (surname: string) {
     console.log(`My name is ${this.name} ${this.surname ? this.surname : surname}`);
   },
   //- To samo co wyżej
