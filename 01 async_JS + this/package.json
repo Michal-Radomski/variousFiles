@@ -2,13 +2,14 @@
   "name": "03-async-vs-sync-js",
   "version": "1.0.0",
   "description": "Async JS",
-  "main": "AsyncJS.js",
+  "main": "asyncJS.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mich_Rad <michalra@op.pl>",
   "license": "MIT",
   "dependencies": {
+    "@types/node": "^16.11.6",
     "node-fetch-commonjs": "^3.0.3"
   }
 }
