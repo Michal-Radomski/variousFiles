@@ -110,3 +110,11 @@ let familyTree = {
 };
 const nullCoalescing = familyTree?.us?.children?.theirChildren ?? "got no kids";
 console.log(112, nullCoalescing); //got no kids
+
+// -JavaScript’s && and || logical operators
+// userIsLoggedIn && greet() -> jest równe: if(userIsLoggedIn) {greet()}
+// The &&-operator evaluates to left hand side expression if it is falsy, otherwise to right hand side expression.
+
+// const name = user.name || 'Guest' -> jest równe: if(!user.name) {const name = "Guest"} else {const name =user.name}
+// The ||-operator evaluates to left hand side expression if it is truthy, otherwise to right hand side expression.
+
