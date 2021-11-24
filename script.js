@@ -102,7 +102,7 @@ let parts = ["shoulders", "knees"];
 let lyrics = ["head", ...parts, "and", "toes"];
 console.log(104, lyrics); //  ["head", "shoulders", "knees", "and", "toes"]
 
-// -Optional chaining and null coalescing
+// -Optional chaining and nullish coalescing
 let familyTree = {
   us: {
     children: {},
@@ -115,6 +115,16 @@ console.log(112, nullCoalescing); //got no kids
 // userIsLoggedIn && greet() -> jest równe: if(userIsLoggedIn) {greet()}
 // The &&-operator evaluates to left hand side expression if it is falsy, otherwise to right hand side expression.
 
-// const name = user.name || 'Guest' -> jest równe: if(!user.name) {const name = "Guest"} else {const name =user.name}
+// const name = user.name || 'Guest' -> jest równe: if(!user.name) {const name = "Guest"} else {const name =user.name} lub if(user.name){name=user.name}
 // The ||-operator evaluates to left hand side expression if it is truthy, otherwise to right hand side expression.
 
+// -JavaScript double question mark (nullish coalescing) operator (??)
+// The nullish coalescing operator simply returns the expression on the right-side of the mark when the expression on the left side is null or undefined
+let firstName = null;
+let username = firstName ?? "Guest";
+console.log(username); // "Guest"
+
+// -Double exclamation mark (!!) -> Double Bang Operator
+//  -> !! is not an operator, it’s just the ! operator twice
+console.log(!!false); // Evaluates to false.
+console.log(!!true); // Evaluates to true.
