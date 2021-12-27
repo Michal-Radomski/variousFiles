@@ -128,3 +128,12 @@ console.log(username); // "Guest"
 //  -> !! is not an operator, it’s just the ! operator twice
 console.log(!!false); // Evaluates to false.
 console.log(!!true); // Evaluates to true.
+
+
+{
+//- Fetching - short version
+const URL = 'https://jsonplaceholder.typicode.com/users';
+const fetchedURL = await (await fetch(URL)).json();   
+console.log("fetchedURL:", fetchedURL);
+}
+
