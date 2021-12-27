@@ -129,11 +129,9 @@ console.log(username); // "Guest"
 console.log(!!false); // Evaluates to false.
 console.log(!!true); // Evaluates to true.
 
-
 {
-//- Fetching - short version
-const URL = 'https://jsonplaceholder.typicode.com/users';
-const fetchedURL = await (await fetch(URL)).json();   
-console.log("fetchedURL:", fetchedURL);
+  //- Fetching - short version (works in browser only)
+  const URL = "https://jsonplaceholder.typicode.com/users";
+  const fetchedURL = await (await fetch(URL)).json();
+  console.log("fetchedURL:", fetchedURL);
 }
-
