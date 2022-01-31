@@ -129,9 +129,40 @@ console.log(username); // "Guest"
 console.log(!!false); // Evaluates to false.
 console.log(!!true); // Evaluates to true.
 
+//+ Fetching - short version (works in browser only)
 {
-  //- Fetching - short version (works in browser only)
   const URL = "https://jsonplaceholder.typicode.com/users";
   const fetchedURL = await (await fetch(URL)).json();
   console.log("fetchedURL:", fetchedURL);
+}
+
+//- Execute one function after another is finished
+//* 1. Using a Callback
+{
+  function one(callback) {
+    setTimeout(function () {
+      console.log("first function executed");
+      callback();
+    }, 3000);
+  }
+  function two() {
+    console.log("second function executed");
+  }
+  one(two);
+}
+
+//* 2. Using a Promise
+{
+  function one() {
+    return new Promise(function (resolve, _reject) {
+      setTimeout(function () {
+        console.log("first function executed");
+        resolve();
+      }, 3000);
+    });
+  }
+  function two() {
+    console.log("second function executed");
+  }
+  one().then(two);
 }
