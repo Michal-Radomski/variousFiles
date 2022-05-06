@@ -11,3 +11,5 @@ Various files and exercises
 4. SSR tsconfig.json files created during [this](https://nils-mehlhorn.de/posts/typescript-nodejs-react-ssr) tutorial.
 
 5. Fetch with node18
+
+6. Cascading Design Pattern (Chaining Method) examples
