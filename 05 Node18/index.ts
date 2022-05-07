@@ -1,7 +1,14 @@
 const readline = require("readline");
 const {stdin: input, stdout: output} = require("process");
+var path = require("path");
 
-// Fetching with Node18
+//* Methods to display directory: __dirname, __filename and process.cwd()
+console.log("__dirname:    ", __dirname);
+console.log("process.cwd() : ", process.cwd());
+console.log("./ : ", path.resolve("./"));
+console.log("filename: ", __filename);
+
+//* Fetching with Node18
 const testingFetchWithNode18 = async function () {
   const response: Response = await fetch("https://ipwhois.app/json/?objects=ip,country,city");
   if (response.ok) {
@@ -12,7 +19,7 @@ const testingFetchWithNode18 = async function () {
 
 testingFetchWithNode18();
 
-// Readline with Node18
+//* Readline with Node18
 const nodeReadLine = async function () {
   const rl = readline.createInterface(process.stdin, process.stdout);
 
