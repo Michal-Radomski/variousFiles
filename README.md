@@ -13,3 +13,5 @@ Various files and exercises
 5. Fetch with node18
 
 6. Cascading Design Pattern (Chaining Method) examples
+
+7. React 17 app starter
