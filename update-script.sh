@@ -7,23 +7,23 @@ yellow=$(tput setaf 3)
 nocolor=$(tput sgr0) # normal - no color + no bold
 bold=$(tput bold)
 
-do_action()
-{
-    step=$1; shift
-    description=$1; shift
+do_action() {
+    step=$1
+    shift
+    description=$1
+    shift
     printf "${green}Step %s: %s\n" "$step" "$description"
     printf "${yellow}"
     printf '%q ' "$@"
     printf "${nocolor}\n"
 
-    if "$@"
-    then
+    if "$@"; then
         printf "${green}Step %s: SUCCESS${nocolor}\n" "$step"
     else
         err=$?
         printf "${red}Step %s: FAILED${nocolor}\n" "$step" >&2
-#        exit $err
-sleep 2
+        #        exit $err
+        sleep 2
     fi
 }
 
@@ -41,7 +41,6 @@ sleep 1
 echo ""
 echo "${bold}${green}Script has done work${nocolor}"
 echo ""
-
 
 # According to: https://codereview.stackexchange.com/questions/146949/simple-linux-upgrade-script-in-bash-revision-2
 # According to: https://askubuntu.com/questions/1182450/what-does-2-mean-in-a-shell-script
