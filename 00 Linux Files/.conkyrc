@@ -1,0 +1,81 @@
+conky.config = {
+  use_spacer = 'left',
+  pad_percents = 3,
+  background = false,
+  double_buffer = true,
+  font = 'DejaVu Sans Mono Bold:size=12',
+  use_xft = true,
+  alignment = 'top_right',
+  gap_x = 10,
+  gap_y = 40,
+  own_window_argb_visual = true,
+  own_window_argb_value = 0,
+  own_window_type = 'desktop',
+  own_window_hints = 'undecorated,below,skip_taskbar,skip_pager,sticky',
+  own_window = true,
+  update_interval = 1.0,
+  total_run_times = 0,
+  draw_graph_borders = true, 					
+  border_width = 0,
+  default_color = 'yellow',
+}
+
+conky.text = [[
+${color white} ${hr}
+${color cyan}Użytkownik: ${color green}${execi 3600 whoami} ${alignr} ${color orange}System/ Dystrybucja/ Wersja: ${color}${execi 3600 uname -s} ${execi 3600 lsb_release -d --short}
+${color orange}Zwierzak (Codename): ${color blue}${execi 3600 cat /etc/os-release | grep VERSION= | cut -c 23- | sed 's/..$//'} ${alignr} ${color white}Current UNIX Epoch time: ${color cyan}${exec date +%s}
+${color orange}Nazwa hosta: ${color} ${nodename} ${color orange}${alignr} Pracuję już: ${color magenta} ${uptime}
+${color orange}Jąderko (Kernel) ${color yellow} / ${color orange} arch: ${alignr} ${color} ${sysname} ${kernel} ${color orange}na ${color}${machine}
+${color blue} nVIDIA ${color green} ${execi 3600 nvidia-smi | grep Driver | cut -c 27-51} ${alignr} ${color red} AV: ${color white}${execi 3600 clamscan --version}
+${color orange}CPU:${color} ${freq_g} GHz ${alignr} ${color magenta}[Core0: ${freq_g (1)}GHz; Core1: ${freq_g (2)}GHz; Core2: ${freq_g (3)}GHz; Core3: ${freq_g (4)}GH]
+${color orange}1:${color} ${cpu cpu1}% ${cpubar cpu1}
+${color orange}2:${color} ${cpu cpu2}% ${cpubar cpu2}
+${color orange}3:${color} ${cpu cpu3}% ${cpubar cpu3}
+${color orange}4:${color} ${cpu cpu4}% ${cpubar cpu4}
+${color orange}Temperatura rdzeni procesora: ${alignr} ${color magenta} [${execi 7200 gnome-shell --version}]
+${color yellow}Core 0: ${color green}${exec sensors | grep 'Core 0' | awk '{print $3}'} ${alignr} ${color yellow}Core 1: ${color green}${exec sensors | grep 'Core 1' | awk '{print $3}'}
+${color yellow}Core 2: ${color green}${exec sensors | grep 'Core 2' | awk '{print $3}'} ${alignr} ${color yellow}Core 3: ${color green}${exec sensors | grep 'Core 3' | awk '{print $3}'}
+${color white}${fs_bar 25 /home}
+${color white}${voffset -35}${offset 5}${color white}
+${voffset -19}${color magenta}Wolne miejsce na /home: ${fs_free /home}   ${alignr}   ${color white}Zajęte: ${fs_used /home} / ${fs_size /home}${voffset 19}
+${color white}${fs_bar 25 /}
+${color white}${voffset -35}${offset 5}${color white}
+${voffset -19}${color magenta}Wolne miejsce na /: ${fs_free /}   ${alignr}   ${color white}Zajęte: ${fs_used /} / ${fs_size /}${voffset 19}
+${color green}Swap: ${color white} ${alignr} ${swap} / ${swapmax}
+${color orange}${swapperc}%  ${swapbar 5}
+${color green}RAM: ${color white} ${alignr} ${mem} / ${memmax}
+${color orange}${memperc}%  ${membar 5,} ${color yellow}
+ ${top_mem name 1} $alignr ${top_mem mem_res 1}
+ ${top_mem name 2} $alignr ${top_mem mem_res 2}
+ ${top_mem name 3} $alignr ${top_mem mem_res 3}
+ ${top_mem name 4} $alignr ${top_mem mem_res 4}
+${color green}Nazwa procesu: ${alignr} PID     CPU%     MEM% ${color yellow}
+ ${top name 1} ${alignr} ${top pid 1}     ${top cpu 1}     ${top mem 1}  
+ ${top name 2} ${alignr} ${top pid 2}     ${top cpu 2}     ${top mem 2}  
+ ${top name 3} ${alignr} ${top pid 3}     ${top cpu 3}     ${top mem 3}  
+ ${top name 4} ${alignr} ${top pid 4}     ${top cpu 4}     ${top mem 4}  
+${color green}Processes:${color orange} $processes ${alignr} ${color green}Running:${color orange} $running_processes
+${color green}Lokalne IP (kabel): ${color magenta} ${alignr} ${addr enp3s0}
+${color green}Lokalne IP (Wi-Fi): ${color magenta} ${alignr} ${addr wlp0s20f3}
+${color cyan}Signal: ${wireless_link_qual wlp0s20f3}% ${alignr}${wireless_link_bar 10,120 wlp0s20f3}
+${color green}Publiczne IP: ${color magenta} ${alignr} ${execi 3600 wget -q -O /dev/stdout http://checkip.dyndns.org/ | cut -d : -f 2- | cut -d \< -f -1}
+#${if_up enp3s0}
+ ${color white}Download: ${color white}${alignr}${downspeedf enp3s0} KiB/s
+ ${downspeedgraph enp3s0 12,}
+ ${color white}Upload: ${color white}${alignr}${upspeedf enp3s0} KiB/s 
+ ${upspeedgraph enp3s0 12,}
+ ${color yellow}Downloaded (kabel): ${color red}${totaldown enp3s0} ${alignr} ${color yellow}Uploaded (kabel): ${color red}${totalup enp3s0}
+#${endif} ${if_up wlp0s20f3}
+ ${color cyan}Download: ${color cyan}${alignr}${downspeedf wlp0s20f3} KiB/s
+ ${downspeedgraph wlp0s20f3 12,}
+ ${color cyan}Upload: ${color cyan}${alignr}${upspeedf wlp0s20f3} KiB/s 
+ ${upspeedgraph wlp0s20f3 12,}
+ ${color orange}Downloaded (Wi-Fi): ${color red}${totaldown wlp0s20f3} ${alignr} ${color orange}Uploaded (Wi-Fi): ${color red}${totalup wlp0s20f3}
+#${endif}
+#${else} ${color red}Sieć niedostępna ${endif}
+${color yellow}Temperatury dysków twardych: ${alignr} ${color green} Liczba security updates: ${color yellow} ${execi 3600 apt-get dist-upgrade -s --quiet=2 | grep ^Inst | wc -l} ${color orange}
+Dysk /dev/sda (1TB - HDD): ${alignr} ${color magenta}${exec hddtemp /dev/sda | cut -c 31-32}°C ${color orange}
+Dysk /dev/nvme0 (500GB - SSD): ${alignr} ${color magenta}${exec sensors | grep Composite | cut -c 16-22} ${color white}
+${color green}Grafika:  ${color magenta}Temp GPU: ${color}${nvidia temp}°C${color magenta}; GPU-Util: ${color}${exec nvidia-smi | grep % | cut -c 62-65}${color magenta}; VRAM-Util: ${color}${exec nvidia-smi | grep % | cut -c 37-54}${color green}; ${exec nvidia-smi | grep Driver | cut -c 56-73}
+${color white}${hr}
+]]
