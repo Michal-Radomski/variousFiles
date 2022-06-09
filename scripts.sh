@@ -226,3 +226,7 @@ echo $((1 + $RANDOM % 100))
 
 # 27 Bash generate random 32 character alphanumeric string
 cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1
+
+# 28 Array
+arr=(Hello World)
+echo "arr[0]:" ${arr[0]} "arr[1]:" ${arr[1]}
