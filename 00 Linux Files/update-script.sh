@@ -38,6 +38,9 @@ do_action $((++i)) "clean" apt-get clean
 do_action $((++i)) "clean up" apt-get autoclean
 
 sleep 1
+do_action $((++i)) "snap refresh" snap refresh
+
+sleep 1
 echo ""
 echo "${bold}${green}Script has done work${nocolor}"
 echo ""
