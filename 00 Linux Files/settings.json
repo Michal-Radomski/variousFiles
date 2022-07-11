@@ -1,0 +1,210 @@
+{
+  "files.associations": {
+    "*.json": "jsonc",
+    ".env.development": "dotenv",
+    ".env.production": "dotenv"
+  },
+  "editor.renderWhitespace": "boundary",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "workbench.sideBar.location": "right",
+  "editor.wordWrap": "on",
+  "editor.cursorBlinking": "blink",
+  "editor.guides.bracketPairs": true,
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.guides.bracketPairsHorizontal": false,
+  "editor.bracketPairColorization.enabled": true,
+  "workbench.editor.enablePreview": false,
+  "editor.guides.highlightActiveBracketPair": true,
+  "workbench.colorCustomizations": {
+    "editorGutter.background": "#111",
+    "editorCursor.foreground": "#ff00b3",
+    "editor.lineHighlightBackground": "#333",
+    "editor.lineHighlightBorder": "#7F00FF",
+    "terminalCursor.foreground": "#ff00b3",
+    "editor.cursorWidth": 4,
+    "editor.selectionBackground": "#460633",
+    "editor.selectionHighlightBackground": "#112079",
+    "editor.selectionHighlight": true,
+    "editor.foldBackground": "#504c4f4f",
+    "editorGutter.foldingControlForeground": "#e7ff0e",
+    "editorBracketHighlight.foreground1": "#FFD700",
+    "editorBracketHighlight.foreground2": "#DA70D6",
+    "editorBracketHighlight.foreground3": "#FA8072",
+    "editorBracketHighlight.foreground4": "#7CFC00",
+    "editorBracketHighlight.foreground5": "#1E90FF",
+    "editorBracketHighlight.foreground6": "#FFB6C1",
+    "editorBracketHighlight.unexpectedBracket.foreground": "#F00"
+  },
+  "liveServer.settings.donotShowInfoMsg": true,
+  "workbench.startupEditor": "none",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "workbench.iconTheme": "vscode-icons",
+  "editor.fontFamily": " 'Firicico', 'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 15,
+  // -comments color settings:
+  "editor.tokenColorCustomizations": {
+    "comments": "#0fa328",
+    "textMateRules": [
+      {
+        "scope": [
+          // Following will be in italic:
+          "entity.name.type.class", //class names
+          "keyword", //import, export, return…
+          "storage.modifier", //static keyword
+          "storage.type.class", //class keyword
+          "keyword.control.flow", // await
+          "keyword.control.conditional", // if
+          "keyword.control.loop", // for
+          "keyword.operator.new" // new
+        ],
+        "settings": {"fontStyle": "italic"}
+      },
+      {
+        "scope": [
+          // Following will be excluded from italics (VSCode has some defaults for italics):
+          "constant", //String, Number, Boolean…, this, super
+          "comment",
+          "invalid",
+          "storage.type.function",
+          "keyword.operator",
+          "constant.numeric.css",
+          "keyword.other.unit.px.css",
+          "constant.numeric.decimal.js",
+          "constant.numeric.json"
+        ],
+        "settings": {"fontStyle": ""}
+      }
+    ]
+  },
+  "highlight-counter.alignment": "left",
+  "highlight-counter.wholeWordMatching": true,
+  "highlight-matching-tag.styles": {
+    "opening": {
+      "name": {
+        "highlight": "rgba(202, 15, 84, 0.65)"
+      }
+    },
+    "closing": {
+      "name": {
+        "highlight": "rgba(202, 15, 84, 0.65)"
+      }
+    }
+  },
+  "highlight-matching-tag.showPath": false,
+  "liveSassCompile.settings.showOutputWindowOn": "None",
+  "eslint.alwaysShowStatus": true,
+  "prettier.printWidth": 125,
+  "prettier.proseWrap": "always",
+  "eslint.nodeEnv": "true",
+  "eslint.rules.customizations": [
+    {
+      "no-duplicate-imports": "warn",
+      "sort-imports": "warn",
+      "no-unused-vars": "warn",
+      "source.fixAll.eslint": true
+    }
+  ],
+  "prettier.bracketSpacing": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "cSpell.language": "en,pl",
+  "cSpell.userWords": [],
+  "tabnine.experimentalAutoImports": false,
+  "telemetry.telemetryLevel": "off",
+  "quokka.showOutputOnStart": false,
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#816491",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "-",
+      "color": "#F5C343",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": true
+    },
+    {
+      "tag": "+",
+      "color": "#FF7676",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": true
+    }
+  ],
+  "markdownlint.config": {
+    "default": true,
+    "MD033": {"allowed_elements": ["img", "hr", "div", "a", "p", "br"]}
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  // Decoration color for small packages
+  "importCost.smallPackageDarkColor": "#7cc36e",
+  // Decoration color for medium packages
+  "importCost.mediumPackageDarkColor": "#7cc36e",
+  // Decoration color for large packages
+  "importCost.largePackageDarkColor": "#de40b9",
+  // Read-Only Indicator settings
+  "fileAccess.hideWhenWriteable": false,
+  "fileAccess.indicatorAction": "toggle",
+  "emmet.triggerExpansionOnTab": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  //- Npm Intellisense Settings
+  "npm-intellisense.importES6": true,
+  "npm-intellisense.importQuotes": "'",
+  // "npm-intellisense.importLineBreak": ";\r\n",
+  "npm-intellisense.importDeclarationType": "const",
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
+}
