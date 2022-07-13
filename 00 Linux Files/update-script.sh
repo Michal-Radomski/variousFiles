@@ -41,6 +41,9 @@ sleep 1
 do_action $((++i)) "snap refresh" snap refresh
 
 sleep 1
+do_action $((++i)) "flatpak update" flatpak update
+
+sleep 1
 echo ""
 echo "${bold}${green}Script has done work${nocolor}"
 echo ""
