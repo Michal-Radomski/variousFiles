@@ -12,7 +12,7 @@ const obj = {
   last_name: "Kowalski",
   age: 10,
 };
-const {first_name, last_name, age} = obj;
+const { first_name, last_name, age } = obj;
 console.log(17, obj);
 
 // bez destrukturyzacji:
@@ -26,7 +26,7 @@ const user = {
 };
 showUser(user);
 // Z destrukturyzacją:
-function showUser({name, surname}) {
+function showUser({ name, surname }) {
   console.log(name);
   console.log(surname);
 }
@@ -46,7 +46,7 @@ const hero = {
 };
 // Object destructuring:
 const {
-  address: {city},
+  address: { city },
 } = hero;
 console.log(52, city); // => 'Gotham'
 
@@ -56,7 +56,7 @@ const hero2 = {
   realName: "Bruce Wayne",
 };
 const prop = "name";
-const {[prop]: name} = hero2;
+const { [prop]: name } = hero2;
 console.log(61, name); // => 'Batman'
 
 // -Dynamic Key
@@ -73,10 +73,10 @@ let objA = {
 };
 console.log(75, objA);
 {
-  const obj2 = {a: 1, b: 2, c: 3};
+  const obj2 = { a: 1, b: 2, c: 3 };
   const letter = "d";
   const number = 4;
-  console.log(80, {...obj2, [letter]: number});
+  console.log(80, { ...obj2, [letter]: number });
 }
 
 // -IIFE (Immediately Invoked Function Expression)
@@ -165,4 +165,155 @@ console.log(!!true); // Evaluates to true.
     console.log("second function executed");
   }
   one().then(two);
+}
+
+{
+  //+ Quick JS Reminder
+  //* Switch
+  console.log(new Date().getDay());
+
+  let day;
+  switch (new Date().getDay()) {
+    case 0:
+      day = "Sunday";
+      break;
+    case 1:
+      day = "Monday";
+      break;
+    case 2:
+      day = "Tuesday";
+      break;
+    case 3:
+      day = "Wednesday";
+      break;
+    case 4:
+      day = "Thursday";
+      break;
+    case 5:
+      day = "Friday";
+      break;
+    case 6:
+      day = "Saturday";
+    default:
+      day = "Unknown day";
+  }
+  console.log({ day });
+
+  //* Break + Continue
+  let text0 = "";
+  for (let i = 0; i < 6; i++) {
+    if (i === 3) {
+      console.log("3");
+    }
+    text0 += "The number is " + i + " ";
+  }
+  console.log(text0);
+
+  let text = "";
+  for (let i = 0; i < 10; i++) {
+    if (i === 3) {
+      break;
+    }
+    text += "The number is " + i + " ";
+  }
+  console.log(text);
+
+  let text2 = "";
+  for (let i = 0; i < 10; i++) {
+    if (i === 3) {
+      continue;
+    }
+    text2 += "The number is " + i + " ";
+  }
+  console.log(text2);
+
+  //* Array destructuring
+  let [a, b] = [10, 20];
+  console.log({ a, b });
+
+  //* Object creation
+  // 1. Object Literal
+  let person = { firstName: "Mich", lastName: "Rad" };
+  console.log(person);
+  // 2. Using the "new" keyword
+  let person2 = new Object();
+  console.log(person2);
+  person2.firstName = "Mich";
+  person2.lastName = "Rad";
+  console.log(person2);
+  delete person2.firstName;
+  console.log(person2);
+  // 3. Constructor method
+  function Person(first, last, age, eye) {
+    this.firstName = first;
+    this.lastName = last;
+    this.age = age;
+    this.eyeColor = eye;
+  }
+
+  const myFather = new Person("John", "Doe", 50, "blue");
+  const myMother = new Person("Sally", "Rally", 48, "green");
+  console.log({ myMother });
+  console.log({ myFather });
+
+  //* While loop
+  {
+    let text3 = "";
+    let i = 0;
+    while (i < 5) {
+      text3 += "The number is " + i;
+      i++;
+    }
+    console.log(text3);
+  }
+
+  //* Do...while loop -> is used when you want to run a code block at least one time
+  let text4 = "";
+  let i = 0;
+  do {
+    text4 += i + " ";
+    i++;
+  } while (i < 1);
+  console.log(text4);
+
+  //* For loop
+  {
+    const cars = ["BMW", "Volvo", "Saab", "Ford"];
+    let text = "";
+    for (let i = 0; i < cars.length; i++) {
+      text += cars[i] + " ";
+    }
+    console.log(text);
+  }
+
+  //* For...of loop
+  {
+    let text = "";
+    const cars = ["BMW", "Volvo", "Mini"];
+    for (let x of cars) {
+      text += x + " ";
+    }
+    console.log(text);
+  }
+
+  //* For...in loop
+  {
+    const person = { fname: "John", lname: "Doe", age: 25 };
+    let text = "";
+    for (let x in person) {
+      text += person[x] + " ";
+    }
+    console.log(text);
+  }
+
+  //* Creation Phase and Execution Phase
+  console.log(name3);
+  var name3 = "Mich";
+
+  //* Hoisting
+  logger();
+  function logger() {
+    console.log("logger");
+  }
+  //* Scope -> block scope {}, function scope and global scope
 }
