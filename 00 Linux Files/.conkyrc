@@ -26,7 +26,7 @@ ${color cyan}Użytkownik: ${color green}${execi 3600 whoami} ${alignr} ${color o
 ${color orange}Zwierzak (Codename): ${color blue}${execi 3600 cat /etc/os-release | grep VERSION= | cut -c 23- | sed 's/..$//'} ${alignr} ${color white}Current UNIX Epoch time: ${color cyan}${exec date +%s}
 ${color orange}Nazwa hosta: ${color} ${nodename} ${color orange}${alignr} Pracuję już: ${color magenta} ${uptime}
 ${color orange}Jąderko (Kernel) ${color yellow} / ${color orange} arch: ${alignr} ${color} ${sysname} ${kernel} ${color orange}na ${color}${machine}
-${color blue} nVIDIA ${color green} ${execi 3600 nvidia-smi | grep Driver | cut -c 27-51} ${alignr} ${color red} AV: ${color white}${execi 3600 clamscan --version}
+${color blue} nVIDIA ${color green} ${execi 3600 nvidia-smi | grep Driver | cut -c 37-61} ${alignr} ${color red} AV: ${color white}${execi 3600 clamscan --version}
 ${color orange}CPU:${color} ${freq_g} GHz ${alignr} ${color magenta}[Core0: ${freq_g (1)}GHz; Core1: ${freq_g (2)}GHz; Core2: ${freq_g (3)}GHz; Core3: ${freq_g (4)}GH]
 ${color orange}1:${color} ${cpu cpu1}% ${cpubar cpu1}
 ${color orange}2:${color} ${cpu cpu2}% ${cpubar cpu2}
@@ -76,6 +76,6 @@ ${color green}Publiczne IP: ${color magenta} ${alignr} ${execi 3600 wget -q -O /
 ${color yellow}Temperatury dysków twardych: ${alignr} ${color green} Liczba security updates: ${color yellow} ${execi 3600 apt-get dist-upgrade -s --quiet=2 | grep ^Inst | wc -l} ${color orange}
 Dysk /dev/sda (1TB - HDD): ${alignr} ${color magenta}${exec hddtemp /dev/sda | cut -c 31-32}°C ${color orange}
 Dysk /dev/nvme0 (500GB - SSD): ${alignr} ${color magenta}${exec sensors | grep Composite | cut -c 16-22} ${color white}
-${color green}Grafika:  ${color magenta}Temp GPU: ${color}${nvidia temp}°C${color magenta}; GPU-Util: ${color}${exec nvidia-smi | grep % | cut -c 62-65}${color magenta}; VRAM-Util: ${color}${exec nvidia-smi | grep % | cut -c 37-54}${color green}; ${exec nvidia-smi | grep Driver | cut -c 56-73}
+${color green}Grafika:  ${color magenta}Temp GPU: ${color}${nvidia temp}°C${color magenta}; GPU-Util: ${color}${exec nvidia-smi | grep % | cut -c 72-75}${color magenta}; VRAM-Util: ${color}${exec nvidia-smi | grep % | cut -c 50-64}${color green}; ${exec nvidia-smi | grep Driver | cut -c 66-84}
 ${color white}${hr}
 ]]
