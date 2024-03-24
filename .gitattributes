@@ -1,0 +1,17 @@
+*.yml linguist-detectable=true
+*.yml linguist-language=YAML
+
+*.yaml linguist-detectable=true
+*.yaml linguist-language=YAML
+
+*.sql linguist-detectable=true
+*.sql linguist-language=sql
+
+*.graphql linguist-detectable=true
+*.graphql linguist-language=GraphQL
+
+*.gql linguist-detectable=true
+*.gql linguist-language=GraphQL
+
+*.graphqls linguist-detectable=true
+*.graphqls linguist-language=GraphQL
