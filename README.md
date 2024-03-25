@@ -19,3 +19,5 @@ Various files and exercises
 7. React 17 app starter
 
 8. Destructuring Assignment exercise
+
+9. GraphQL with React and Node exercise
