@@ -10,6 +10,9 @@ import morgan from "morgan";
 import helmet from "helmet";
 import compression from "compression";
 
+// Import routes
+import indexRouter from "./indexRouter";
+
 //* The server
 const app: Express = express();
 
@@ -37,15 +40,18 @@ app.use(
 // Compress all responses
 app.use(compression({ level: 6 }));
 
+//Route middleware
+app.use("/api", indexRouter);
+
 //* Favicon
 app.get("/favicon.ico", (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname + "/favicon.svg"));
 });
 //* Test route
-app.get("/", (req: Request, res: Response) => {
-  console.log("req.ip:", req.ip);
-  res.send("<h1 style='color:blue;text-align:center'>API is running</h1>");
-});
+// app.get("/", (req: Request, res: Response) => {
+//   console.log("req.ip:", req.ip);
+//   res.send("<h1 style='color:blue;text-align:center'>API is running</h1>");
+// });
 
 //* Port
 const portHTTP = (process.env.PORT || 4000) as number;
