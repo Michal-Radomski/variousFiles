@@ -4,6 +4,7 @@ import sqlite3 from "sqlite3";
 //* The DB
 const filePathDB = "./db/fish.sqlite3";
 const db: sqlite3.Database = new sqlite3.Database(filePathDB);
+// console.log("db:", db);
 
 // Get All List
 export const getWholeList: RequestHandler = async (req: Request, res: Response): Promise<void> => {
