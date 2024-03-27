@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Button, Table } from "react-bootstrap";
+import { Button, ButtonGroup, Form, Table } from "react-bootstrap";
 
 import "./App.scss";
 
@@ -78,10 +78,43 @@ const App = (): JSX.Element => {
     );
   };
 
+  const AddShark = () => {
+    return (
+      <Form style={{ width: "50%", margin: "1rem auto" }}>
+        <h4>Add a New Shark</h4>
+        <Form.Group className="mb-3" controlId="formName">
+          <Form.Label>Shark Name</Form.Label>
+          <Form.Control type="text" placeholder="Enter Shark Name" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formColor">
+          <Form.Label>Shark Color</Form.Label>
+          <Form.Control type="text" placeholder="Enter Shark Color" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formWeight">
+          <Form.Label>Shark Weight</Form.Label>
+          <Form.Control type="number" placeholder="Enter Shark Weight" />
+        </Form.Group>
+
+        <ButtonGroup>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+          <Button variant="secondary" type="reset">
+            Reset
+          </Button>
+        </ButtonGroup>
+      </Form>
+    );
+  };
+
   return (
     <React.Fragment>
       <h1 className="text-center py-4">Sharks List</h1>
       {sharksList?.length ? <SharksTable /> : null}
+      <br />
+      <AddShark />
     </React.Fragment>
   );
 };
