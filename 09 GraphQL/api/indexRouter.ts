@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 
-import { deleteItem, getWholeList } from "./controller";
+import { createItem, deleteItem, getWholeList } from "./controller";
 
 const indexRouter: Router = express.Router();
 
@@ -8,5 +8,7 @@ const indexRouter: Router = express.Router();
 indexRouter.get("/whole-list", getWholeList);
 
 indexRouter.delete("/delete/:id", deleteItem);
+
+indexRouter.post("/add-item", createItem);
 
 export default indexRouter;
