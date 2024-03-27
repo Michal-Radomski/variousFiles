@@ -25,13 +25,20 @@ const App = (): JSX.Element => {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("sharkForm:", sharkForm);
-    axios
-      .post(`${baseApiURL}/add-item`, sharkForm)
-      .then(({ data }) => {
-        console.log("data:", data);
-      })
-      .catch((error) => console.error(error));
+    // console.log("sharkForm:", sharkForm);
+    try {
+      axios
+        .post(`${baseApiURL}/add-item`, sharkForm)
+        .then(({ data }) => {
+          console.log("data:", data);
+        })
+        .catch((error) => console.error(error));
+    } finally {
+      setTimeout(() => {
+        getData();
+        setSharkForm(initialState);
+      }, 500);
+    }
   };
 
   const onReset = (event: React.FormEvent<HTMLFormElement>) => {

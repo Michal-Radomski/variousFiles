@@ -29,7 +29,11 @@ export const deleteItem: RequestHandler = async (req: Request, res: Response): P
   try {
     const { id } = req.params;
     // console.log({ id });
-    await db.run("DELETE FROM sharks WHERE ID = $1 RETURNING *;", [id]);
+    await db.run("DELETE FROM sharks WHERE ID = $1 RETURNING *;", [id], function (error) {
+      if (error) {
+        console.error(error.message);
+      }
+    });
     res.status(200).json({ message: "Delete ok" });
   } catch (error) {
     console.error({ error });
@@ -40,19 +44,16 @@ export const deleteItem: RequestHandler = async (req: Request, res: Response): P
 // Create a todo
 export const createItem: RequestHandler = async (req: Request, res: Response): Promise<void> => {
   try {
-    // console.log("req.user:", req.user);
-    console.log("req.body:", req.body);
-    // const { description, privateTodo } = req.body;
-    // const newTodo = await pool.query("INSERT INTO todos (user_id, description, private) VALUES ($1, $2, $3) RETURNING *", [
-    //   req.user!.id,
-    //   description,
-    //   privateTodo,
-    // ]);
-    // res.status(201).json({
-    //   answerPSQL: newTodo.rows[0],
-    //   message: `201, Todo id: ${newTodo.rows[0]?.todo_id} successfully created`,
-    //   color: "success",
-    // });
+    // console.log("req.body:", req.body);
+    const { name, color, weight } = req.body;
+
+    await db.run(`INSERT INTO sharks (name, color, weight) VALUES (?, ?, ?)`, [name, color, weight], function (error) {
+      if (error) {
+        console.error(error.message);
+      }
+      // console.log(`Inserted a row with the ID: ${this.lastID}`);
+      res.status(200).json({ message: `Inserted a row with the ID: ${this.lastID}` });
+    });
   } catch (error) {
     console.error({ error });
   }
