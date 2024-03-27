@@ -1,5 +1,5 @@
 interface Shark {
-  ID: number;
+  ID?: number;
   name: string;
   color: string;
   weight: number;
