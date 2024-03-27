@@ -5,14 +5,16 @@ const AddShark = ({
   sharkForm,
   onChange,
   onSubmit,
+  onReset,
 }: {
   sharkForm: Shark;
   onChange: Function;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
+  onReset: React.FormEventHandler<HTMLFormElement>;
 }) => {
   return (
     <React.Fragment>
-      <Form style={{ width: "50%", margin: "1rem auto" }} onSubmit={onSubmit}>
+      <Form style={{ width: "50%", margin: "1rem auto" }} onSubmit={onSubmit} onReset={onReset}>
         <h4>Add a New Shark</h4>
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Shark Name</Form.Label>
@@ -22,6 +24,7 @@ const AddShark = ({
             name="name"
             value={sharkForm.name}
             onChange={(event) => onChange(event)}
+            required={true}
           />
         </Form.Group>
 
@@ -33,6 +36,7 @@ const AddShark = ({
             name="color"
             value={sharkForm.color}
             onChange={(event) => onChange(event)}
+            required={true}
           />
         </Form.Group>
 
@@ -44,11 +48,16 @@ const AddShark = ({
             name="weight"
             value={sharkForm.weight}
             onChange={(event) => onChange(event)}
+            required={true}
           />
         </Form.Group>
 
         <ButtonGroup>
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={sharkForm.weight && sharkForm.color && sharkForm.name ? false : true}
+          >
             Submit
           </Button>
           <Button variant="secondary" type="reset">

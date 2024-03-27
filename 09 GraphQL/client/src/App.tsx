@@ -8,12 +8,10 @@ import AddShark from "./AddShark";
 const baseApiURL = "http://localhost:4000/api";
 
 const App = (): JSX.Element => {
+  const initialState: Shark = { name: "", color: "", weight: 0 };
+
   const [sharksList, setSharksList] = React.useState<Shark[]>([]);
-  const [sharkForm, setSharkForm] = React.useState<Shark>({
-    name: "",
-    color: "",
-    weight: 0,
-  });
+  const [sharkForm, setSharkForm] = React.useState<Shark>(initialState);
 
   const onChange = (event: React.ChangeEvent<HTMLFormElement>) => {
     const name = event.target.name;
@@ -28,6 +26,11 @@ const App = (): JSX.Element => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("sharkForm:", sharkForm);
+  };
+
+  const onReset = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSharkForm(initialState);
   };
 
   const getData = React.useCallback(() => {
@@ -104,7 +107,7 @@ const App = (): JSX.Element => {
       <h1 className="text-center py-4">Sharks List</h1>
       {sharksList?.length ? <SharksTable /> : null}
       <br />
-      <AddShark sharkForm={sharkForm} onChange={onChange} onSubmit={onSubmit} />
+      <AddShark sharkForm={sharkForm} onChange={onChange} onSubmit={onSubmit} onReset={onReset} />
     </React.Fragment>
   );
 };
