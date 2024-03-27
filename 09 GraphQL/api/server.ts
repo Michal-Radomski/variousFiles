@@ -18,10 +18,10 @@ const app: Express = express();
 
 const corsOptions = {
   origin: true,
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "DELETE"],
   preflightContinue: false,
   optionsSuccessStatus: 200,
-  credentials: true,
+  credentials: false,
 };
 
 //* Middlewares
