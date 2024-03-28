@@ -47,13 +47,17 @@ export const createItem: RequestHandler = async (req: Request, res: Response): P
     // console.log("req.body:", req.body);
     const { name, color, weight } = req.body;
 
-    await db.run(`INSERT INTO sharks (name, color, weight) VALUES (?, ?, ?)`, [name, color, weight], function (error) {
-      if (error) {
-        console.error(error.message);
+    await db.run(
+      `INSERT INTO sharks (name, color, weight) VALUES (?, ?, ?) RETURNING *;`,
+      [name, color, weight],
+      function (error) {
+        if (error) {
+          console.error(error.message);
+        }
+        // console.log(`Inserted a row with the ID: ${this.lastID}`);
+        res.status(200).json({ message: `Inserted a row with the ID: ${this.lastID}` });
       }
-      // console.log(`Inserted a row with the ID: ${this.lastID}`);
-      res.status(200).json({ message: `Inserted a row with the ID: ${this.lastID}` });
-    });
+    );
   } catch (error) {
     console.error({ error });
   }

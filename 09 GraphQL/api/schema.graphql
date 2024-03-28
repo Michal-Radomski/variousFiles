@@ -1,0 +1,15 @@
+type Query {
+  sharks: [Shark!]!
+}
+
+type Mutation {
+  addShark(shark: Shark!): Shark
+  deleteShark(shark: Shark!): Boolean
+}
+
+type Shark {
+ id: ID!
+  name: String!
+  color: String!
+  weight: Int!;
+}
