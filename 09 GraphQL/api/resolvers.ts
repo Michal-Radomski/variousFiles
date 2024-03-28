@@ -23,8 +23,8 @@ const getSharks = (): Shark[] => {
 
 const resolvers = {
   Query: {
-    sharks: () => {
-      return getSharks();
+    sharks: async () => {
+      return await getSharks();
     },
   },
 };
