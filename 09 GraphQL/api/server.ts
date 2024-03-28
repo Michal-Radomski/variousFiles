@@ -10,6 +10,13 @@ import morgan from "morgan";
 import helmet from "helmet";
 import compression from "compression";
 
+//* GraphQL
+import gql from "graphql-tag";
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@apollo/server/express4";
+import resolvers from "./resolvers";
+import { readFileSync } from "fs";
+
 // Import routes
 import indexRouter from "./indexRouter";
 
@@ -54,11 +61,23 @@ app.get("/favicon.ico", (_req: Request, res: Response) => {
 // });
 
 //* Port
-const portHTTP = (process.env.PORT || 4000) as number;
+const httpPort = (process.env.PORT || 4000) as number;
 
-const httpServer = http.createServer(app);
-httpServer.listen({ port: portHTTP }, () => {
-  console.log(`Server is listening at http://localhost:${portHTTP}`);
-  // For testing only
-  console.log("Current Time:", new Date().toLocaleTimeString());
-});
+//* Apollo Server
+(async function () {
+  const typeDefs = gql(readFileSync("./schema.graphql", { encoding: "utf-8" }));
+  // console.log("typeDefs:", typeDefs);
+
+  const apolloServer = await new ApolloServer({ typeDefs, resolvers });
+  await apolloServer.start();
+
+  app.use("/graphql", expressMiddleware(apolloServer, {}));
+
+  const httpServer = http.createServer(app);
+  httpServer.listen({ port: httpPort }, () => {
+    console.log(`Server is listening at http://localhost:${httpPort}`);
+    console.log(`GraphQL endpoint: http://localhost:${httpPort}/graphql`);
+    // For testing only
+    console.log("Current Time:", new Date().toLocaleTimeString());
+  });
+})();

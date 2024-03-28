@@ -3,14 +3,21 @@ import sqlite3 from "sqlite3";
 
 //* The DB
 const filePathDB = "./db/fish.sqlite3";
-export const db: sqlite3.Database = new sqlite3.Database(filePathDB);
+export const db: sqlite3.Database = new (sqlite3.verbose().Database)(filePathDB);
 // console.log("db:", db);
+
+export interface Shark {
+  ID?: number;
+  name: string;
+  color: string;
+  weight: number;
+}
 
 // Get All List
 export const getWholeList: RequestHandler = async (req: Request, res: Response): Promise<void> => {
   console.log("req.ip:", req.ip);
   try {
-    await db.all(`SELECT * FROM sharks;`, (error, rows) => {
+    await db.all(`SELECT * FROM sharks;`, (error, rows: Shark[]) => {
       if (error) {
         throw new Error(error.message);
       }
