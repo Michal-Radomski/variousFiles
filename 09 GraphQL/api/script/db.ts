@@ -1,3 +1,5 @@
+//* Used: https://www.npmjs.com/package/sqlite3
+
 import fs from "fs";
 import sqlite3 from "sqlite3";
 

@@ -1,9 +1,11 @@
+//* Used: https://www.npmjs.com/package/sqlite3
+
 import { Request, RequestHandler, Response } from "express";
 import sqlite3 from "sqlite3";
 
 //* The DB
 const filePathDB = "./db/fish.sqlite3";
-export const db: sqlite3.Database = new sqlite3.Database(filePathDB);
+const db: sqlite3.Database = new sqlite3.Database(filePathDB);
 // console.log("db:", db);
 
 export interface Shark {

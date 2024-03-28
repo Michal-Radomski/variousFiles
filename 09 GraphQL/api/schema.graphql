@@ -2,14 +2,14 @@ type Query {
   sharks: [Shark!]!
 }
 
+type Shark {
+  ID: ID!
+  name: String
+  color: String
+  weight: Int
+}
+
 # type Mutation {
 #   addShark(shark: Shark!): Shark
 #   deleteShark(shark: Shark!): Boolean
 # }
-
-type Shark {
-  id: ID!
-  name: String!
-  color: String!
-  weight: Int!
-}

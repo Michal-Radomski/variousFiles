@@ -1,6 +1,6 @@
 query {
   sharks {
-    id
+    ID
     name
     color
     weight
@@ -9,7 +9,7 @@ query {
 
 query getSharks {
   sharks {
-    id
+    ID
     name
     color
     weight

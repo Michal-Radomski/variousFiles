@@ -1,3 +1,5 @@
+//* Used: https://www.npmjs.com/package/sqlite3
+
 import db from "./db";
 
 function insertRow(): void {

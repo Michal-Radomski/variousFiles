@@ -1,30 +1,28 @@
-import { Shark, db } from "./controller";
+import Database from "better-sqlite3";
+
+import { Shark } from "./controller";
+
+//* The DB
+const filePathDB = "./db/fish.sqlite3";
+const db = new Database(filePathDB, { verbose: console.log });
 // console.log("db:", db);
 
-const getSharks = async (): Promise<Shark[]> => {
-  let sharksArray = [] as Shark[];
-
+const getSharks = (): Shark[] => {
   try {
-    await db.all(`SELECT * FROM sharks;`, (error, rows: Shark[]) => {
-      // if (error) {
-      //   throw new Error(error.message);
-      // }
-      console.log("rows:", rows);
-
-      // sharksArray.forEach((row) => sharksArray.push(row));
-      sharksArray = [...rows];
-    });
+    const stmt = db.prepare("SELECT * FROM sharks;");
+    const sharks = stmt.all() as Shark[];
+    // console.log("sharks:", sharks);
+    return sharks;
   } catch (error) {
     console.log("error:", error);
   }
-  console.log("sharksArray:", sharksArray);
-  return JSON.parse(JSON.stringify(sharksArray));
+  return null as any;
 };
 
 const resolvers = {
   Query: {
-    async sharks(_: any, __: any, context: any) {
-      return await getSharks();
+    sharks() {
+      return getSharks();
     },
   },
 };
