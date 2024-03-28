@@ -7,7 +7,7 @@ query {
   }
 }
 
-query getSharks {
+query sharksFromDB {
   sharks {
     ID
     name
