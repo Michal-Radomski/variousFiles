@@ -1,24 +1,24 @@
 import { Shark, db } from "./controller";
 // console.log("db:", db);
 
-const getSharks = async () => {
+const getSharks = async (): Promise<Shark[]> => {
   let sharksArray = [] as Shark[];
 
-  await db.all(`SELECT * FROM sharks;`, (error, rows: Shark[]) => {
-    if (error) {
-      throw new Error(error.message);
-    }
-    console.log("rows:", rows);
-    // rows.forEach(function (elem: Shark) {
-    //   sharksArray.push(elem);
-    // });
-    for (let i = 0; i < rows.length; i++) {
-      sharksArray.push(rows[i]);
-    }
-  });
-  console.log("sharksArray:", sharksArray);
+  try {
+    await db.all(`SELECT * FROM sharks;`, (error, rows: Shark[]) => {
+      // if (error) {
+      //   throw new Error(error.message);
+      // }
+      console.log("rows:", rows);
 
-  return sharksArray;
+      // sharksArray.forEach((row) => sharksArray.push(row));
+      sharksArray = [...rows];
+    });
+  } catch (error) {
+    console.log("error:", error);
+  }
+  console.log("sharksArray:", sharksArray);
+  return JSON.parse(JSON.stringify(sharksArray));
 };
 
 const resolvers = {

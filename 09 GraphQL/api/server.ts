@@ -1,5 +1,6 @@
 import path from "path";
 import http from "http";
+import fs from "fs";
 
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -14,11 +15,14 @@ import compression from "compression";
 import gql from "graphql-tag";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
-import resolvers from "./resolvers";
-import { readFileSync } from "fs";
+
+import { buildSubgraphSchema } from "@apollo/subgraph";
 
 // Import routes
 import indexRouter from "./indexRouter";
+
+//* Import resolvers
+import resolvers from "./resolvers";
 
 //* The server
 const app: Express = express();
@@ -65,13 +69,16 @@ const httpPort = (process.env.PORT || 4000) as number;
 
 //* Apollo Server
 (async function () {
-  const typeDefs = gql(readFileSync("./schema.graphql", { encoding: "utf-8" }));
+  //* TypeDefs
+  const typeDefs = gql(fs.readFileSync("./schema.graphql", { encoding: "utf-8" }));
   // console.log("typeDefs:", typeDefs);
 
-  const apolloServer = await new ApolloServer({ typeDefs, resolvers });
-  await apolloServer.start();
+  const apolloServer = await new ApolloServer({
+    schema: buildSubgraphSchema({ typeDefs, resolvers }),
+  });
 
-  app.use("/graphql", expressMiddleware(apolloServer, {}));
+  await apolloServer.start();
+  await app.use("/graphql", expressMiddleware(apolloServer, {}));
 
   const httpServer = http.createServer(app);
   httpServer.listen({ port: httpPort }, () => {

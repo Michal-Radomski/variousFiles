@@ -1,0 +1,17 @@
+query {
+  sharks {
+    id
+    name
+    color
+    weight
+  }
+}
+
+query getSharks {
+  sharks {
+    id
+    name
+    color
+    weight
+  }
+}
