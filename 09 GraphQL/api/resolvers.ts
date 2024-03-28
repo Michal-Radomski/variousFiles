@@ -1,3 +1,5 @@
+//* Used: https://www.npmjs.com/package/better-sqlite3
+
 import Database from "better-sqlite3";
 
 import { Shark } from "./controller";
