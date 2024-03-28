@@ -1,17 +1,47 @@
 import React from "react";
 import axios from "axios";
 import { Button, Table } from "react-bootstrap";
+import { useQuery, gql } from "@apollo/client";
 
 import "./App.scss";
 import AddShark from "./AddShark";
 
 const baseApiURL = "http://localhost:4000/api";
 
+const GET_SHARKS = gql`
+  query sharksFromDB {
+    sharks {
+      ID
+      name
+      color
+      weight
+    }
+  }
+`;
+
 const App = (): JSX.Element => {
+  const { loading, error, data, refetch } = useQuery(GET_SHARKS);
+
   const initialState: Shark = { name: "", color: "", weight: 0 };
 
   const [sharksList, setSharksList] = React.useState<Shark[]>([]);
   const [sharkForm, setSharkForm] = React.useState<Shark>(initialState);
+
+  //* Data from GraphQL
+  React.useEffect(() => {
+    (function getSharks(): void {
+      if (loading) {
+        console.log("loading");
+      }
+      if (error) {
+        console.log("error.message:", error.message);
+      }
+      if (data) {
+        // console.log("data.sharks:", data.sharks);
+        return setSharksList(data?.sharks);
+      }
+    })();
+  }, [data, error, loading]);
 
   const onChange = (event: React.ChangeEvent<HTMLFormElement>) => {
     const name = event.target.name;
@@ -35,7 +65,8 @@ const App = (): JSX.Element => {
         .catch((error) => console.error(error));
     } finally {
       setTimeout(() => {
-        getData();
+        // getData(); //* V1 - Rest Api
+        refetch(); //* V2 - GraphQL
         setSharkForm(initialState);
       }, 500);
     }
@@ -46,20 +77,21 @@ const App = (): JSX.Element => {
     setSharkForm(initialState);
   };
 
-  const getData = React.useCallback(() => {
-    axios
-      .get(`${baseApiURL}/whole-list`)
-      .then(({ data }) => {
-        // console.log("data:", data);
-        const dataToSet = data?.list;
-        setSharksList(dataToSet);
-      })
-      .catch((error) => console.error(error));
-  }, []);
+  //* Data from REST API
+  // const getData = React.useCallback(() => {
+  //   axios
+  //     .get(`${baseApiURL}/whole-list`)
+  //     .then(({ data }) => {
+  //       // console.log("data:", data);
+  //       const dataToSet = data?.list;
+  //       setSharksList(dataToSet);
+  //     })
+  //     .catch((error) => console.error(error));
+  // }, []);
 
-  React.useEffect(() => {
-    getData();
-  }, [getData]);
+  // React.useEffect(() => {
+  //   getData();
+  // }, [getData]);
 
   const deleteShark = (id: number) => {
     // console.log({ id });
@@ -72,7 +104,8 @@ const App = (): JSX.Element => {
         .catch((error) => console.error(error));
     } finally {
       setTimeout(() => {
-        getData();
+        // getData(); //* V1 - Rest Api
+        refetch(); //* V2 - GraphQL
       }, 500);
     }
   };
