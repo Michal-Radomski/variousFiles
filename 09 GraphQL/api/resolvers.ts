@@ -27,6 +27,21 @@ const resolvers = {
       return await getSharks();
     },
   },
+  Mutation: {
+    deleteShark: async (_parent: any, { ID }: { ID: string }): Promise<Shark | undefined> => {
+      try {
+        const stmtFind = await db.prepare(`SELECT * FROM sharks WHERE ID = ?`);
+        const sharkToDel = (await stmtFind.get(ID)) as Shark;
+        // console.log("sharkToDel:", sharkToDel);
+        const stmtDel = await db.prepare(`DELETE FROM sharks WHERE ID = ?`);
+        const res = await stmtDel.run(ID);
+        console.log("res:", res);
+        return sharkToDel;
+      } catch (error) {
+        console.log("error:", error);
+      }
+    },
+  },
 };
 
 export default resolvers;

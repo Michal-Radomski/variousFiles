@@ -9,7 +9,7 @@ type Shark {
   weight: Int
 }
 
-# type Mutation {
-#   addShark(shark: Shark!): Shark
-#   deleteShark(shark: Shark!): Boolean
-# }
+type Mutation {
+  deleteShark(ID: ID!): Shark
+  # addShark(shark: Shark!): Shark
+}
