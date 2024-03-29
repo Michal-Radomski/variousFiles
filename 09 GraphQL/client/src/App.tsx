@@ -38,6 +38,16 @@ const App = (): JSX.Element => {
       }
       if (data) {
         // console.log("data.sharks:", data.sharks);
+        const currentTime = new Date();
+        console.log(
+          "GraphQL:",
+          data?.sharks?.length,
+          currentTime.toLocaleTimeString("pl-PL", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "numeric",
+          }) + `.${currentTime.getMilliseconds()}`
+        );
         return setSharksList(data?.sharks);
       }
     })();
@@ -78,20 +88,30 @@ const App = (): JSX.Element => {
   };
 
   //* Data from REST API
-  // const getData = React.useCallback(() => {
-  //   axios
-  //     .get(`${baseApiURL}/whole-list`)
-  //     .then(({ data }) => {
-  //       // console.log("data:", data);
-  //       const dataToSet = data?.list;
-  //       setSharksList(dataToSet);
-  //     })
-  //     .catch((error) => console.error(error));
-  // }, []);
+  const getData = React.useCallback(() => {
+    axios
+      .get(`${baseApiURL}/whole-list`)
+      .then(({ data }) => {
+        // console.log("data:", data);
+        const dataToSet = data?.list;
+        const currentTime = new Date();
+        console.log(
+          "Rest Api:",
+          dataToSet?.length,
+          currentTime.toLocaleTimeString("pl-PL", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "numeric",
+          }) + `.${currentTime.getMilliseconds()}`
+        );
+        // setSharksList(dataToSet);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
-  // React.useEffect(() => {
-  //   getData();
-  // }, [getData]);
+  React.useEffect(() => {
+    getData();
+  }, [getData]);
 
   const deleteShark = (id: number) => {
     // console.log({ id });
