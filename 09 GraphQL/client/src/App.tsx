@@ -12,6 +12,8 @@ const baseApiURL = "http://localhost:4000/api";
 const App = (): JSX.Element => {
   const { loading, error, data, refetch } = useQuery(GET_SHARKS);
   const [deleteSharkGraphQL, { data: dataDelete, loading: loadingDelete, error: errorDelete }] = useMutation(DELETE_SHARK);
+  const [addSharkGraphQL, { data: dataAdd, loading: loadingAdd, error: errorAdd }] = useMutation(ADD_SHARK);
+  const [editSharkGraphQL, { data: dataEdit, loading: loadingEdit, error: errorEdit }] = useMutation(EDIT_SHARK);
 
   const initialState: Shark = { name: "", color: "", weight: 0 };
 
