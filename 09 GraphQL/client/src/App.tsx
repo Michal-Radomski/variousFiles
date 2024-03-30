@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Button, Table } from "react-bootstrap";
+import { Button, ButtonGroup, Table } from "react-bootstrap";
 import { useQuery, gql } from "@apollo/client";
 
 import "./App.scss";
@@ -130,6 +130,10 @@ const App = (): JSX.Element => {
     }
   };
 
+  const editShark = (id: number) => {
+    console.log({ id });
+  };
+
   const SharksTable = (): JSX.Element => {
     return (
       <Table striped bordered hover size="sm">
@@ -139,7 +143,7 @@ const App = (): JSX.Element => {
             <th>Name</th>
             <th>Color</th>
             <th>Weight</th>
-            <th>Delete</th>
+            <th>Delete/Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -151,9 +155,14 @@ const App = (): JSX.Element => {
                 <td>{shark?.color}</td>
                 <td>{shark?.weight}</td>
                 <td>
-                  <Button onClick={() => deleteShark(shark?.ID!)} variant="danger" size="sm">
-                    Delete
-                  </Button>
+                  <ButtonGroup>
+                    <Button onClick={() => deleteShark(shark?.ID!)} variant="danger" size="sm">
+                      Delete
+                    </Button>
+                    <Button onClick={() => editShark(shark?.ID!)} variant="warning" size="sm">
+                      Edit
+                    </Button>
+                  </ButtonGroup>
                 </td>
               </tr>
             );
