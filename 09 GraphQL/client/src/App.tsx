@@ -50,7 +50,7 @@ const App = (): JSX.Element => {
 
   //* V2 - Get data using GraphQL and set state
   React.useEffect(() => {
-    (function getSharks(): void {
+    (async function getSharks(): Promise<void> {
       if (loadingGet) {
         console.log("loadingGet");
       }
@@ -69,7 +69,7 @@ const App = (): JSX.Element => {
             second: "numeric",
           }) + `.${currentTime.getMilliseconds()}`
         );
-        return setSharksList(dataGet?.sharks);
+        return await setSharksList(dataGet?.sharks);
       }
     })();
   }, [dataGet, errorGet, loadingGet]);
@@ -132,7 +132,7 @@ const App = (): JSX.Element => {
           //   })
           //   .catch((error) => console.error(error))
           //* V2 GraphQL
-          await editSharkGraphQL() //Temp
+          await editSharkGraphQL({ variables: { ID: sharkForm?.ID, name, color, weight: Number(weight) } })
         : //@ Create a new Shark
           //* V1 - Rest Api
           // await axios
