@@ -24,3 +24,12 @@ mutation deleteSharkFromDB($ID: ID!) {
     weight
   }
 }
+
+mutation addSharkToDB($name: String, $color: String, $weight: Int) {
+  addShark(name: $name, color: $color, weight: $weight) {
+    ID
+    name
+    color
+    weight
+  }
+}

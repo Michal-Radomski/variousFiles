@@ -35,8 +35,24 @@ const resolvers = {
         // console.log("sharkToDel:", sharkToDel);
         const stmtDel = await db.prepare(`DELETE FROM sharks WHERE ID = ?`);
         const res = await stmtDel.run(ID);
-        console.log("res:", res);
+        // console.log("res:", res);
         return sharkToDel;
+      } catch (error) {
+        console.log("error:", error);
+      }
+    },
+    addShark: async (
+      _parent: any,
+      { name, color, weight }: { name: string; color: string; weight: string }
+    ): Promise<Shark | undefined> => {
+      try {
+        const stmtAdd = await db.prepare("INSERT INTO sharks (name, color, weight) VALUES (?, ?, ?)");
+        const resId = await stmtAdd.run(name, color, weight)?.lastInsertRowid;
+        // console.log("resId:", resId);
+        const stmtFind = await db.prepare(`SELECT * FROM sharks WHERE ID = ?`);
+        const sharkToReturn = (await stmtFind.get(resId)) as Shark;
+        // console.log("sharkToReturn:", sharkToReturn);
+        return sharkToReturn;
       } catch (error) {
         console.log("error:", error);
       }

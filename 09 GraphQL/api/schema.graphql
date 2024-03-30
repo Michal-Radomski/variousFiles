@@ -11,5 +11,5 @@ type Shark {
 
 type Mutation {
   deleteShark(ID: ID!): Shark
-  # addShark(shark: Shark!): Shark
+  addShark(name: String, color: String, weight: Int): Shark
 }
