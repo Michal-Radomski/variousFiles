@@ -75,12 +75,12 @@ export const createItem: RequestHandler = async (req: Request, res: Response): P
 // Update an Item
 export const updateItem = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { ID } = req.params;
+    const { id } = req.params;
     const { name, color, weight } = req.body;
     // console.log({ id, name, color, weight });
 
-    await db.run("UPDATE sharks SET name = ?, color= ?, weight = ? WHERE ID = ? RETURNING *;", [name, color, weight, ID]);
-    res.status(200).json({ message: `200, Shark ID: ${ID} was updated` });
+    await db.run("UPDATE sharks SET name = ?, color= ?, weight = ? WHERE ID = ? RETURNING *;", [name, color, weight, id]);
+    res.status(200).json({ message: `200, Shark Id: ${id} was updated` });
   } catch (error) {
     console.error({ error });
   }

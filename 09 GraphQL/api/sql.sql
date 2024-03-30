@@ -1,3 +1,4 @@
+--* Rest Api
 SELECT
   *
 FROM
@@ -13,6 +14,16 @@ INSERT INTO
 VALUES
   (?, ?, ?) RETURNING *;
 
+UPDATE
+  sharks
+SET
+  name = ?,
+  color = ?,
+  weight = ?
+WHERE
+  ID = ? RETURNING *;
+
+--* GraphQL
 SELECT
   *
 FROM
