@@ -11,7 +11,7 @@ const baseApiURL = "http://localhost:4000/api";
 
 const App = (): JSX.Element => {
   const { loading, error, data, refetch } = useQuery(GET_SHARKS);
-  const [mutateFunction, { data: data1, loading: loading1, error: error1 }] = useMutation(DELETE_SHARK);
+  const [deleteSharkGraphQL, { data: dataDelete, loading: loadingDelete, error: errorDelete }] = useMutation(DELETE_SHARK);
 
   const initialState: Shark = { name: "", color: "", weight: 0 };
 
@@ -113,15 +113,31 @@ const App = (): JSX.Element => {
     getData();
   }, [getData]);
 
-  const deleteShark = (id: number): void => {
+  React.useEffect(() => {
+    if (loadingDelete) {
+      console.log("loading");
+    }
+    if (errorDelete) {
+      console.log("errorDelete.message:", errorDelete.message);
+    }
+    if (dataDelete) {
+      console.log("dataDelete:", dataDelete);
+    }
+  }, [dataDelete, errorDelete, loadingDelete]);
+
+  const deleteShark = async (id: number): Promise<void> => {
     // console.log({ id });
     try {
-      axios
-        .delete(`${baseApiURL}/delete/${id}`)
-        .then(({ data }) => {
-          console.log("data:", data);
-        })
-        .catch((error) => console.error(error));
+      //* V1 Rest Api
+      // await axios
+      //   .delete(`${baseApiURL}/delete/${id}`)
+      //   .then(({ data }) => {
+      //     console.log("data:", data);
+      //   })
+      //   .catch((error) => console.error(error));
+
+      //* V2 GraphQL
+      await deleteSharkGraphQL({ variables: { ID: id } });
     } finally {
       setTimeout(() => {
         // getData(); //* V1 - Rest Api
