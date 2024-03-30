@@ -1,26 +1,17 @@
 import React from "react";
 import axios from "axios";
 import { Button, ButtonGroup, Table } from "react-bootstrap";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
 import "./App.scss";
 import SharkForm from "./SharkForm";
+import { DELETE_SHARK, GET_SHARKS, ADD_SHARK, EDIT_SHARK } from "./queries";
 
 const baseApiURL = "http://localhost:4000/api";
 
-const GET_SHARKS = gql`
-  query sharksFromDB {
-    sharks {
-      ID
-      name
-      color
-      weight
-    }
-  }
-`;
-
 const App = (): JSX.Element => {
   const { loading, error, data, refetch } = useQuery(GET_SHARKS);
+  const [mutateFunction, { data: data1, loading: loading1, error: error1 }] = useMutation(DELETE_SHARK);
 
   const initialState: Shark = { name: "", color: "", weight: 0 };
 
@@ -140,7 +131,7 @@ const App = (): JSX.Element => {
   };
 
   const editShark = (id: number): void => {
-    const sharkToEdit = sharksList?.filter((elem) => elem?.ID === id)?.[0];
+    const sharkToEdit = sharksList?.filter((elem: Shark) => elem?.ID === id)?.[0];
     // console.log("sharkToEdit:", sharkToEdit);
     setSharkForm(sharkToEdit);
   };
