@@ -10,7 +10,7 @@ import { DELETE_SHARK, GET_SHARKS, ADD_SHARK, EDIT_SHARK } from "./queries";
 const baseApiURL = "http://localhost:4000/api";
 
 const App = (): JSX.Element => {
-  const { loading, error, data, refetch } = useQuery(GET_SHARKS);
+  const { loading: loadingGet, error, data, refetch } = useQuery(GET_SHARKS);
   const [deleteSharkGraphQL, { data: dataDelete, loading: loadingDelete, error: errorDelete }] = useMutation(DELETE_SHARK);
   const [addSharkGraphQL, { data: dataAdd, loading: loadingAdd, error: errorAdd }] = useMutation(ADD_SHARK);
   const [editSharkGraphQL, { data: dataEdit, loading: loadingEdit, error: errorEdit }] = useMutation(EDIT_SHARK);
@@ -23,8 +23,8 @@ const App = (): JSX.Element => {
   //* Data from GraphQL
   React.useEffect(() => {
     (function getSharks(): void {
-      if (loading) {
-        console.log("loading");
+      if (loadingGet) {
+        console.log("loadingGet");
       }
       if (error) {
         console.log("error.message:", error.message);
@@ -44,7 +44,7 @@ const App = (): JSX.Element => {
         return setSharksList(data?.sharks);
       }
     })();
-  }, [data, error, loading]);
+  }, [data, error, loadingGet]);
 
   const onChange = (event: React.ChangeEvent<HTMLFormElement>): void => {
     const name = event.target.name;
@@ -57,6 +57,7 @@ const App = (): JSX.Element => {
   };
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    const { name, color, weight } = sharkForm;
     event.preventDefault();
     // console.log("sharkForm:", sharkForm);
     try {
@@ -69,12 +70,15 @@ const App = (): JSX.Element => {
             })
             .catch((error) => console.error(error))
         : //* Create a new Shark
-          axios
-            .post(`${baseApiURL}/add-item`, sharkForm)
-            .then(({ data }) => {
-              console.log("data:", data);
-            })
-            .catch((error) => console.error(error));
+          //* V1 - Rest Api
+          // axios
+          //   .post(`${baseApiURL}/add-item`, sharkForm)
+          //   .then(({ data }) => {
+          //     console.log("data:", data);
+          //   })
+          //   .catch((error) => console.error(error));
+          //* V2 - GraphQL
+          addSharkGraphQL({ variables: { name, color, weight: Number(weight) } });
     } finally {
       setTimeout(() => {
         // getData(); //* V1 - Rest Api
@@ -117,7 +121,7 @@ const App = (): JSX.Element => {
 
   React.useEffect(() => {
     if (loadingDelete) {
-      console.log("loading");
+      console.log("loadingDelete");
     }
     if (errorDelete) {
       console.log("errorDelete.message:", errorDelete.message);
@@ -125,7 +129,16 @@ const App = (): JSX.Element => {
     if (dataDelete) {
       console.log("dataDelete:", dataDelete);
     }
-  }, [dataDelete, errorDelete, loadingDelete]);
+    if (loadingAdd) {
+      console.log("loadingAdd");
+    }
+    if (errorAdd) {
+      console.log("errorAdd.message:", errorAdd.message);
+    }
+    if (dataAdd) {
+      console.log("dataAdd:", dataAdd);
+    }
+  }, [dataAdd, dataDelete, errorAdd, errorDelete, loadingAdd, loadingDelete]);
 
   const deleteShark = async (id: number): Promise<void> => {
     // console.log({ id });
