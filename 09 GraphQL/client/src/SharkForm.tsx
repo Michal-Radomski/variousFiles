@@ -11,7 +11,7 @@ const SharkForm = ({
   onChange: Function;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onReset: React.FormEventHandler<HTMLFormElement>;
-}) => {
+}): JSX.Element => {
   // console.log("sharkForm:", sharkForm);
 
   return (

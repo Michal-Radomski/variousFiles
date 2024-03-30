@@ -53,7 +53,7 @@ const App = (): JSX.Element => {
     })();
   }, [data, error, loading]);
 
-  const onChange = (event: React.ChangeEvent<HTMLFormElement>) => {
+  const onChange = (event: React.ChangeEvent<HTMLFormElement>): void => {
     const name = event.target.name;
     const value = event.target.value;
     // console.log({ name, value });
@@ -63,7 +63,7 @@ const App = (): JSX.Element => {
     });
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     // console.log("sharkForm:", sharkForm);
     try {
@@ -91,7 +91,7 @@ const App = (): JSX.Element => {
     }
   };
 
-  const onReset = (event: React.FormEvent<HTMLFormElement>) => {
+  const onReset = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     setSharkForm(initialState);
   };
@@ -122,7 +122,7 @@ const App = (): JSX.Element => {
     getData();
   }, [getData]);
 
-  const deleteShark = (id: number) => {
+  const deleteShark = (id: number): void => {
     // console.log({ id });
     try {
       axios
