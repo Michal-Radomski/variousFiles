@@ -10,90 +10,19 @@ import { DELETE_SHARK, GET_SHARKS, ADD_SHARK, EDIT_SHARK } from "./queries";
 const baseApiURL = "http://localhost:4000/api";
 
 const App = (): JSX.Element => {
-  const { loading: loadingGet, error, data, refetch } = useQuery(GET_SHARKS);
+  //* GraphQL hooks
+  const { loading: loadingGet, error: errorGet, data: dataGet, refetch } = useQuery(GET_SHARKS);
   const [deleteSharkGraphQL, { data: dataDelete, loading: loadingDelete, error: errorDelete }] = useMutation(DELETE_SHARK);
   const [addSharkGraphQL, { data: dataAdd, loading: loadingAdd, error: errorAdd }] = useMutation(ADD_SHARK);
   const [editSharkGraphQL, { data: dataEdit, loading: loadingEdit, error: errorEdit }] = useMutation(EDIT_SHARK);
 
+  //* Local State
   const initialState: Shark = { name: "", color: "", weight: 0 };
 
   const [sharksList, setSharksList] = React.useState<Shark[]>([]);
   const [sharkForm, setSharkForm] = React.useState<Shark>(initialState);
 
-  //* Data from GraphQL
-  React.useEffect(() => {
-    (function getSharks(): void {
-      if (loadingGet) {
-        console.log("loadingGet");
-      }
-      if (error) {
-        console.log("error.message:", error.message);
-      }
-      if (data) {
-        // console.log("data.sharks:", data.sharks);
-        const currentTime = new Date();
-        console.log(
-          "GraphQL:",
-          data?.sharks?.length,
-          currentTime.toLocaleTimeString("pl-PL", {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "numeric",
-          }) + `.${currentTime.getMilliseconds()}`
-        );
-        return setSharksList(data?.sharks);
-      }
-    })();
-  }, [data, error, loadingGet]);
-
-  const onChange = (event: React.ChangeEvent<HTMLFormElement>): void => {
-    const name = event.target.name;
-    const value = event.target.value;
-    // console.log({ name, value });
-    setSharkForm({
-      ...sharkForm,
-      [name]: value,
-    });
-  };
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
-    const { name, color, weight } = sharkForm;
-    event.preventDefault();
-    // console.log("sharkForm:", sharkForm);
-    try {
-      sharkForm.hasOwnProperty("ID")
-        ? //* Edit an existing shark
-          axios
-            .put(`${baseApiURL}/shark/${sharkForm?.ID}`, sharkForm)
-            .then(({ data }) => {
-              console.log("data:", data);
-            })
-            .catch((error) => console.error(error))
-        : //* Create a new Shark
-          //* V1 - Rest Api
-          // axios
-          //   .post(`${baseApiURL}/add-item`, sharkForm)
-          //   .then(({ data }) => {
-          //     console.log("data:", data);
-          //   })
-          //   .catch((error) => console.error(error));
-          //* V2 - GraphQL
-          addSharkGraphQL({ variables: { name, color, weight: Number(weight) } });
-    } finally {
-      setTimeout(() => {
-        // getData(); //* V1 - Rest Api
-        refetch(); //* V2 - GraphQL
-        setSharkForm(initialState);
-      }, 500);
-    }
-  };
-
-  const onReset = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-    setSharkForm(initialState);
-  };
-
-  //* Data from REST API
+  //* V1- Get data using REST API
   const getData = React.useCallback(() => {
     axios
       .get(`${baseApiURL}/whole-list`)
@@ -119,6 +48,33 @@ const App = (): JSX.Element => {
     getData();
   }, [getData]);
 
+  //* V2 - Get data using GraphQL and set state
+  React.useEffect(() => {
+    (function getSharks(): void {
+      if (loadingGet) {
+        console.log("loadingGet");
+      }
+      if (errorGet) {
+        console.log("errorGet.message:", errorGet.message);
+      }
+      if (dataGet) {
+        // console.log("dataGet.sharks:", dataGet.sharks);
+        const currentTime = new Date();
+        console.log(
+          "GraphQL:",
+          dataGet?.sharks?.length,
+          currentTime.toLocaleTimeString("pl-PL", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "numeric",
+          }) + `.${currentTime.getMilliseconds()}`
+        );
+        return setSharksList(dataGet?.sharks);
+      }
+    })();
+  }, [dataGet, errorGet, loadingGet]);
+
+  //* GraphQL hooks
   React.useEffect(() => {
     if (loadingDelete) {
       console.log("loadingDelete");
@@ -138,8 +94,71 @@ const App = (): JSX.Element => {
     if (dataAdd) {
       console.log("dataAdd:", dataAdd);
     }
-  }, [dataAdd, dataDelete, errorAdd, errorDelete, loadingAdd, loadingDelete]);
+    if (loadingEdit) {
+      console.log("loadingEdit");
+    }
+    if (errorEdit) {
+      console.log("errorEdit.message:", errorEdit.message);
+    }
+    if (dataEdit) {
+      console.log("dataEdit:", dataEdit);
+    }
+  }, [dataAdd, dataDelete, dataEdit, errorAdd, errorDelete, errorEdit, loadingAdd, loadingDelete, loadingEdit]);
 
+  //* Form editing
+  const onChange = (event: React.ChangeEvent<HTMLFormElement>): void => {
+    const name = event.target.name;
+    const value = event.target.value;
+    // console.log({ name, value });
+    setSharkForm({
+      ...sharkForm,
+      [name]: value,
+    });
+  };
+
+  //* Submit form
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    const { name, color, weight } = sharkForm;
+    event.preventDefault();
+    // console.log("sharkForm:", sharkForm);
+    try {
+      sharkForm.hasOwnProperty("ID")
+        ? //@ Edit an existing shark
+          //* V1 Rest Api
+          // await axios
+          //   .put(`${baseApiURL}/shark/${sharkForm?.ID}`, sharkForm)
+          //   .then(({ data }) => {
+          //     console.log("data:", data);
+          //   })
+          //   .catch((error) => console.error(error))
+          //* V2 GraphQL
+          await editSharkGraphQL() //Temp
+        : //@ Create a new Shark
+          //* V1 - Rest Api
+          // await axios
+          //   .post(`${baseApiURL}/add-item`, sharkForm)
+          //   .then(({ data }) => {
+          //     console.log("data:", data);
+          //   })
+          //   .catch((error) => console.error(error));
+          //* V2 - GraphQL
+          await addSharkGraphQL({ variables: { name, color, weight: Number(weight) } });
+    } finally {
+      setTimeout(() => {
+        // getData(); //* V1 - Rest Api
+        refetch(); //* V2 - GraphQL
+        setSharkForm(initialState);
+      }, 500);
+    }
+  };
+
+  //* Reset form
+  const onReset = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    setSharkForm(initialState);
+  };
+
+  //* Delete a Shark
   const deleteShark = async (id: number): Promise<void> => {
     // console.log({ id });
     try {
@@ -150,7 +169,6 @@ const App = (): JSX.Element => {
       //     console.log("data:", data);
       //   })
       //   .catch((error) => console.error(error));
-
       //* V2 GraphQL
       await deleteSharkGraphQL({ variables: { ID: id } });
     } finally {
@@ -161,12 +179,14 @@ const App = (): JSX.Element => {
     }
   };
 
+  //* Edit Shark
   const editShark = (id: number): void => {
     const sharkToEdit = sharksList?.filter((elem: Shark) => elem?.ID === id)?.[0];
     // console.log("sharkToEdit:", sharkToEdit);
     setSharkForm(sharkToEdit);
   };
 
+  //* Sharks Table
   const SharksTable = (): JSX.Element => {
     return (
       <Table striped bordered hover size="sm">
