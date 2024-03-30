@@ -29,7 +29,7 @@ const app: Express = express();
 
 const corsOptions = {
   origin: true,
-  methods: ["GET", "POST", "DELETE"],
+  methods: ["GET", "POST", "DELETE", "PUT"],
   preflightContinue: false,
   optionsSuccessStatus: 200,
   credentials: false,

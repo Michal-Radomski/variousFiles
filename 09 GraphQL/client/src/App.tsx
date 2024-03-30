@@ -4,7 +4,7 @@ import { Button, ButtonGroup, Table } from "react-bootstrap";
 import { useQuery, gql } from "@apollo/client";
 
 import "./App.scss";
-import AddShark from "./AddShark";
+import SharkForm from "./SharkForm";
 
 const baseApiURL = "http://localhost:4000/api";
 
@@ -67,12 +67,21 @@ const App = (): JSX.Element => {
     event.preventDefault();
     // console.log("sharkForm:", sharkForm);
     try {
-      axios
-        .post(`${baseApiURL}/add-item`, sharkForm)
-        .then(({ data }) => {
-          console.log("data:", data);
-        })
-        .catch((error) => console.error(error));
+      sharkForm.hasOwnProperty("ID")
+        ? //* Edit an existing shark
+          axios
+            .put(`${baseApiURL}/shark/${sharkForm?.ID}`, sharkForm)
+            .then(({ data }) => {
+              console.log("data:", data);
+            })
+            .catch((error) => console.error(error))
+        : //* Create a new Shark
+          axios
+            .post(`${baseApiURL}/add-item`, sharkForm)
+            .then(({ data }) => {
+              console.log("data:", data);
+            })
+            .catch((error) => console.error(error));
     } finally {
       setTimeout(() => {
         // getData(); //* V1 - Rest Api
@@ -130,8 +139,10 @@ const App = (): JSX.Element => {
     }
   };
 
-  const editShark = (id: number) => {
-    console.log({ id });
+  const editShark = (id: number): void => {
+    const sharkToEdit = sharksList?.filter((elem) => elem?.ID === id)?.[0];
+    // console.log("sharkToEdit:", sharkToEdit);
+    setSharkForm(sharkToEdit);
   };
 
   const SharksTable = (): JSX.Element => {
@@ -182,7 +193,7 @@ const App = (): JSX.Element => {
       <h1 className="text-center py-4">Sharks List</h1>
       {sharksList?.length ? <SharksTable /> : null}
       <br />
-      <AddShark sharkForm={sharkForm} onChange={onChange} onSubmit={onSubmit} onReset={onReset} />
+      <SharkForm sharkForm={sharkForm} onChange={onChange} onSubmit={onSubmit} onReset={onReset} />
     </React.Fragment>
   );
 };

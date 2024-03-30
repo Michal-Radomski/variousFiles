@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, ButtonGroup, Form } from "react-bootstrap";
 
-const AddShark = ({
+const SharkForm = ({
   sharkForm,
   onChange,
   onSubmit,
@@ -12,10 +12,12 @@ const AddShark = ({
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onReset: React.FormEventHandler<HTMLFormElement>;
 }) => {
+  // console.log("sharkForm:", sharkForm);
+
   return (
     <React.Fragment>
       <Form style={{ width: "50%", margin: "1rem auto" }} onSubmit={onSubmit} onReset={onReset}>
-        <h4>Add a New Shark</h4>
+        <h4>{sharkForm.hasOwnProperty("ID") ? "Edit the Shark" : "Add a New Shark"}</h4>
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Shark Name</Form.Label>
           <Form.Control
@@ -54,11 +56,11 @@ const AddShark = ({
 
         <ButtonGroup>
           <Button
-            variant="primary"
+            variant={sharkForm.hasOwnProperty("ID") ? "dark" : "primary"}
             type="submit"
             disabled={sharkForm.weight && sharkForm.color && sharkForm.name ? false : true}
           >
-            Submit
+            {sharkForm.hasOwnProperty("ID") ? "Edit" : "Submit"}
           </Button>
           <Button variant="secondary" type="reset">
             Reset
@@ -69,4 +71,4 @@ const AddShark = ({
   );
 };
 
-export default AddShark;
+export default SharkForm;
