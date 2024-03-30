@@ -31,10 +31,10 @@ const resolvers = {
   Mutation: {
     deleteShark: async (_parent: any, { ID }: { ID: string }): Promise<Shark | undefined> => {
       try {
-        const stmtFind = await db.prepare(`SELECT * FROM sharks WHERE ID = ?`);
+        const stmtFind = await db.prepare("SELECT * FROM sharks WHERE ID = ?;");
         const sharkToDel = (await stmtFind.get(ID)) as Shark;
         // console.log("sharkToDel:", sharkToDel);
-        const stmtDel = await db.prepare(`DELETE FROM sharks WHERE ID = ?`);
+        const stmtDel = await db.prepare("DELETE FROM sharks WHERE ID = ?;");
         const res = await stmtDel.run(ID);
         // console.log("res:", res);
         return sharkToDel;
@@ -48,10 +48,10 @@ const resolvers = {
       { name, color, weight }: { name: string; color: string; weight: string }
     ): Promise<Shark | undefined> => {
       try {
-        const stmtAdd = await db.prepare("INSERT INTO sharks (name, color, weight) VALUES (?, ?, ?)");
+        const stmtAdd = await db.prepare("INSERT INTO sharks (name, color, weight) VALUES (?, ?, ?);");
         const resId = await stmtAdd.run(name, color, weight)?.lastInsertRowid;
         // console.log("resId:", resId);
-        const stmtFind = await db.prepare(`SELECT * FROM sharks WHERE ID = ?`);
+        const stmtFind = await db.prepare("SELECT * FROM sharks WHERE ID = ?;");
         const sharkToReturn = (await stmtFind.get(resId)) as Shark;
         // console.log("sharkToReturn:", sharkToReturn);
         return sharkToReturn;
@@ -65,9 +65,9 @@ const resolvers = {
       { ID, name, color, weight }: { ID: string; name: string; color: string; weight: number }
     ): Promise<Shark | undefined> => {
       try {
-        const stmtFind = await db.prepare(`SELECT * FROM sharks WHERE ID = ?`);
+        const stmtFind = await db.prepare("SELECT * FROM sharks WHERE ID = ?;");
         const sharkToUpdate = (await stmtFind.get(ID)) as Shark;
-        const stmtUpdate = await db.prepare("UPDATE sharks SET name = ?, color = ?, weight = ? WHERE ID = ?");
+        const stmtUpdate = await db.prepare("UPDATE sharks SET name = ?, color = ?, weight = ? WHERE ID = ?;");
         await stmtUpdate.run(name, color, weight, ID);
         return { ...sharkToUpdate, name, color, weight }; //* One of possibilities
       } catch (error) {
