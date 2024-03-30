@@ -43,14 +43,14 @@ export const deleteItem: RequestHandler = async (req: Request, res: Response): P
         console.error(error.message);
       }
     });
-    res.status(200).json({ message: "Delete ok" });
+    res.status(200).json({ message: `Delete Id: ${id} ok` });
   } catch (error) {
     console.error({ error });
     res.status(500).send("Server error");
   }
 };
 
-// Create a todo
+// Create an Item
 export const createItem: RequestHandler = async (req: Request, res: Response): Promise<void> => {
   try {
     // console.log("req.body:", req.body);
@@ -67,6 +67,20 @@ export const createItem: RequestHandler = async (req: Request, res: Response): P
         res.status(200).json({ message: `Inserted a row with the ID: ${this.lastID}` });
       }
     );
+  } catch (error) {
+    console.error({ error });
+  }
+};
+
+// Update an Item
+export const updateItem = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { ID } = req.params;
+    const { name, color, weight } = req.body;
+    // console.log({ id, name, color, weight });
+
+    await db.run("UPDATE sharks SET name = ?, color= ?, weight = ? WHERE ID = ? RETURNING *;", [name, color, weight, ID]);
+    res.status(200).json({ message: `200, Shark ID: ${ID} was updated` });
   } catch (error) {
     console.error({ error });
   }
