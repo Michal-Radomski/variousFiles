@@ -33,3 +33,12 @@ mutation addSharkToDB($name: String, $color: String, $weight: Int) {
     weight
   }
 }
+
+mutation updateSharkFromDB($ID: ID!, $name: String, $color: String, $weight: Int) {
+  updateShark(ID: $ID, name: $name, color: $color, weight: $weight) {
+    ID
+    name
+    color
+    weight
+  }
+}

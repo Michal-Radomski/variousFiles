@@ -27,6 +27,7 @@ const resolvers = {
       return await getSharks();
     },
   },
+
   Mutation: {
     deleteShark: async (_parent: any, { ID }: { ID: string }): Promise<Shark | undefined> => {
       try {
@@ -41,6 +42,7 @@ const resolvers = {
         console.log("error:", error);
       }
     },
+
     addShark: async (
       _parent: any,
       { name, color, weight }: { name: string; color: string; weight: string }
@@ -53,6 +55,21 @@ const resolvers = {
         const sharkToReturn = (await stmtFind.get(resId)) as Shark;
         // console.log("sharkToReturn:", sharkToReturn);
         return sharkToReturn;
+      } catch (error) {
+        console.log("error:", error);
+      }
+    },
+
+    updateShark: async (
+      _parent: any,
+      { ID, name, color, weight }: { ID: string; name: string; color: string; weight: number }
+    ): Promise<Shark | undefined> => {
+      try {
+        const stmtFind = await db.prepare(`SELECT * FROM sharks WHERE ID = ?`);
+        const sharkToUpdate = (await stmtFind.get(ID)) as Shark;
+        const stmtUpdate = await db.prepare("UPDATE sharks SET name = ?, color = ?, weight = ? WHERE ID = ?");
+        await stmtUpdate.run(name, color, weight, ID);
+        return { ...sharkToUpdate, name, color, weight }; //* One of possibilities
       } catch (error) {
         console.log("error:", error);
       }
