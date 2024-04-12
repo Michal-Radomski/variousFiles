@@ -21,3 +21,7 @@ Various files and exercises
 8. Destructuring Assignment exercise
 
 9. GraphQL with React and Node exercise
+
+10. TS Class exercise
+
+11. Methods exercises
