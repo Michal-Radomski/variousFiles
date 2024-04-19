@@ -24,4 +24,6 @@ Various files and exercises
 
 10. TS Class exercise
 
-11. Methods exercises
+11. JS methods: includes / contains exercises
+
+12. Tensorflow.js
