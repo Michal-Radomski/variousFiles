@@ -72,7 +72,10 @@ function createModel(): tf.Sequential {
 
   // Add an output layer
   model.add(tf.layers.dense({ units: 1, useBias: true }));
-  model.summary();
 
   return model;
 }
+
+// Create the model
+const model = createModel();
+model.summary();
