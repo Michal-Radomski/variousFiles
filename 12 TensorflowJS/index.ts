@@ -20,4 +20,5 @@ const ys = tf.tensor2d([-3, -1, 1, 3, 5, 7], [6, 1]);
   await model.fit(xs, ys, { epochs: 1000 });
   const result = (await model.predict(tf.tensor2d([20], [1, 1]))) as tf.Tensor<tf.Rank>;
   result.print(); //* Tensor<Rank>
+  model.summary();
 })();
