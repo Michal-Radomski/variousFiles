@@ -1,4 +1,5 @@
 import * as tf from "@tensorflow/tfjs-node";
+import { plot, Plot } from "nodeplotlib";
 
 // console.log("tf.version", tf.version);
 // console.log("tf.getBackend():", tf.getBackend());
@@ -48,4 +49,30 @@ async function getData(): Promise<Car[]> {
   return cleaned;
 }
 
-// getData();
+// getData().then((res: Car[]) => {
+//   const data: Plot[] = [
+//     {
+//       x: res.map((elem) => elem?.horsepower) as number[],
+//       y: res.map((elem) => elem?.mpg) as number[],
+//       type: "scatter",
+//       mode: "markers",
+//     },
+//   ];
+
+//   plot(data);
+// });
+
+// Define the model architecture
+function createModel(): tf.Sequential {
+  // Create a sequential model
+  const model: tf.Sequential = tf.sequential();
+
+  // Add a single input layer
+  model.add(tf.layers.dense({ inputShape: [1], units: 1, useBias: true }));
+
+  // Add an output layer
+  model.add(tf.layers.dense({ units: 1, useBias: true }));
+  model.summary();
+
+  return model;
+}
