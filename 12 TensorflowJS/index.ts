@@ -176,27 +176,46 @@ function testModel(
   });
   // console.log("predictedPoints:", predictedPoints);
 
-  //* Plot original data
-  const originalData: Plot[] = [
-    {
-      x: inputData.map((elem) => elem?.horsepower) as number[],
-      y: inputData.map((elem) => elem?.mpg) as number[],
-      type: "scatter",
-      mode: "markers",
-    },
-  ];
-  plot(originalData);
+  // //* Plot original data
+  // const originalData: Plot[] = [
+  //   {
+  //     x: inputData.map((elem) => elem?.horsepower) as number[],
+  //     y: inputData.map((elem) => elem?.mpg) as number[],
+  //     type: "scatter",
+  //     mode: "markers",
+  //   },
+  // ];
+  // plot(originalData);
 
-  //* Plot predicted dta
-  const predictedData: Plot[] = [
-    {
-      x: predictedPoints.map((elem) => elem?.x) as number[],
-      y: predictedPoints.map((elem) => elem?.y) as number[],
-      type: "scatter",
-      mode: "markers",
-    },
-  ];
-  plot(predictedData);
+  // //* Plot predicted data
+  // const predictedData: Plot[] = [
+  //   {
+  //     x: predictedPoints.map((elem) => elem?.x) as number[],
+  //     y: predictedPoints.map((elem) => elem?.y) as number[],
+  //     type: "scatter",
+  //     mode: "markers",
+  //   },
+  // ];
+  // plot(predictedData);
+
+  //* Plot original data
+  const originalData: Plot = {
+    x: inputData.map((elem) => elem?.horsepower) as number[],
+    y: inputData.map((elem) => elem?.mpg) as number[],
+    type: "scatter",
+    mode: "markers",
+    name: "originalData",
+  };
+
+  //* Plot predicted data
+  const predictedData: Plot = {
+    x: predictedPoints.map((elem) => elem?.x) as number[],
+    y: predictedPoints.map((elem) => elem?.y) as number[],
+    type: "scatter",
+    mode: "markers",
+    name: "predictedData",
+  };
+  plot([originalData, predictedData]);
 }
 
 // Convert the data to a form we can use for training.
