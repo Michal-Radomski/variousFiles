@@ -1,5 +1,5 @@
 import * as tf from "@tensorflow/tfjs-node";
-import { plot, Plot } from "nodeplotlib";
+// import { plot, Plot } from "nodeplotlib";
 
 // console.log("tf.version", tf.version);
 // console.log("tf.getBackend():", tf.getBackend());
@@ -31,6 +31,10 @@ interface Car {
   Miles_per_Gallon?: number;
   Horsepower?: number;
   horsepower?: number;
+}
+
+interface TensorObj {
+  [key: string]: tf.Tensor<tf.Rank>;
 }
 
 async function getData(): Promise<Car[]> {
@@ -79,3 +83,38 @@ function createModel(): tf.Sequential {
 // Create the model
 const model = createModel();
 model.summary();
+
+function convertToTensor(data: Car[]): TensorObj {
+  // Wrapping these calculations in a tidy will dispose any
+  // intermediate tensors.
+
+  return tf.tidy(() => {
+    // Step 1. Shuffle the data
+    tf.util.shuffle(data);
+
+    // Step 2. Convert data to Tensor
+    const inputs = data.map((d: Car) => d.horsepower) as number[];
+    const labels = data.map((d: Car) => d.mpg) as number[];
+
+    const inputTensor: tf.Tensor2D = tf.tensor2d(inputs, [inputs.length, 1]);
+    const labelTensor: tf.Tensor2D = tf.tensor2d(labels, [labels.length, 1]);
+
+    //Step 3. Normalize the data to the range 0 - 1 using min-max scaling
+    const inputMax = inputTensor.max();
+    const inputMin = inputTensor.min();
+    const labelMax = labelTensor.max();
+    const labelMin = labelTensor.min();
+
+    const normalizedInputs: tf.Tensor<tf.Rank> = inputTensor.sub(inputMin).div(inputMax.sub(inputMin));
+    const normalizedLabels: tf.Tensor<tf.Rank> = labelTensor.sub(labelMin).div(labelMax.sub(labelMin));
+
+    return {
+      inputs: normalizedInputs,
+      labels: normalizedLabels,
+      inputMax,
+      inputMin,
+      labelMax,
+      labelMin,
+    };
+  });
+}
