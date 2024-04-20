@@ -49,7 +49,7 @@ async function getData(): Promise<Car[]> {
     }))
     .filter((car: Car) => car.mpg !== null && car.horsepower !== null);
 
-  console.log("cleaned:", cleaned);
+  console.log("cleaned.length:", cleaned.length);
   return cleaned;
 }
 
@@ -118,3 +118,33 @@ function convertToTensor(data: Car[]): TensorObj {
     };
   });
 }
+
+async function trainModel(model: tf.Sequential, inputs: tf.Tensor2D, labels: tf.Tensor2D): Promise<tf.History> {
+  // Prepare the model for training.
+  model.compile({
+    optimizer: tf.train.adam(),
+    loss: tf.losses.meanSquaredError,
+    metrics: ["mse"],
+  });
+
+  const batchSize = 32;
+  const epochs = 50;
+
+  return await model.fit(inputs, labels, {
+    batchSize,
+    epochs,
+    shuffle: true,
+    // callbacks: ()=>console.log(onEpochEnd()),
+  });
+}
+
+// Convert the data to a form we can use for training.
+(async function (): Promise<void> {
+  const data = (await getData()) as Car[];
+  const tensorData = convertToTensor(data) as TensorObj;
+  const { inputs, labels } = tensorData as { inputs: tf.Tensor2D; labels: tf.Tensor2D };
+  // Train the model
+
+  await trainModel(model, inputs, labels);
+  console.log("Done Training");
+})();
