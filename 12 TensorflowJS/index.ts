@@ -1,11 +1,11 @@
 import * as tf from "@tensorflow/tfjs-node";
-// import { plot, Plot } from "nodeplotlib";
+import { plot, Plot } from "nodeplotlib";
 
 // console.log("tf.version", tf.version);
 // console.log("tf.getBackend():", tf.getBackend());
 // console.log("tf.memory():", tf.memory());
 
-//* Create a simple model.
+//@ Create a simple model.
 // const model: tf.Sequential = tf.sequential();
 // model.add(tf.layers.dense({ units: 1, inputShape: [1] }));
 
@@ -24,8 +24,7 @@ import * as tf from "@tensorflow/tfjs-node";
 //   model.summary();
 // })();
 
-//* Linear Regression
-
+//@ Linear Regression
 interface Car {
   mpg?: number;
   Miles_per_Gallon?: number;
@@ -34,7 +33,13 @@ interface Car {
 }
 
 interface TensorObj {
-  [key: string]: tf.Tensor<tf.Rank>;
+  // [key: string]: tf.Tensor<tf.Rank>;
+  inputs: tf.Tensor<tf.Rank>;
+  labels: tf.Tensor<tf.Rank>;
+  inputMax: tf.Tensor<tf.Rank>;
+  inputMin: tf.Tensor<tf.Rank>;
+  labelMax: tf.Tensor<tf.Rank>;
+  labelMin: tf.Tensor<tf.Rank>;
 }
 
 async function getData(): Promise<Car[]> {
@@ -53,6 +58,7 @@ async function getData(): Promise<Car[]> {
   return cleaned;
 }
 
+//* Plot the data
 // getData().then((res: Car[]) => {
 //   const data: Plot[] = [
 //     {
@@ -148,11 +154,10 @@ function testModel(
     labelMax: tf.Tensor<tf.Rank>;
   }
 ) {
-  const { inputMax, inputMin, labelMin, labelMax } = normalizationData;
+  const { inputMax, inputMin, labelMin, labelMax } = normalizationData as TensorObj;
 
   // Generate predictions for a uniform range of numbers between 0 and 1;
-  // We un-normalize the data by doing the inverse of the min-max scaling
-  // that we did earlier.
+  // We un-normalize the data by doing the inverse of the min-max scaling that we did earlier.
 
   const [xs, preds] = tf.tidy(() => {
     const xsNorm = tf.linspace(0, 1, 100);
@@ -166,24 +171,32 @@ function testModel(
     return [unNormXs.dataSync(), unNormPreds.dataSync()];
   });
 
-  const predictedPoints = Array.from(xs).map((val, i) => {
+  const predictedPoints = Array.from(xs).map((val: number, i: number) => {
     return { x: val, y: preds[i] };
   });
+  // console.log("predictedPoints:", predictedPoints);
 
-  const originalPoints = inputData.map((d) => ({
-    x: d.horsepower,
-    y: d.mpg,
-  }));
+  //* Plot original data
+  const originalData: Plot[] = [
+    {
+      x: inputData.map((elem) => elem?.horsepower) as number[],
+      y: inputData.map((elem) => elem?.mpg) as number[],
+      type: "scatter",
+      mode: "markers",
+    },
+  ];
+  plot(originalData);
 
-  // tfvis.render.scatterplot(
-  //   {name: 'Model Predictions vs Original Data'},
-  //   {values: [originalPoints, predictedPoints], series: ['original', 'predicted']},
-  //   {
-  //     xLabel: 'Horsepower',
-  //     yLabel: 'MPG',
-  //     height: 300
-  //   }
-  // );
+  //* Plot predicted dta
+  const predictedData: Plot[] = [
+    {
+      x: predictedPoints.map((elem) => elem?.x) as number[],
+      y: predictedPoints.map((elem) => elem?.y) as number[],
+      type: "scatter",
+      mode: "markers",
+    },
+  ];
+  plot(predictedData);
 }
 
 // Convert the data to a form we can use for training.
@@ -194,6 +207,6 @@ function testModel(
   // Train the model
 
   await trainModel(model, inputs, labels);
-  console.log("Done Training");
-  testModel(model, data, tensorData as any);
+  // console.log("Done Training");
+  testModel(model, data, tensorData as TensorObj);
 })();
