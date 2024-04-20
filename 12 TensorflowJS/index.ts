@@ -138,6 +138,54 @@ async function trainModel(model: tf.Sequential, inputs: tf.Tensor2D, labels: tf.
   });
 }
 
+function testModel(
+  model: tf.Sequential,
+  inputData: Car[],
+  normalizationData: {
+    inputMax: tf.Tensor<tf.Rank>;
+    inputMin: tf.Tensor<tf.Rank>;
+    labelMin: tf.Tensor<tf.Rank>;
+    labelMax: tf.Tensor<tf.Rank>;
+  }
+) {
+  const { inputMax, inputMin, labelMin, labelMax } = normalizationData;
+
+  // Generate predictions for a uniform range of numbers between 0 and 1;
+  // We un-normalize the data by doing the inverse of the min-max scaling
+  // that we did earlier.
+
+  const [xs, preds] = tf.tidy(() => {
+    const xsNorm = tf.linspace(0, 1, 100);
+    const predictions = model.predict(xsNorm.reshape([100, 1])) as tf.Tensor<tf.Rank>;
+
+    const unNormXs = xsNorm.mul(inputMax.sub(inputMin)).add(inputMin);
+
+    const unNormPreds = predictions.mul(labelMax.sub(labelMin)).add(labelMin);
+
+    // Un-normalize the data
+    return [unNormXs.dataSync(), unNormPreds.dataSync()];
+  });
+
+  const predictedPoints = Array.from(xs).map((val, i) => {
+    return { x: val, y: preds[i] };
+  });
+
+  const originalPoints = inputData.map((d) => ({
+    x: d.horsepower,
+    y: d.mpg,
+  }));
+
+  // tfvis.render.scatterplot(
+  //   {name: 'Model Predictions vs Original Data'},
+  //   {values: [originalPoints, predictedPoints], series: ['original', 'predicted']},
+  //   {
+  //     xLabel: 'Horsepower',
+  //     yLabel: 'MPG',
+  //     height: 300
+  //   }
+  // );
+}
+
 // Convert the data to a form we can use for training.
 (async function (): Promise<void> {
   const data = (await getData()) as Car[];
@@ -147,4 +195,5 @@ async function trainModel(model: tf.Sequential, inputs: tf.Tensor2D, labels: tf.
 
   await trainModel(model, inputs, labels);
   console.log("Done Training");
+  testModel(model, data, tensorData as any);
 })();
