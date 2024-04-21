@@ -238,3 +238,6 @@ function testModel(
   // console.log("Done Training");
   testModel(model, data, tensorData as TensorObj);
 })();
+
+//* Sigmoid Activation Function: Binary Classification
+//* Softmax Activation Function: Multi-Class Classification
