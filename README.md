@@ -27,3 +27,5 @@ Various files and exercises
 11. JS methods: includes / contains exercises
 
 12. Tensorflow.js
+
+13. Docker
