@@ -79,12 +79,16 @@ function createModel(): tf.Sequential {
   // Create a sequential model
   const model: tf.Sequential = tf.sequential();
 
-  // Add a single input layer
-  model.add(tf.layers.dense({ inputShape: [1], units: 1, useBias: true }));
-  model.add(tf.layers.dense({ units: 150, activation: "sigmoid" }));
-  model.add(tf.layers.dense({ units: 150, activation: "sigmoid" }));
-  // Add an output layer
-  model.add(tf.layers.dense({ units: 1, useBias: true }));
+  // Add a single input layer -> //* Plot 1 (Linear Regression)
+  // model.add(tf.layers.dense({ inputShape: [1], units: 1, useBias: true }));
+  // model.add(tf.layers.dense({ units: 50, activation: "sigmoid" }));
+  // // Add an output layer
+  // model.add(tf.layers.dense({ units: 1, useBias: true }));
+
+  // Add a single input layer -> //* Plot 2 (Non-Linear Regression)
+  model.add(tf.layers.dense({ units: 10, activation: "relu", inputShape: [1] })); // Dense layer with ReLU activation
+  model.add(tf.layers.dense({ units: 10, activation: "relu" })); // Additional dense layer with ReLU activation
+  model.add(tf.layers.dense({ units: 1 })); // Output layer (single unit)
 
   return model;
 }
