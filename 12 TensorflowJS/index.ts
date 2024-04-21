@@ -90,6 +90,21 @@ function createModel(): tf.Sequential {
   model.add(tf.layers.dense({ units: 10, activation: "relu" })); // Additional dense layer with ReLU activation
   model.add(tf.layers.dense({ units: 1 })); // Output layer (single unit)
 
+  //* Other model
+  // model.add(
+  //   tf.layers.dense({
+  //     units: 64, // Number of neurons in the hidden layer
+  //     inputShape: [1], // Input size (number of features)
+  //     activation: "relu", // Activation function (e.g., ReLU)
+  //   })
+  // );
+  // model.add(
+  //   tf.layers.dense({
+  //     units: 1, // Output layer for regression (single output value)
+  //     activation: "linear", // Linear activation for regression
+  //   })
+  // );
+
   return model;
 }
 
