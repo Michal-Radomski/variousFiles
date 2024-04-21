@@ -236,7 +236,25 @@ function testModel(
 
   await trainModel(model, inputs, labels);
   // console.log("Done Training");
-  testModel(model, data, tensorData as TensorObj);
+  await testModel(model, data, tensorData as TensorObj);
+
+  //* Example: Visualize model weights
+  // Inspect model weights
+  const weights = model.getWeights();
+  // console.log("Model weights:", weights);
+
+  const weightsArray = weights[0].dataSync(); // Assuming weights[0] is the first layer's weights
+  const xValues = Array.from(Array(weightsArray.length).keys());
+
+  //* Visualize Model Parameters
+  const modelGraph: Plot = {
+    x: xValues as number[],
+    y: weightsArray,
+    type: "scatter",
+    mode: "markers",
+    name: "modelGraph",
+  };
+  plot([modelGraph]);
 })();
 
 //* Sigmoid Activation Function: Binary Classification
