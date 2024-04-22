@@ -32,4 +32,4 @@ Various files and exercises
 
 14. Docker -> live reload
 
-15. Docker -> docker-compose
+15. Docker -> docker-compose (live reload)
