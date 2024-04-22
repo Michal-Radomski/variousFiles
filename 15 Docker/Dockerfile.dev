@@ -14,4 +14,4 @@ COPY . .
 
 CMD ["npm", "run","start"]
 
-# Command: docker-compose up -d
+# Real-time update (don't delete node_modules!): docker-compose up -d

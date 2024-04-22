@@ -12,13 +12,25 @@ const AppContainer = styled.div`
   align-items: center;
   align-content: center;
   gap: 1rem;
+  h2 {
+    color: red;
+  }
+  h4 {
+    color: blue;
+  }
+  h6 {
+    color: green;
+  }
 `;
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <AppContainer>
-        <h1>React + Docker Exercise</h1>
+        <h1>React + Docker Exercise - live update</h1>
+        <h2>React + Docker Exercise - live update2</h2>
+        <h4>React + Docker Exercise - live update3</h4>
+        <h6>React + Docker Exercise - live update4</h6>
       </AppContainer>
     </React.Fragment>
   );
