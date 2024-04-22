@@ -1,3 +1,17 @@
 # https://shahmirprogrammer.medium.com/docker-compose-for-react-changes-reflect-real-time-inside-a-container-18eb337bb7a8
 
 FROM node:20-alpine as builder
+
+#  For security purposes!
+# RUN addgroup app && adduser -S -G app app
+# RUN mkdir /app && chown app:app app
+# USER app
+
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY . .
+
+CMD ["npm", "run","start"]
+
+# Command: docker-compose up -d
