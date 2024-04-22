@@ -30,4 +30,6 @@ Various files and exercises
 
 13. Docker
 
-14. Docker
+14. Docker -> live reload
+
+15. Docker -> docker-compose
