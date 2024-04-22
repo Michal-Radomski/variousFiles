@@ -1,0 +1,17 @@
+FROM node:20-alpine as builder
+
+#  For security purposes!
+# RUN addgroup app && adduser -S -G app app
+# RUN mkdir /app && chown app:app app
+# USER app
+
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY . .
+
+CMD ["npm", "run","start"]
+
+
+# Create image: rdocker build -t react-docker-app-1 -f Dockerfile.dev .
+# Run a Docker container from a Docker image: docker run -p 3000:3000 --name dockerized-react-app react-docker-app-1
