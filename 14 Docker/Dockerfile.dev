@@ -1,3 +1,5 @@
+# https://shahmirprogrammer.medium.com/docker-with-react-changes-reflect-real-time-inside-a-container-f83acf208f8a
+
 FROM node:20-alpine as builder
 
 #  For security purposes!
@@ -15,3 +17,4 @@ CMD ["npm", "run","start"]
 
 # Create image: rdocker build -t react-docker-app-1 -f Dockerfile.dev .
 # Run a Docker container from a Docker image: docker run -p 3000:3000 --name dockerized-react-app react-docker-app-1
+# Live changes: docker run -d -p 3000:3000 -v /app/node_modules -v "$(pwd):/app" --name dockerized-react-app react-docker-app-1
