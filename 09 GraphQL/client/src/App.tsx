@@ -2,10 +2,15 @@ import React from "react";
 import axios from "axios";
 import { Button, ButtonGroup, Table } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/client";
+// import { parse } from "graphql";
 
 import "./App.scss";
 import SharkForm from "./SharkForm";
 import { DELETE_SHARK, GET_SHARKS, ADD_SHARK, EDIT_SHARK } from "./queries";
+
+// console.log("parse:", parse);
+// const readableQuery = parse("query sharksFromDB {\n sharks {\n ID\n name\n color\n weight\n __typename\n }\n}");
+// console.log("readableQuery:", readableQuery);
 
 const baseApiURL = "http://localhost:4000/api";
 
