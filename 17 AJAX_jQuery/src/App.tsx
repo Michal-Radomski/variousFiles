@@ -1,9 +1,37 @@
 import React from "react";
+import $ from "jquery";
 
 import "./App.scss";
+import TableComponent from "./TableComponent";
 
 const App = (): JSX.Element => {
-  return <React.Fragment>App</React.Fragment>;
+  const URL: string = "https://jsonplaceholder.typicode.com/todos";
+
+  const [tableData, setTableData] = React.useState<ToDo[] | null>(null);
+
+  React.useEffect(() => {
+    // Fetch data using jQuery AJAX when the component mounts
+    $.ajax({
+      url: URL,
+      method: "GET",
+      success: function (response) {
+        // Update the state with the fetched data
+        // console.log("response:", response);
+        setTableData(response);
+      },
+      error: function (error) {
+        console.error("Error fetching data:", error);
+      },
+    });
+  }, []); // Empty dependency array to run effect only once
+
+  return (
+    <React.Fragment>
+      <div className="d-flex align-items-center justify-content-center">
+        {tableData ? <TableComponent tableData={tableData} /> : null}
+      </div>
+    </React.Fragment>
+  );
 };
 
 export default App;
