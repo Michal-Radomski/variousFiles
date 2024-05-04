@@ -1,3 +1,9 @@
+#* 1. Build: docker build -t react-docker-app -f Dockerfile . -> docker
+#* 2. Run: docker run -p 3000:80 react-docker-app -> docker
+
+
+
+
 FROM node:20-alpine as build
 
 WORKDIR /app
