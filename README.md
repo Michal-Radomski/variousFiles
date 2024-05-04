@@ -35,3 +35,5 @@ Various files and exercises
 15. Docker -> docker-compose (live reload)
 
 16. Kubernetes tutorial
+
+17. AJAX with jQuery exercise

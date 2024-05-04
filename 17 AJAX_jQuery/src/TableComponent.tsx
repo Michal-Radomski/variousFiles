@@ -42,3 +42,33 @@ const TableComponent = ({ tableData }: { tableData: ToDo[] }): JSX.Element => {
 };
 
 export default TableComponent;
+
+// const xhr = new XMLHttpRequest();
+// xhr.open('GET', 'https://api.example.com/data', true);
+
+// xhr.onload = function() {
+//   if (xhr.status >= 200 && xhr.status < 300) {
+//     console.log(xhr.responseText);
+//   } else {
+//     console.error('Request failed with status:', xhr.status);
+//   }
+// };
+
+// xhr.onerror = function() {
+//   console.error('Request failed');
+// };
+
+// xhr.send();
+
+// const handleDelete = () => {
+//   $.ajax({
+//     url: 'https://api.example.com/data/123',
+//     method: 'DELETE',
+//     success: function(response) {
+//       setIsDeleted(true);
+//     },
+//     error: function(error) {
+//       console.error('Error deleting data:', error);
+//     }
+//   });
+// };
