@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Table } from "react-bootstrap";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
 const TableComponent = ({ tableData }: { tableData: ToDo[] }): JSX.Element => {
   return (
