@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -25,7 +24,7 @@ const App = (): JSX.Element => {
       method: "GET",
       success: function (response) {
         // Update the state with the fetched data
-        // console.log("response:", response);
+        console.log("GET response:", response);
         setSharksList(response?.list);
       },
       error: function (error) {
@@ -57,19 +56,29 @@ const App = (): JSX.Element => {
     try {
       sharkForm.hasOwnProperty("ID")
         ? //@ Edit an existing shark
-          await axios
-            .put(`${baseApiURL}/shark/${sharkForm?.ID}`, sharkForm)
-            .then(({ data }) => {
-              console.log("data:", data);
-            })
-            .catch((error) => console.error(error))
+          $.ajax({
+            url: `${baseApiURL}/shark/${sharkForm?.ID}`,
+            method: "PUT",
+            data: sharkForm,
+            success: function (response) {
+              console.log("PUT response:", response);
+            },
+            error: function (error) {
+              console.error("Error fetching data:", error);
+            },
+          })
         : //@ Create a new Shark
-          await axios
-            .post(`${baseApiURL}/add-item`, sharkForm)
-            .then(({ data }) => {
-              console.log("data:", data);
-            })
-            .catch((error) => console.error(error));
+          $.ajax({
+            url: `${baseApiURL}/add-item`,
+            method: "POST",
+            data: sharkForm,
+            success: function (response) {
+              console.log("POST response:", response);
+            },
+            error: function (error) {
+              console.error("Error fetching data:", error);
+            },
+          });
     } finally {
       setTimeout(() => {
         getData();
@@ -92,7 +101,7 @@ const App = (): JSX.Element => {
         url: `${baseApiURL}/delete/${id}`,
         method: "DELETE",
         success: function (response) {
-          console.log("response:", response);
+          console.log("DELETE response:", response);
         },
         error: function (error) {
           console.error("Error deleting data:", error);
