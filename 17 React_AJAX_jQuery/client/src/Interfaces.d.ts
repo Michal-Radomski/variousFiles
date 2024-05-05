@@ -1,6 +1,6 @@
-interface ToDo {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
+interface Shark {
+  ID?: number;
+  name: string;
+  color: string;
+  weight: number;
 }
