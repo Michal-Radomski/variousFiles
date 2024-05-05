@@ -64,8 +64,8 @@ class ReactJQuery extends React.Component {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ipsa maxime fuga consequuntur distinctio
           temporibus!
         </p>
-        <button className="button-red">Click here for red color</button>
-        <button className="button-black">Click here for black color</button>
+        <button className="button-red ui-button ui-widget ui-corner-all">Click here for red color</button>
+        <button className="button-black ui-button ui-widget ui-corner-all">Click here for black color</button>
       </React.Fragment>
     );
   }
