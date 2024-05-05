@@ -3,6 +3,7 @@ import $ from "jquery";
 
 import "./App.scss";
 import TableComponent from "./TableComponent";
+import ReactJQuery from "./ReactJQuery";
 
 const App = (): JSX.Element => {
   const URL: string = "https://jsonplaceholder.typicode.com/todos";
@@ -27,8 +28,14 @@ const App = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      <div className="d-flex align-items-center justify-content-center">
-        {tableData ? <TableComponent tableData={tableData} /> : null}
+      <div className="container-fluid">
+        <ReactJQuery />
+        <br />
+        <br />
+
+        <div className="d-flex align-items-center justify-content-center">
+          {tableData ? <TableComponent tableData={tableData} /> : null}
+        </div>
       </div>
     </React.Fragment>
   );
