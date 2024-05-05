@@ -88,12 +88,16 @@ const App = (): JSX.Element => {
   const deleteShark = async (id: number): Promise<void> => {
     // console.log({ id });
     try {
-      await axios
-        .delete(`${baseApiURL}/delete/${id}`)
-        .then(({ data }) => {
-          console.log("data:", data);
-        })
-        .catch((error) => console.error(error));
+      $.ajax({
+        url: `${baseApiURL}/delete/${id}`,
+        method: "DELETE",
+        success: function (response) {
+          console.log("response:", response);
+        },
+        error: function (error) {
+          console.error("Error deleting data:", error);
+        },
+      });
     } finally {
       setTimeout(() => {
         getData();
