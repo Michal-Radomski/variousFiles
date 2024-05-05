@@ -36,4 +36,4 @@ Various files and exercises
 
 16. Kubernetes tutorial
 
-17. AJAX with jQuery exercise
+17. React with AJAX jQuery exercise

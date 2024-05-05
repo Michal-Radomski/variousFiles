@@ -1,12 +1,41 @@
 //* https://medium.com/how-to-react/how-to-use-jquery-in-your-react-app-b425727a32fd
+//* https://www.freecodecamp.org/news/ajax-tutorial
 
 import React from "react";
 import $ from "jquery";
 
 const AjaxComponent = (): JSX.Element => {
+  const [myIP, setMyIP] = React.useState<string>("");
+
+  React.useEffect(() => {
+    (async function getMyIP() {
+      const xhr = new XMLHttpRequest();
+
+      xhr.open("GET", "https://api.ipify.org/?format=json", true);
+      // console.log("xhr:", xhr);
+
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.readyState === 4) {
+          // console.log("xhr.responseText:", xhr.responseText);
+          // console.log("xhr:", xhr);
+          const myIp = JSON.parse(xhr.responseText)?.ip;
+          // console.log({ myIp });
+          setMyIP(myIp);
+        } else {
+          console.error("Request failed with status:", xhr.status);
+        }
+      };
+
+      xhr.onerror = function () {
+        console.error("Request failed");
+      };
+      xhr.send();
+    })();
+  }, []);
+
   return (
     <React.Fragment>
-      <div />
+      <div>{myIP ? `My IP is: ${myIP}` : null}</div>
     </React.Fragment>
   );
 };
