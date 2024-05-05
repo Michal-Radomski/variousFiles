@@ -37,6 +37,34 @@ const App = (): JSX.Element => {
     getData();
   }, [getData]);
 
+  //* XMLHttpRequest
+  React.useEffect(() => {
+    setTimeout(() => {
+      (async function () {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("GET", `${baseApiURL}/whole-list`, true);
+        // console.log("xhr:", xhr);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+        xhr.onload = function () {
+          if (xhr.status >= 200 && xhr.readyState === 4) {
+            // console.log("xhr.responseText:", xhr.responseText);
+            const sharks = JSON.parse(xhr.responseText)?.list;
+            console.log("sharks:", sharks);
+          } else {
+            console.error("Request failed with status:", xhr.status);
+          }
+        };
+
+        xhr.onerror = function () {
+          console.error("Request failed");
+        };
+        xhr.send();
+      })();
+    }, 5000);
+  }, []);
+
   //* Form editing
   const onChange = (event: React.ChangeEvent<HTMLFormElement>): void => {
     const name = event.target.name;

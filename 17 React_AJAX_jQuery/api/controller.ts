@@ -17,6 +17,7 @@ export interface Shark {
 
 // Get All List
 export const getWholeList: RequestHandler = async (req: Request, res: Response): Promise<void> => {
+  console.log("req.xhr:", req.xhr);
   console.log("req.ip:", req.ip);
   try {
     await db.all(`SELECT * FROM sharks;`, (error, rows: Shark[]) => {
