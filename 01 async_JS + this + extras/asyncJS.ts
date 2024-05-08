@@ -1,9 +1,21 @@
 export {}; //+ For TS file only
-var fetch = require("node-fetch-commonjs");
+
+//* Errors Handling
+fetch("https://api.ipify.org/?format=json")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok"); //* Recommended throw new Error("Message")
+    }
+    return response.json();
+  })
+  .then((IP_data) => console.log("IP_data:", IP_data))
+  .catch((error) => {
+    console.error("Error:", error);
+  });
 
 // -1. Exercises written during the tutorial: https://www.youtube.com/watch?v=_9vgd9XKlDQ
 fetch("https://jsonplaceholder.typicode.com/todos/1")
-  .then((response: {json: () => string}) => response.json())
+  .then((response) => response.json())
   .then((json: string) => console.log(json));
 
 const LoadData = async (): Promise<any> => {
@@ -39,11 +51,11 @@ LoadData2();
 //- 2. Exercises written during the tutorial https://www.youtube.com/watch?v=PoRJizFvM7s
 //- 2.1
 
-type Post = {title: string; body: string};
+type Post = { title: string; body: string };
 
 const posts = [
-  {title: "Post 1", body: "This is Post One"},
-  {title: "Post 2", body: "This is Post Two"},
+  { title: "Post 1", body: "This is Post One" },
+  { title: "Post 2", body: "This is Post Two" },
 ];
 function getPosts() {
   setTimeout(() => {
@@ -67,7 +79,7 @@ function createPost(post: Post) {
     }, 2000);
   });
 }
-createPost({title: "Post 3", body: "This is Post Three"})
+createPost({ title: "Post 3", body: "This is Post Three" })
   .then(getPosts)
   .catch((error) => {
     console.log(error);
@@ -78,7 +90,7 @@ const promise2 = 10;
 const promise3 = new Promise((resolve, reject) => {
   setTimeout(resolve, 2000, "GoodBye");
 });
-const promise4 = fetch("https://jsonplaceholder.typicode.com/users/1").then((res: {json: () => any}) => res.json());
+const promise4 = fetch("https://jsonplaceholder.typicode.com/users/1").then((res: { json: () => any }) => res.json());
 
 Promise.all([promise1, promise2, promise3, promise4]).then((values) => {
   console.log("values:", values);
@@ -87,7 +99,7 @@ Promise.all([promise1, promise2, promise3, promise4]).then((values) => {
 console.log("----Async/Await----");
 // Async/Await
 async function init() {
-  await createPost({title: "Post 4", body: "This is Post Four"});
+  await createPost({ title: "Post 4", body: "This is Post Four" });
   console.log("Async/Await");
   getPosts();
 }
