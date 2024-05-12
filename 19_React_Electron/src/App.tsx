@@ -1,3 +1,5 @@
+//* https://medium.com/@azer.maslow/creating-desktop-applications-with-electron-and-react-b7f81f78c9d5
+
 import React from "react";
 
 import "./App.scss";
