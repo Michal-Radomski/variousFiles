@@ -37,3 +37,9 @@ Various files and exercises
 16. Kubernetes tutorial
 
 17. React with AJAX jQuery exercise
+
+18. React Redux Electron Vite Sass exercise
+
+19. React Electron exercise
+
+20. FFmpeg exercise
