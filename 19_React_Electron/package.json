@@ -2,6 +2,7 @@
   "name": "19_react_electron",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "main": "build/electron/electron.js",
   "build": {
     "appId": "com.example.electronApp",
