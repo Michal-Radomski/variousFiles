@@ -1,30 +1,26 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/electron-vite.animate.svg";
-import "./App.scss";
+//* https://medium.com/@tweiss747/getting-started-with-redux-react-typescript-electron-using-vite-ffed63074602
+
+import { useAppSelector } from "./redux/storeHooks";
+import Counter from "./Counter";
+import { Row, Col } from "antd";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const count = useAppSelector((state) => state.counter.value);
   return (
-    <>
-      <div>
-        <a href="https://electron-vite.github.io" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <Row justify={"center"}>
+      <Col>
+        <Row justify={"center"}>
+          <Col>
+            <h1>The count is {count} </h1>
+          </Col>
+        </Row>
+        <Row justify={"center"}>
+          <Col>
+            <Counter />
+          </Col>
+        </Row>
+      </Col>
+    </Row>
   );
 }
 
