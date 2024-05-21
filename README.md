@@ -44,4 +44,4 @@ Various files and exercises
 
 20. FFmpeg exercise
 
-21. Gists
+21. [Gists](https://gist.github.com/Michal-Radomski)
