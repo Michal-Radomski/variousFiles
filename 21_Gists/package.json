@@ -1,0 +1,12 @@
+{
+  "name": "21_gists",
+  "version": "1.0.0",
+  "main": "wheelColors.ts",
+  "scripts": {
+    "start": "clear && nodemon wheelColors.ts"
+  },
+  "keywords": [],
+  "author": "Michal Radomski <michalra@op.pl>",
+  "license": "MIT",
+  "description": ""
+}
