@@ -1,0 +1,15 @@
+{
+  "name": "22_oak-server",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "clear && nodemon index.ts"
+  },
+  "keywords": [],
+  "author": "Michal Radomski <michalra@op.pl>",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@oakserver/oak": "^14.1.0"
+  }
+}
