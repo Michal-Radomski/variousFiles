@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "wheelColors.ts",
   "scripts": {
-    "start": "clear && nodemon wheelColors.ts"
+    "start": "clear && nodemon wheelColors.ts",
+    "start2": "clear && nodemon no_gist/simpleAlgorithmCSPRNG.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
