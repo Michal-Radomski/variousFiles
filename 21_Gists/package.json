@@ -9,7 +9,5 @@
   "author": "Michal Radomski <michalra@op.pl>",
   "license": "MIT",
   "description": "",
-  "devDependencies": {
-    "@types/node": "^20.12.12"
-  }
+  "devDependencies": {}
 }
