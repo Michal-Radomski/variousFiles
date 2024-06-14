@@ -3,6 +3,7 @@ import React from "react";
 import "./App.scss";
 import FactoryPattern from "./FactoryPattern";
 import DecoratorPattern from "./DecoratorPattern";
+import ObserverPattern from "./ObserverPattern";
 
 const App = (): JSX.Element => {
   return (
@@ -12,6 +13,10 @@ const App = (): JSX.Element => {
       <br />
       <br />
       <DecoratorPattern />
+      <br />
+      <br />
+      <br />
+      <ObserverPattern />
     </React.Fragment>
   );
 };

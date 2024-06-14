@@ -6,14 +6,18 @@
 import React from "react";
 
 // Simple component
-const Button = ({ onClick, label }: { onClick?: React.MouseEventHandler<HTMLButtonElement>; label?: string }) => (
-  <button onClick={onClick}>{label}</button>
-);
+const Button = ({
+  onClick,
+  label,
+}: {
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  label?: string;
+}): JSX.Element => <button onClick={onClick}>{label}</button>;
 
 // HOC to log clicks
 const withClickLogger = (
   WrappedComponent: React.FC<{ onClick?: React.MouseEventHandler<HTMLButtonElement>; label?: string }>
-) => {
+): typeof React.Component => {
   return class extends React.Component<{ onClick?: Function; label?: string }> {
     handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       console.log("Button clicked");
@@ -27,7 +31,7 @@ const withClickLogger = (
 };
 
 // Enhanced component
-const ButtonWithLogging = withClickLogger(Button);
+const ButtonWithLogging: typeof React.Component = withClickLogger(Button);
 
 const DecoratorPattern = (): JSX.Element => {
   return (
