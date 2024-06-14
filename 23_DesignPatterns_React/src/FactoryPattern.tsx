@@ -1,4 +1,4 @@
-// Creational Patterns
+//* 1. Creational Patterns
 // Creational patterns deal with object creation mechanisms. One commonly used creational pattern in React is the Factory Pattern.
 // Example: Factory Pattern
 // The Factory Pattern can be used to dynamically create React components.
@@ -10,12 +10,12 @@ type Props = {
 };
 
 // Define a set of components
-const Button = (props: Props) => <button {...props}>{props.label}</button>;
-const Link = (props: Props) => <a href={props.href}>{props.label}</a>;
-const TextInput = (props: Props) => <input type="text" {...props} />;
+const Button = (props: Props): JSX.Element => <button {...props}>{props.label}</button>;
+const Link = (props: Props): JSX.Element => <a href={props.href}>{props.label}</a>;
+const TextInput = (props: Props): JSX.Element => <input type="text" {...props} />;
 
 // Component factory
-const componentFactory = (type: string, props: Props) => {
+const componentFactory = (type: string, props: Props): JSX.Element | null => {
   const components = {
     button: Button,
     link: Link,
@@ -25,7 +25,7 @@ const componentFactory = (type: string, props: Props) => {
   return Component ? <Component {...props} /> : null;
 };
 
-const FactoryPattern = () => {
+const FactoryPattern = (): JSX.Element => {
   return (
     <React.Fragment>
       {componentFactory("button", { label: "Click Me" })}
