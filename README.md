@@ -47,3 +47,5 @@ Various files and exercises
 21. [Gists](https://gist.github.com/Michal-Radomski)
 
 22. Oak Server
+
+23. Design Patterns with React
