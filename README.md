@@ -49,3 +49,5 @@ Various files and exercises
 22. Oak Server
 
 23. Design Patterns with React
+
+24. TS: decorators nad mixins exercises
