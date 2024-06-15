@@ -1,4 +1,4 @@
-//* 1. Decorator exercise
+//* 1. Decorator exercise 1
 // function LogClassName(constructor: Function) {
 //   console.log(`Class created: ${constructor.name}`);
 // }
@@ -14,7 +14,7 @@
 // const instance = new MyClass();
 // console.log("instance:", instance);
 
-//* 2. Decorator exercise
+//* 2. Decorator exercise 2
 function LogMethod(_target: any, propertyName: string, propertyDescriptor: PropertyDescriptor): PropertyDescriptor {
   const method = propertyDescriptor.value;
 
@@ -39,47 +39,98 @@ const math = new MyMath();
 const result = math.add(2, 3); // Logs: Call: add(2, 3) and Return: 5
 console.log("result:", result); // Outputs: 5
 
-//* 3. Mixin exercise
+//* 3. Mixin exercise 1
+// type Constructor<T = {}> = new (...args: any[]) => T;
+
+// function Timestamped<TBase extends Constructor>(Base: TBase) {
+//   return class extends Base {
+//     timestamp = new Date();
+//   };
+// }
+
+// function Activatable<TBase extends Constructor>(Base: TBase) {
+//   return class extends Base {
+//     isActive = false;
+
+//     activate() {
+//       this.isActive = true;
+//     }
+
+//     deactivate() {
+//       this.isActive = false;
+//     }
+//   };
+// }
+
+// class User {
+//   name: string;
+
+//   constructor(name: string) {
+//     this.name = name;
+//   }
+
+//   greet() {
+//     console.log(`Hello, ${this.name}!`);
+//   }
+// }
+
+// const TimestampedActivatableUser = Timestamped(Activatable(User));
+
+// const user = new TimestampedActivatableUser("Alice");
+// user.greet(); // Hello, Alice!
+// console.log(user.timestamp); // Current timestamp
+// user.activate();
+// console.log(user.isActive); // true
+// user.deactivate();
+// console.log(user.isActive); // false
+
+//* 4. Mixin exercise 2
 type Constructor<T = {}> = new (...args: any[]) => T;
 
-function Timestamped<TBase extends Constructor>(Base: TBase) {
+function Loggable<TBase extends Constructor>(Base: TBase) {
   return class extends Base {
-    timestamp = new Date();
-  };
-}
-
-function Activatable<TBase extends Constructor>(Base: TBase) {
-  return class extends Base {
-    isActive = false;
-
-    activate() {
-      this.isActive = true;
+    constructor(...args: any[]) {
+      super(...args);
     }
 
-    deactivate() {
-      this.isActive = false;
+    log(message: string) {
+      console.log(`[${new Date().toISOString()}] ${message}`);
     }
   };
 }
 
-class User {
+function Serializable<TBase extends Constructor>(Base: TBase) {
+  return class extends Base {
+    constructor(...args: any[]) {
+      super(...args);
+    }
+
+    serialize() {
+      return JSON.stringify(this);
+    }
+
+    static deserialize<T>(this: Constructor, json: string): T {
+      return Object.assign(new this(), JSON.parse(json));
+    }
+  };
+}
+
+class Product {
   name: string;
+  price: number;
 
-  constructor(name: string) {
+  constructor(name: string, price: number) {
     this.name = name;
-  }
-
-  greet() {
-    console.log(`Hello, ${this.name}!`);
+    this.price = price;
   }
 }
 
-const TimestampedActivatableUser = Timestamped(Activatable(User));
+const LoggableSerializableProduct = Loggable(Serializable(Product));
 
-const user = new TimestampedActivatableUser("Alice");
-user.greet(); // Hello, Alice!
-console.log(user.timestamp); // Current timestamp
-user.activate();
-console.log(user.isActive); // true
-user.deactivate();
-console.log(user.isActive); // false
+const product = new LoggableSerializableProduct("Widget", 19.99);
+product.log(`Created product: ${product.name}`);
+const serialized = product.serialize();
+console.log("serialized:", serialized);
+
+const deserializedProduct = LoggableSerializableProduct.deserialize(serialized);
+console.log("deserializedProduct:", deserializedProduct);
