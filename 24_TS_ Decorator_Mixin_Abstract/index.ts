@@ -136,7 +136,6 @@ const deserializedProduct = LoggableSerializableProduct.deserialize(serialized);
 console.log("deserializedProduct:", deserializedProduct);
 
 //* Abstract Class exercise
-
 abstract class Shape {
   /**
    * Calculates the area of the shape.
@@ -226,3 +225,36 @@ console.log(`Area of rectangle: ${rectangle.calculateArea()}`); // Output: "Area
 const circle = new Circle(2.5);
 circle.printDescription(); // Output: "This is a shape with 0 sides."
 console.log(`Area of circle: ${circle.calculateArea()}`); // Output: "Area of circle: 19.634954084936208"
+
+//* Abstract Class exercise 2
+abstract class Animal {
+  // Abstract method (must be implemented by subclasses)
+  abstract makeSound(): void;
+
+  // Concrete method (shared by all subclasses)
+  move(): void {
+    console.log("Moving...");
+  }
+}
+
+class Dog extends Animal {
+  // Implement the abstract method
+  makeSound(): void {
+    console.log("Woof! Woof!");
+  }
+}
+
+class Cat extends Animal {
+  // Implement the abstract method
+  makeSound(): void {
+    console.log("Meow! Meow!");
+  }
+}
+
+const dog = new Dog();
+dog.makeSound(); // Woof! Woof!
+dog.move(); // Moving...
+
+const cat = new Cat();
+cat.makeSound(); // Meow! Meow!
+cat.move(); // Moving...
