@@ -134,3 +134,95 @@ console.log("serialized:", serialized);
 
 const deserializedProduct = LoggableSerializableProduct.deserialize(serialized);
 console.log("deserializedProduct:", deserializedProduct);
+
+//* Abstract Class exercise
+
+abstract class Shape {
+  /**
+   * Calculates the area of the shape.
+   * @abstract
+   * @returns The area of the shape.
+   */
+  abstract calculateArea(): number;
+
+  printDescription(): void {
+    console.log(`This is a shape with ${this.getNumberOfSides()} sides.`);
+  }
+
+  /**
+   * Gets the number of sides the shape has.
+   * @abstract
+   * @returns The number of sides the shape has.
+   */
+  protected abstract getNumberOfSides(): number;
+}
+
+class Rectangle extends Shape {
+  private length: number;
+  private width: number;
+
+  /**
+   * Initializes a new Rectangle instance with the given length and width.
+   * @param length The length of the rectangle.
+   * @param width The width of the rectangle.
+   */
+  constructor(length: number, width: number) {
+    super();
+    this.length = length;
+    this.width = width;
+  }
+
+  /**
+   * Calculates the area of the rectangle (overridden from Shape).
+   * @returns The area of the rectangle.
+   */
+  calculateArea(): number {
+    return this.length * this.width;
+  }
+
+  /**
+   * Gets the number of sides the rectangle has (overridden from Shape).
+   * @returns The number of sides the rectangle has.
+   */
+  protected getNumberOfSides(): number {
+    return 4;
+  }
+}
+
+class Circle extends Shape {
+  private radius: number;
+
+  /**
+   * Initializes a new Circle instance with the given radius.
+   * @param radius The radius of the circle.
+   */
+  constructor(radius: number) {
+    super();
+    this.radius = radius;
+  }
+
+  /**
+   * Calculates the area of the circle (overridden from Shape).
+   * @returns The area of the circle.
+   */
+  calculateArea(): number {
+    return Math.PI * this.radius * this.radius;
+  }
+
+  /**
+   * Gets the number of sides the circle has (overridden from Shape).
+   * @returns The number of sides the circle has.
+   */
+  protected getNumberOfSides(): number {
+    return 0; // A circle has no sides
+  }
+}
+
+// Example usage
+const rectangle = new Rectangle(5, 3);
+rectangle.printDescription(); // Output: "This is a shape with 4 sides."
+console.log(`Area of rectangle: ${rectangle.calculateArea()}`); // Output: "Area of rectangle: 15"
+
+const circle = new Circle(2.5);
+circle.printDescription(); // Output: "This is a shape with 0 sides."
+console.log(`Area of circle: ${circle.calculateArea()}`); // Output: "Area of circle: 19.634954084936208"

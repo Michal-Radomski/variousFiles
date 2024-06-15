@@ -50,4 +50,4 @@ Various files and exercises
 
 23. Design Patterns with React
 
-24. TS: decorators nad mixins exercises
+24. TS: decorators, mixins and abstract class exercises
