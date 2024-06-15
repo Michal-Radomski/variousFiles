@@ -38,3 +38,48 @@ class MyMath {
 const math = new MyMath();
 const result = math.add(2, 3); // Logs: Call: add(2, 3) and Return: 5
 console.log("result:", result); // Outputs: 5
+
+//* 3. Mixin exercise
+type Constructor<T = {}> = new (...args: any[]) => T;
+
+function Timestamped<TBase extends Constructor>(Base: TBase) {
+  return class extends Base {
+    timestamp = new Date();
+  };
+}
+
+function Activatable<TBase extends Constructor>(Base: TBase) {
+  return class extends Base {
+    isActive = false;
+
+    activate() {
+      this.isActive = true;
+    }
+
+    deactivate() {
+      this.isActive = false;
+    }
+  };
+}
+
+class User {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  greet() {
+    console.log(`Hello, ${this.name}!`);
+  }
+}
+
+const TimestampedActivatableUser = Timestamped(Activatable(User));
+
+const user = new TimestampedActivatableUser("Alice");
+user.greet(); // Hello, Alice!
+console.log(user.timestamp); // Current timestamp
+user.activate();
+console.log(user.isActive); // true
+user.deactivate();
+console.log(user.isActive); // false
