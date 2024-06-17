@@ -51,3 +51,5 @@ Various files and exercises
 23. Design Patterns with React
 
 24. TS: decorators, mixins and abstract class exercises
+
+25. Design Patterns in React and Node
