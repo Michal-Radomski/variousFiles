@@ -260,7 +260,7 @@ cat.makeSound(); // Meow! Meow!
 cat.move(); // Moving...
 
 //* 4. Generics exercise
-//* Exercise 1: Function
+//* Exercise 1: Generic Function
 function createArray<T>(value: T, length: number): T[] {
   return Array(length).fill(value);
 }
@@ -269,6 +269,7 @@ function createArray<T>(value: T, length: number): T[] {
 const numberArray = createArray<number>(5, 3); // [5, 5, 5]
 const stringArray = createArray<string>("hello", 2); // ['hello', 'hello']
 
+//* Exercise 2: Generic Class
 class Box<T> {
   private _value: T;
 
@@ -287,11 +288,12 @@ class Box<T> {
 
 // Usage
 const numberBox = new Box<number>(10);
-console.log(numberBox.value); // 10
+console.log("numberBox.value:", numberBox.value); // 10
 
 const stringBox = new Box<string>("Hello");
-console.log(stringBox.value); // Hello
+console.log("stringBox.value:", stringBox.value); // Hello
 
+//* Exercise 3: Generic Interface
 interface KeyValuePair<K, V> {
   key: K;
   value: V;
@@ -299,13 +301,16 @@ interface KeyValuePair<K, V> {
 
 const pair1: KeyValuePair<number, string> = { key: 1, value: "One" };
 const pair2: KeyValuePair<string, boolean> = { key: "isTrue", value: true };
+console.log("pair1:", pair1);
+console.log("pair2:", pair2);
 
+//* Exercise 4: Generic Constraints
 interface Lengthwise {
   length: number;
 }
 
 function logLength<T extends Lengthwise>(arg: T): T {
-  console.log(arg.length);
+  console.log("arg.length:", arg.length);
   return arg;
 }
 
@@ -313,6 +318,7 @@ function logLength<T extends Lengthwise>(arg: T): T {
 logLength({ length: 10, value: "Hello" }); // 10
 // logLength(3); // Error: Argument of type '3' is not assignable to parameter of type 'Lengthwise'
 
+//* Exercise 5: Generic with Multiple Types
 function mapArray<T, U>(array: T[], callback: (item: T) => U): U[] {
   return array.map(callback);
 }
@@ -320,4 +326,4 @@ function mapArray<T, U>(array: T[], callback: (item: T) => U): U[] {
 // Usage
 const numbers = [1, 2, 3, 4];
 const strings = mapArray(numbers, (num) => num.toString());
-console.log(strings); // ['1', '2', '3', '4']
+console.log("strings:", strings); // ['1', '2', '3', '4']
