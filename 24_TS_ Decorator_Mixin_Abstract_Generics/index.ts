@@ -14,7 +14,7 @@
 // const instance = new MyClass();
 // console.log("instance:", instance);
 
-//* 2. Decorator exercise 2
+//* Decorator exercise 2
 function LogMethod(_target: any, propertyName: string, propertyDescriptor: PropertyDescriptor): PropertyDescriptor {
   const method = propertyDescriptor.value;
 
@@ -39,7 +39,7 @@ const math = new MyMath();
 const result = math.add(2, 3); // Logs: Call: add(2, 3) and Return: 5
 console.log("result:", result); // Outputs: 5
 
-//* 3. Mixin exercise 1
+//* 2. Mixin exercise 1
 // type Constructor<T = {}> = new (...args: any[]) => T;
 
 // function Timestamped<TBase extends Constructor>(Base: TBase) {
@@ -84,7 +84,7 @@ console.log("result:", result); // Outputs: 5
 // user.deactivate();
 // console.log(user.isActive); // false
 
-//* 4. Mixin exercise 2
+//* Mixin exercise 2
 type Constructor<T = {}> = new (...args: any[]) => T;
 
 function Loggable<TBase extends Constructor>(Base: TBase) {
@@ -135,7 +135,7 @@ console.log("serialized:", serialized);
 const deserializedProduct = LoggableSerializableProduct.deserialize(serialized);
 console.log("deserializedProduct:", deserializedProduct);
 
-//* Abstract Class exercise
+//* 3. Abstract Class exercise
 abstract class Shape {
   /**
    * Calculates the area of the shape.
@@ -258,3 +258,66 @@ dog.move(); // Moving...
 const cat = new Cat();
 cat.makeSound(); // Meow! Meow!
 cat.move(); // Moving...
+
+//* 4. Generics exercise
+//* Exercise 1: Function
+function createArray<T>(value: T, length: number): T[] {
+  return Array(length).fill(value);
+}
+
+// Usage
+const numberArray = createArray<number>(5, 3); // [5, 5, 5]
+const stringArray = createArray<string>("hello", 2); // ['hello', 'hello']
+
+class Box<T> {
+  private _value: T;
+
+  constructor(value: T) {
+    this._value = value;
+  }
+
+  get value(): T {
+    return this._value;
+  }
+
+  set value(newValue: T) {
+    this._value = newValue;
+  }
+}
+
+// Usage
+const numberBox = new Box<number>(10);
+console.log(numberBox.value); // 10
+
+const stringBox = new Box<string>("Hello");
+console.log(stringBox.value); // Hello
+
+interface KeyValuePair<K, V> {
+  key: K;
+  value: V;
+}
+
+const pair1: KeyValuePair<number, string> = { key: 1, value: "One" };
+const pair2: KeyValuePair<string, boolean> = { key: "isTrue", value: true };
+
+interface Lengthwise {
+  length: number;
+}
+
+function logLength<T extends Lengthwise>(arg: T): T {
+  console.log(arg.length);
+  return arg;
+}
+
+// Usage
+logLength({ length: 10, value: "Hello" }); // 10
+// logLength(3); // Error: Argument of type '3' is not assignable to parameter of type 'Lengthwise'
+
+function mapArray<T, U>(array: T[], callback: (item: T) => U): U[] {
+  return array.map(callback);
+}
+
+// Usage
+const numbers = [1, 2, 3, 4];
+const strings = mapArray(numbers, (num) => num.toString());
+console.log(strings); // ['1', '2', '3', '4']
