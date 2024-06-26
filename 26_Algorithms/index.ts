@@ -44,8 +44,8 @@ const time2 = "1h 30min";
 const result = addTimePeriods(time1, time2);
 console.log(`Total Time: ${result.hours}h ${result.minutes}min`); // Output: Total Time: 4h 14min
 
-//* Check if all internal arrays in an array of arrays are equal
-const arraysAreEqual = (arr1: string[], arr2: string[]) => {
+//* 02. Check if all internal arrays in an array of arrays are equal
+const arraysAreEqual = (arr1: string[], arr2: string[]): boolean => {
   if (arr1.length !== arr2.length) return false;
   for (let i = 0; i < arr1.length; i++) {
     if (arr1[i] !== arr2[i]) return false;
@@ -53,7 +53,7 @@ const arraysAreEqual = (arr1: string[], arr2: string[]) => {
   return true;
 };
 
-const allArraysAreEqual = (arrayOfArrays: string[][]) => {
+const allArraysAreEqual = (arrayOfArrays: string[][]): boolean => {
   if (arrayOfArrays.length < 2) return true;
   for (let i = 1; i < arrayOfArrays.length; i++) {
     if (!arraysAreEqual(arrayOfArrays[0], arrayOfArrays[i])) {
@@ -71,3 +71,24 @@ const arrayOfArrays = [
 ];
 
 console.log("allArraysAreEqual(arrayOfArrays):", allArraysAreEqual(arrayOfArrays)); // true or false
+
+//* 03. To find elements that exist in every internal array in an array of arrays
+const arrOfArr = [
+  ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  ["1", "2", "3", "4"],
+  ["1", "2", "3", "4", "5"],
+  ["1", "2", "3", "9"],
+];
+
+const findCommonElements = (arrayOfArrays: string[][]): string[] => {
+  if (arrayOfArrays.length === 0) return [];
+
+  // Take the first array as a reference
+  const firstArray: string[] = arrayOfArrays[0];
+
+  // Filter elements that are present in every array
+  return firstArray.filter((element) => arrayOfArrays.every((arr) => arr.includes(element)));
+};
+
+const commonElements = findCommonElements(arrOfArr);
+console.log("commonElements:", commonElements); // Output: ["1", "2", "3"]
