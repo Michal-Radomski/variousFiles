@@ -55,3 +55,5 @@ Various files and exercises
 25. Design Patterns in React and Node/Express
 
 26. Algorithms
+
+27. Sandbox React App
