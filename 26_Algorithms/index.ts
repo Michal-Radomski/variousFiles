@@ -92,3 +92,32 @@ const findCommonElements = (arrayOfArrays: string[][]): string[] => {
 
 const commonElements = findCommonElements(arrOfArr);
 console.log("commonElements:", commonElements); // Output: ["1", "2", "3"]
+
+{
+  //* 04. To calculate how many times each element exists globally in an array of arrays
+  const arrOfArr = [
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    ["1", "2", "3", "4"],
+    ["1", "2", "3", "4", "5"],
+    ["1", "2", "3", "9"],
+  ];
+
+  const countGlobalOccurrences = (arrayOfArrays: string[][]) => {
+    const frequencyCounter = {} as { [key: string]: number };
+
+    arrayOfArrays.forEach((innerArray: string[]) => {
+      innerArray.forEach((element: string) => {
+        if (frequencyCounter[element]) {
+          frequencyCounter[element]++;
+        } else {
+          frequencyCounter[element] = 1;
+        }
+      });
+    });
+
+    return frequencyCounter;
+  };
+
+  const globalOccurrences = countGlobalOccurrences(arrOfArr);
+  console.log("globalOccurrences:", globalOccurrences); // Output: { '1': 4, '2': 4, '3': 4, '4': 3, '5': 2, '6': 1, '7': 1, '8': 1, '9': 2 }
+}
