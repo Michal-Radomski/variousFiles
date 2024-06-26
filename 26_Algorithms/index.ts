@@ -43,3 +43,31 @@ const time2 = "1h 30min";
 
 const result = addTimePeriods(time1, time2);
 console.log(`Total Time: ${result.hours}h ${result.minutes}min`); // Output: Total Time: 4h 14min
+
+//* Check if all internal arrays in an array of arrays are equal
+const arraysAreEqual = (arr1: string[], arr2: string[]) => {
+  if (arr1.length !== arr2.length) return false;
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) return false;
+  }
+  return true;
+};
+
+const allArraysAreEqual = (arrayOfArrays: string[][]) => {
+  if (arrayOfArrays.length < 2) return true;
+  for (let i = 1; i < arrayOfArrays.length; i++) {
+    if (!arraysAreEqual(arrayOfArrays[0], arrayOfArrays[i])) {
+      return false;
+    }
+  }
+  return true;
+};
+
+// Example usage:
+const arrayOfArrays = [
+  ["12", "5:109:00", "14"],
+  ["12", "5:109:00", "14"],
+  ["12", "5:109:00", "14"],
+];
+
+console.log("allArraysAreEqual(arrayOfArrays):", allArraysAreEqual(arrayOfArrays)); // true or false
