@@ -9,7 +9,7 @@ import { initialCode } from "./initialCode";
 // langs.tsx();
 // console.log("langNames:", langNames);
 
-const CodeMirrorSandbox = (): JSX.Element => {
+const CodeMirrorPlayground = (): JSX.Element => {
   const [value, setValue] = React.useState(initialCode);
 
   const onChange = React.useCallback((val: React.SetStateAction<string>, _viewUpdate: object) => {
@@ -34,4 +34,4 @@ const CodeMirrorSandbox = (): JSX.Element => {
   );
 };
 
-export default CodeMirrorSandbox;
+export default CodeMirrorPlayground;

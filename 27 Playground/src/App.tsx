@@ -1,14 +1,14 @@
 import React from "react";
 
 import "./App.scss";
-import CodeMirrorSandbox from "./CodeMirrorSandbox";
+import CodeMirrorPlayground from "./CodeMirrorPlayground";
 import MonacoEditor from "./MonacoEditor";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
-      Sandbox React App
-      <CodeMirrorSandbox />
+      Playground React App
+      <CodeMirrorPlayground />
       <MonacoEditor />
     </React.Fragment>
   );

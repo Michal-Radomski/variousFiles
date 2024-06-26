@@ -3,6 +3,7 @@ import * as monaco from "monaco-editor/esm/vs/editor/editor.api";
 
 import { initialCode } from "./initialCode";
 
+//* Problems with colors and editing!
 const MonacoEditor = (): JSX.Element => {
   const [editor, setEditor] = React.useState<monaco.editor.IStandaloneCodeEditor | null>(null);
   const monacoEl = React.useRef(null);

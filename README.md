@@ -56,4 +56,4 @@ Various files and exercises
 
 26. Algorithms
 
-27. Sandbox React App
+27. Playground React App
