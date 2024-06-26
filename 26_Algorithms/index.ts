@@ -87,7 +87,7 @@ const findCommonElements = (arrayOfArrays: string[][]): string[] => {
   const firstArray: string[] = arrayOfArrays[0];
 
   // Filter elements that are present in every array
-  return firstArray.filter((element) => arrayOfArrays.every((arr) => arr.includes(element)));
+  return firstArray.filter((element) => arrayOfArrays.every((arr: string[]) => arr.includes(element)));
 };
 
 const commonElements = findCommonElements(arrOfArr);
@@ -120,4 +120,39 @@ console.log("commonElements:", commonElements); // Output: ["1", "2", "3"]
 
   const globalOccurrences = countGlobalOccurrences(arrOfArr);
   console.log("globalOccurrences:", globalOccurrences); // Output: { '1': 4, '2': 4, '3': 4, '4': 3, '5': 2, '6': 1, '7': 1, '8': 1, '9': 2 }
+}
+
+{
+  //* To get a list of items that exist n or more times in an array of arrays
+  const arrOfArr = [
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    ["1", "2", "3", "4"],
+    ["1", "2", "3", "4", "5"],
+    ["1", "2", "3", "9"],
+  ];
+  const n = 4;
+
+  const countGlobalOccurrences = (arrayOfArrays: string[][]) => {
+    const frequencyCounter = {} as { [key: string]: number };
+
+    arrayOfArrays.forEach((innerArray) => {
+      innerArray.forEach((element) => {
+        if (frequencyCounter[element]) {
+          frequencyCounter[element]++;
+        } else {
+          frequencyCounter[element] = 1;
+        }
+      });
+    });
+
+    return frequencyCounter;
+  };
+
+  const getItemsWithMinOccurrences = (arrayOfArrays: string[][], minOccurrences: number) => {
+    const globalOccurrences = countGlobalOccurrences(arrayOfArrays);
+    return Object.keys(globalOccurrences).filter((key) => globalOccurrences[key] >= minOccurrences);
+  };
+
+  const itemsWithFourOrMoreOccurrences: string[] = getItemsWithMinOccurrences(arrOfArr, n);
+  console.log("itemsWithFourOrMoreOccurrences:", itemsWithFourOrMoreOccurrences); // Output: ['1', '2', '3']
 }
