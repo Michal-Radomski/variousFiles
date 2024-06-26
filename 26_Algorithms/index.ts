@@ -123,7 +123,7 @@ console.log("commonElements:", commonElements); // Output: ["1", "2", "3"]
 }
 
 {
-  //* To get a list of items that exist n or more times in an array of arrays
+  //* 05. To get a list of items that exist n or more times in an array of arrays
   const arrOfArr = [
     ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
     ["1", "2", "3", "4"],
@@ -155,4 +155,59 @@ console.log("commonElements:", commonElements); // Output: ["1", "2", "3"]
 
   const itemsWithFourOrMoreOccurrences: string[] = getItemsWithMinOccurrences(arrOfArr, n);
   console.log("itemsWithFourOrMoreOccurrences:", itemsWithFourOrMoreOccurrences); // Output: ['1', '2', '3']
+}
+
+{
+  //* 06. To find the longest array that has the most occurrences in an array of arrays
+  const arr = [
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    ["1", "2", "3", "4"],
+    ["1", "2", "3", "4", "5"],
+    ["1", "2", "3", "4", "5"],
+    ["1", "2", "3", "9"],
+  ];
+
+  const findLongestMostFrequentArray = (arrayOfArrays: string[][]): string[] => {
+    const map = new Map<string, number>();
+
+    // Count the frequency of each array
+    arrayOfArrays?.forEach((innerArray: string[]) => {
+      const key: string = JSON.stringify(innerArray);
+      if (map.has(key)) {
+        map.set(key, map?.get(key)! + 1);
+      } else {
+        map.set(key, 1);
+      }
+    });
+
+    // Find the maximum frequency
+    let maxFrequency = 0;
+    map?.forEach((value: number) => {
+      if (value > maxFrequency) {
+        maxFrequency = value;
+      }
+    });
+
+    // Find all arrays with the maximum frequency
+    const mostFrequentArrays = [] as string[][];
+    map?.forEach((value: number, key: string) => {
+      if (value === maxFrequency) {
+        mostFrequentArrays.push(JSON.parse(key));
+      }
+    });
+
+    // Find the longest array among the most frequent arrays
+    let longestArray = [] as string[];
+    mostFrequentArrays?.forEach((innerArray: string[]) => {
+      if (innerArray.length > longestArray.length) {
+        longestArray = innerArray;
+      }
+    });
+
+    return longestArray;
+  };
+
+  const result = findLongestMostFrequentArray(arr);
+  console.log("result:", result); // Output: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 }
