@@ -30,3 +30,12 @@ p.info {
   text-decoration: underline;
   color: dimgray;
 }
+
+pre {
+  text-align: left;
+  padding: 10px;
+  background: #282c34;
+  color: #61dafb;
+  height: 40vh;
+  overflow: auto;
+}
