@@ -1,0 +1,48 @@
+The `lib` option in `tsconfig.json` allows you to specify which built-in API declaration groups to include in your TypeScript project. Here's a list of commonly used `lib` values:
+
+1. Core libraries:
+- `ES5`: Core definitions for all ES3 and ES5 functionality
+- `ES2015` (also known as ES6): Additional APIs for ES2015 features
+- `ES2016`, `ES2017`, `ES2018`, `ES2019`, `ES2020`, `ES2021`, `ES2022`: APIs for respective ECMAScript versions
+
+2. DOM-related libraries:
+- `DOM`: Browser DOM definitions
+- `DOM.Iterable`: DOM definitions with iterable support
+- `WebWorker`: APIs available in Web Workers
+- `ScriptHost`: Windows Script Hosting System APIs
+
+3. Specialized libraries:
+- `ESNext`: Latest ECMAScript features
+- `ESNext.Array`: Array-specific features
+- `ESNext.AsyncIterable`: Async iterable features
+- `ESNext.BigInt`: BigInt support
+- `ESNext.Intl`: Internationalization API
+- `ESNext.Promise`: Promise-related features
+- `ESNext.String`: String-specific features
+- `ESNext.Symbol`: Symbol-related features
+
+4. Decorators:
+- `ES2015.Proxy`: Proxy objects
+- `ES2015.Reflect`: Reflection API
+- `Decorators`: Decorator support
+- `Decorators.Legacy`: Legacy decorator support
+
+5. Other specialized libraries:
+- `ES2015.Core`: Core ES2015 definitions
+- `ES2015.Collection`: ES2015 collection types (Map, Set, etc.)
+- `ES2015.Generator`: Generator functions
+- `ES2015.Iterable`: Iterable types
+- `ES2015.Promise`: Promise type
+- `ES2015.Symbol`: Symbol type
+- `ES2015.Symbol.WellKnown`: Well-known symbols
+
+It's important to note that the available `lib` options may change with different TypeScript versions. The TypeScript compiler automatically includes some libraries based on your `target` setting, but you can override these defaults by explicitly specifying the `lib` option in your `tsconfig.json`[1][2].
+
+When choosing `lib` values, consider your target environment and the JavaScript features you need. For example, if you're developing for modern browsers, you might include `DOM` and recent ECMAScript versions. If you're developing for Node.js, you might omit `DOM` but include appropriate ECMAScript versions based on your target Node.js version.
+
+Citations:
+[1] https://www.typescriptlang.org/tsconfig/lib.html
+[2] https://stackoverflow.com/questions/39303385/what-does-the-tsconfig-option-lib-do
+[3] https://www.typescriptlang.org/tsconfig/
+[4] https://github.com/codex-team/typescript-lib-template/blob/main/tsconfig.json
+[5] https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
