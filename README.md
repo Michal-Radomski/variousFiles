@@ -57,3 +57,5 @@ Various files and exercises
 26. Algorithms
 
 27. Playground React App
+
+28. React useReducer + useContext vs Redux exercise
