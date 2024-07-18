@@ -1,3 +1,30 @@
+import os from "os";
+
+(function getSystemInfo(): void {
+  console.log("OS platform:", os.platform());
+  console.log("OS release:", os.release());
+  console.log("OS type:", os.type());
+  console.log("CPU architecture:", os.arch());
+  console.log("CPU cores:", os.cpus().length);
+  console.log("Total memory_MB:", os.totalmem() / 1024 / 1024, "MB");
+  console.log("Free memory_MB:", os.freemem() / 1024 / 1024, "MB");
+  console.log("Total memory_GB:", os.totalmem() / 1024 / 1024 / 1024, "GB");
+  console.log("Free memory_GB:", os.freemem() / 1024 / 1024 / 1024, "GB");
+  console.log("Network interfaces:", os.networkInterfaces());
+  console.log("Home directory:", os.homedir());
+  console.log("Current user:", os.userInfo().username);
+  console.log("System uptime:", (os.uptime() / 3600).toFixed(2), "hours");
+  console.log("Temp directory:", os.tmpdir());
+  console.log("EOL:", os.EOL === "\n" ? "LF" : "CRLF");
+})();
+
+// Check if the system has enough memory for a task
+function hasEnoughMemoryForTask(requiredMemoryGB: number): boolean {
+  const freeMemoryGB = os.freemem() / 1024 / 1024 / 1024;
+  return freeMemoryGB >= requiredMemoryGB;
+}
+console.log("Has 4GB free memory:", hasEnoughMemoryForTask(4));
+
 {
   //* Function to encode a string to base64 - Browser
   const encodeToBase64 = (str: string): string => {
