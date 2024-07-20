@@ -4,7 +4,8 @@
   "main": "index.ts",
   "scripts": {
     "copy": "ts-node copy-files.ts",
-    "start": "nodemon index.ts"
+    "start": "nodemon index.ts",
+    "fem": "nodemon FEM.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
