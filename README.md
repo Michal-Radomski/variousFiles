@@ -58,6 +58,6 @@ Various files and exercises
 
 27. Playground React App
 
-28. React useReducer + useContext vs Redux exercise
+28. React.js exercises
 
 29. Node.js exercises
