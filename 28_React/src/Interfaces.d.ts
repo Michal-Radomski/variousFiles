@@ -4,3 +4,8 @@ type RootState = ReturnType<typeof store.getState>;
 type Dispatch = typeof store.dispatch;
 type Fetch = typeof store.fetch;
 type Action = typeof store.action;
+
+interface WindowDimensions {
+  width: number;
+  height: number;
+}
