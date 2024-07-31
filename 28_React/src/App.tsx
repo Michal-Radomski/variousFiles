@@ -8,6 +8,7 @@ import WindowDimensions from "./dimensions/WindowDimensions";
 import MeasureComponent from "./MeasureComponent";
 import ParentPropsComponent from "./props/ParentPropsComponent";
 import { DefaultProps2 } from "./props/DefaultProps";
+import ForwardRef from "./ForwardRef";
 
 const App = (): JSX.Element => {
   return (
@@ -33,11 +34,17 @@ const App = (): JSX.Element => {
       <MeasureComponent />
       <br />
       <br />
+
       <ParentPropsComponent />
       <br />
       <br />
+
       <DefaultProps2 />
       {/* <DefaultProps /> */}
+      <br />
+      <br />
+
+      <ForwardRef />
     </React.Fragment>
   );
 };
