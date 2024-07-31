@@ -9,3 +9,9 @@ interface WindowDimensions {
   width: number;
   height: number;
 }
+
+interface UserProps {
+  name: string;
+  age: number;
+  email: string;
+}

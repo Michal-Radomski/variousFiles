@@ -6,6 +6,8 @@ import CounterReactHooks from "./CounterReactHooks";
 import CombineStyles from "./CombineStyles";
 import WindowDimensions from "./dimensions/WindowDimensions";
 import MeasureComponent from "./MeasureComponent";
+import ParentPropsComponent from "./props/ParentPropsComponent";
+import { DefaultProps2 } from "./props/DefaultProps";
 
 const App = (): JSX.Element => {
   return (
@@ -29,6 +31,13 @@ const App = (): JSX.Element => {
       <br />
 
       <MeasureComponent />
+      <br />
+      <br />
+      <ParentPropsComponent />
+      <br />
+      <br />
+      <DefaultProps2 />
+      {/* <DefaultProps /> */}
     </React.Fragment>
   );
 };
