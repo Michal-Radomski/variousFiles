@@ -9,6 +9,7 @@ import MeasureComponent from "./MeasureComponent";
 import ParentPropsComponent from "./props/ParentPropsComponent";
 import { DefaultProps2 } from "./props/DefaultProps";
 import ForwardRef from "./ForwardRef";
+import LoginForm from "./customHook/LoginForm";
 
 const App = (): JSX.Element => {
   return (
@@ -18,33 +19,48 @@ const App = (): JSX.Element => {
 
       <CounterRedux />
       <br></br>
+      <hr />
 
       <CounterReactHooks />
       <br />
       <br />
+      <hr />
 
       <CombineStyles />
       <br />
       <br />
+      <hr />
 
       <WindowDimensions />
       <br />
       <br />
+      <hr />
 
       <MeasureComponent />
       <br />
       <br />
+      <hr />
 
       <ParentPropsComponent />
       <br />
       <br />
+      <hr />
 
       <DefaultProps2 />
       {/* <DefaultProps /> */}
       <br />
       <br />
+      <hr />
 
       <ForwardRef />
+      <br />
+      <br />
+      <hr />
+
+      <LoginForm />
+      <br />
+      <br />
+      <hr />
     </React.Fragment>
   );
 };
