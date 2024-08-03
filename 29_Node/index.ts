@@ -100,3 +100,93 @@ console.log("Has 4GB free memory:", hasEnoughMemoryForTask(4));
   const decodedString: string = decodeFromBase64(encodedString);
   console.log("Decoded:", decodedString);
 }
+
+//* Date validation
+function isValidDate(dateStr: string): boolean {
+  const date = new Date(dateStr);
+  return !isNaN(date.getTime());
+}
+
+console.log('isValidDate("2024-08-03"):', isValidDate("2024-08-03")); // true
+console.log('isValidDate("foo"):', isValidDate("foo")); // false
+console.log('isValidDate("2024/15/03"):', isValidDate("2024/15/03")); // false
+
+const invalidDate: Date = new Date("foo");
+// console.log("invalidDate:", invalidDate);
+
+if (invalidDate.toString() === "Invalid Date") {
+  console.log("The date is invalid.");
+}
+
+function checkDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) {
+    return "Invalid Date";
+  }
+  return date.toString();
+}
+
+console.log('checkDate("foo"):', checkDate("foo")); // Invalid Date
+console.log('checkDate("2024-08-03"):', checkDate("2024-08-03")); // Valid date string representation
+
+{
+  //* Nested optional chaining
+
+  //* Using optional chaining with destructuring
+  // interface User {
+  //   name?: string;
+  //   address?: {
+  //     street?: string;
+  //     city?: string;
+  //   };
+  // }
+
+  // const user: User = {
+  //   name: "Alice",
+  //   address: {
+  //     street: "123 Main St",
+  //     // city is missing
+  //   },
+  // };
+  // console.log("user:", user);
+
+  // const { name, address: { street, city } = {} } = user;
+  // const cityName = city ?? "City not provided"; // Using nullish coalescing to provide a default value
+
+  // console.log({ name }); // Alice
+  // console.log({ street }); // 123 Main St
+  // console.log({ cityName }); // City not provided
+  // console.log({ city }); // undefined
+
+  //* Safely accessing nested properties
+  interface Data {
+    user: {
+      profile: {
+        name: string;
+        preferences?: {
+          theme?: string;
+          theme2?: string;
+        };
+      };
+    };
+  }
+
+  const data: Data = {
+    user: {
+      profile: {
+        name: "Bob",
+        preferences: {
+          theme: "dark",
+          // theme2: "light",
+        },
+      },
+    },
+  };
+  console.log("data:", data);
+
+  const { user: { profile: { name, preferences: { theme, theme2 } = {} } = {} } = {} } = data;
+
+  console.log({ name }); // Bob
+  console.log({ theme }); // dark
+  console.log({ theme2 }); // undefined
+}
