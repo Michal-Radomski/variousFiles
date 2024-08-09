@@ -4,6 +4,7 @@
   "main": "wheelColors.ts",
   "scripts": {
     "start": "clear && nodemon wheelColors.ts",
+    "start2": "clear && nodemon averageHexColor.ts",
     "dist": "clear && nodemon haversineFormula.ts"
   },
   "keywords": [],
