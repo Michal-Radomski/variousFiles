@@ -5,7 +5,8 @@
   "scripts": {
     "copy": "ts-node copy-files.ts",
     "start": "nodemon index.ts",
-    "fem": "nodemon FEM.ts"
+    "fem": "nodemon FEM.ts",
+    "converter": "nodemon numberSystemsConverter.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
