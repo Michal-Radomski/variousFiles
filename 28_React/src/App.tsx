@@ -13,6 +13,10 @@ import LoginForm from "./customHook/LoginForm";
 import CreateElement from "./CreateElement";
 import PrevState from "./PrevState";
 
+const ReactNodeComponent = (): React.ReactNode => {
+  return <div>React Node Component</div>;
+};
+
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
@@ -62,6 +66,10 @@ const App = (): JSX.Element => {
       <hr />
 
       <PrevState />
+      <br />
+      <hr />
+
+      {ReactNodeComponent()}
       <br />
       <hr />
     </React.Fragment>
