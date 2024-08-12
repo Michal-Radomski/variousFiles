@@ -6,7 +6,8 @@
     "copy": "ts-node copy-files.ts",
     "start": "nodemon index.ts",
     "fem": "nodemon FEM.ts",
-    "converter": "nodemon numberSystemsConverter.ts"
+    "converter": "nodemon numberSystemsConverter.ts",
+    "dm": "nodemon dominantColor.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
