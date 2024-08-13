@@ -12,6 +12,7 @@ import ForwardRef from "./ForwardRef";
 import LoginForm from "./customHook/LoginForm";
 import CreateElement from "./CreateElement";
 import PrevState from "./PrevState";
+import Form from "./Form";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -70,6 +71,10 @@ const App = (): JSX.Element => {
       <hr />
 
       {ReactNodeComponent()}
+      <br />
+      <hr />
+
+      <Form />
       <br />
       <hr />
     </React.Fragment>
