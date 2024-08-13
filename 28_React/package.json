@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.24.7",
     "@redux-devtools/extension": "^3.3.0",
     "@types/node": "^16.18.101",
     "@types/react": "^18.3.3",
