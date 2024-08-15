@@ -7,7 +7,8 @@
     "start": "nodemon index.ts",
     "fem": "nodemon FEM.ts",
     "converter": "nodemon numberSystemsConverter.ts",
-    "dm": "nodemon dominantColor.ts"
+    "dm": "nodemon dominantColor.ts",
+    "paradigms": "nodemon paradigms.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
