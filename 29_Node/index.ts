@@ -190,3 +190,10 @@ console.log('checkDate("2024-08-03"):', checkDate("2024-08-03")); // Valid date 
   console.log({ theme }); // dark
   console.log({ theme2 }); // undefined
 }
+
+//* Wait 2 seconds example
+(async function dalay(): Promise<void> {
+  console.log("Waiting for 2 seconds...");
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for 2 seconds
+  console.log("2 seconds have passed!");
+})();
