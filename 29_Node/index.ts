@@ -197,3 +197,12 @@ console.log('checkDate("2024-08-03"):', checkDate("2024-08-03")); // Valid date 
   await new Promise((resolve) => setTimeout(resolve, 2000)); // Wait for 2 seconds
   console.log("2 seconds have passed!");
 })();
+
+//* Works only in Browser (Firefox - for today 2024-08-20)
+// console.log(Math.f16round(1.5)); // Output: 1.5
+// console.log(Math.f16round(1.337)); // Output: 1.3369140625
+// console.log(Math.f16round(100000)); // Output: Infinity
+
+console.log(Math.fround(1.5)); // Output: 1.5
+console.log(Math.fround(1.337)); // Output: 1.3370000123977661
+console.log(Math.fround(100000)); // Output: 100000
