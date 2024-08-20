@@ -8,7 +8,8 @@
     "fem": "nodemon FEM.ts",
     "converter": "nodemon numberSystemsConverter.ts",
     "dm": "nodemon dominantColor.ts",
-    "paradigms": "nodemon paradigms.ts"
+    "paradigms": "nodemon paradigms.ts",
+    "csv-parser": "nodemon csvParser.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
