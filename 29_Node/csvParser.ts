@@ -41,7 +41,7 @@ async function getColumnsFromCsv(filePath: string, columnNames: string[]): Promi
 // Example usage
 (async () => {
   const filePath = "csvData.csv"; // CSV file path
-  const columnsToFetch = ["id", "first-name", "email", "city", "country"]; // Desired column names
+  const columnsToFetch = ["id", "first-name", "email", "city", "country", "ip_address"]; // Desired column names
 
   try {
     const csvData = await getColumnsFromCsv(filePath, columnsToFetch);
