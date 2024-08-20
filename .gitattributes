@@ -1,8 +1,8 @@
 *.yml linguist-detectable=true
 *.yml linguist-language=YAML
 
-*.yaml linguist-detectable=true
-*.yaml linguist-language=YAML
+# *.yaml linguist-detectable=true
+# *.yaml linguist-language=YAML
 
 *.sql linguist-detectable=true
 *.sql linguist-language=sql
