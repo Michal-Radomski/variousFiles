@@ -15,3 +15,6 @@
 
 *.graphqls linguist-detectable=true
 *.graphqls linguist-language=GraphQL
+
+*.csv linguist-detectable=true
+*.csv linguist-language=CSV
