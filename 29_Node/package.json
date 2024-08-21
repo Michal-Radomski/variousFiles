@@ -9,7 +9,8 @@
     "converter": "nodemon numberSystemsConverter.ts",
     "dm": "nodemon dominantColor.ts",
     "paradigms": "nodemon paradigms.ts",
-    "csv-parser": "nodemon csvParser.ts"
+    "csv-parser": "nodemon csvParser.ts",
+    "gh-colors": "nodemon githubLanguagesColors.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
