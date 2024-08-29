@@ -13,6 +13,7 @@ import LoginForm from "./customHook/LoginForm";
 import CreateElement from "./CreateElement";
 import PrevState from "./PrevState";
 import Form from "./Form";
+import Decorator from "./Decorator";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -75,6 +76,10 @@ const App = (): JSX.Element => {
       <hr />
 
       <Form />
+      <br />
+      <hr />
+
+      <Decorator />
       <br />
       <hr />
     </React.Fragment>
