@@ -1,4 +1,4 @@
-//* Search files by name, path and extension - based on .pdf printer
+//* Search files by path, name and extension - based on .pdf printer
 // Run: nodemon (or ts-node) searchFilesByName.ts ./ file .ts
 
 import fs from "fs";

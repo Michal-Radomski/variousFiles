@@ -1,4 +1,4 @@
-# Function to search for files by name - based on .pdf printer
+# Function to search for files by path and name - based on .pdf printer
 # Run: python3 search_files_by_name.py . file
 import os
 import sys

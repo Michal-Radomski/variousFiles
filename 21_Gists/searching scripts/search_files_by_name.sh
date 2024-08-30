@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Function to search for files by name - based on .pdf printer
+# Function to search for files by path nad name - based on .pdf printer
 # Run: bash search_files_by_name.sh . file
 search_files_by_name() {
   local directory_path="$1"
