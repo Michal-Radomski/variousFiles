@@ -206,3 +206,20 @@ console.log('checkDate("2024-08-03"):', checkDate("2024-08-03")); // Valid date 
 console.log(Math.fround(1.5)); // Output: 1.5
 console.log(Math.fround(1.337)); // Output: 1.3370000123977661
 console.log(Math.fround(100000)); // Output: 100000
+
+interface HeuristicNode {
+  x: number;
+  y: number;
+}
+
+function heuristicFunction(a: HeuristicNode, b: HeuristicNode): number {
+  // Using the Manhattan distance as a heuristic
+  return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+}
+
+// Example usage
+const start: HeuristicNode = { x: 0, y: 0 };
+const goal: HeuristicNode = { x: 5, y: 5 };
+
+const distance = heuristicFunction(start, goal);
+console.log(`Heuristic distance from start to goal: ${distance}`);
