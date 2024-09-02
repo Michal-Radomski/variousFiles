@@ -207,6 +207,7 @@ console.log(Math.fround(1.5)); // Output: 1.5
 console.log(Math.fround(1.337)); // Output: 1.3370000123977661
 console.log(Math.fround(100000)); // Output: 100000
 
+//* Heuristic Function Exercise
 interface HeuristicNode {
   x: number;
   y: number;
