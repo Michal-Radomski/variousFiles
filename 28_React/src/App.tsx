@@ -14,12 +14,30 @@ import CreateElement from "./CreateElement";
 import PrevState from "./PrevState";
 import Form from "./Form";
 import Decorator from "./Decorator";
+import { decryptData, encryptData, generateKey } from "./utils/helpers";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
 };
 
 const App = (): JSX.Element => {
+  (async () => {
+    //* Web Crypto API with: Encrypting and Decrypting with AES-GCM
+    const message: string = "Hello, World!"; // Message to encrypt
+
+    const key: CryptoKey = await generateKey(); // Generate a key
+    console.log({ key });
+
+    const { ciphertext, iv } = await encryptData(key, message); // Encrypt the message
+    console.log({ ciphertext, iv });
+
+    const encrypted: Uint8Array = new Uint8Array(ciphertext);
+    console.log("Encrypted:", encrypted); // Log the encrypted data
+
+    const decryptedMessage: string = await decryptData(key, ciphertext, iv); // Decrypt the message
+    console.log("Decrypted:", decryptedMessage); // Log the original message
+  })();
+
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>React App: useReducer/useContext vs Redux + other exercises</h1>
