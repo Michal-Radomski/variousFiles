@@ -10,7 +10,8 @@
     "dm": "nodemon dominantColor.ts",
     "paradigms": "nodemon paradigms.ts",
     "csv-parser": "nodemon csvParser.ts",
-    "gh-colors": "nodemon githubLanguagesColors.ts"
+    "gh-colors": "nodemon githubLanguagesColors.ts",
+    "crypto": "nodemon crypto.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
