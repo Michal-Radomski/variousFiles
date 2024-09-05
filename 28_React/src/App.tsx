@@ -15,6 +15,7 @@ import PrevState from "./PrevState";
 import Form from "./Form";
 import Decorator from "./Decorator";
 import { decryptData, encryptData, generateKey } from "./utils/helpers";
+import MemoHOC from "./MemoHOC";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -98,6 +99,10 @@ const App = (): JSX.Element => {
       <hr />
 
       <Decorator />
+      <br />
+      <hr />
+
+      <MemoHOC />
       <br />
       <hr />
     </React.Fragment>
