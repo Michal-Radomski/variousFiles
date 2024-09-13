@@ -5,7 +5,8 @@
   "scripts": {
     "start": "clear && nodemon wheelColors.ts",
     "start2": "clear && nodemon averageHexColor.ts",
-    "dist": "clear && nodemon haversineFormula.ts"
+    "dist": "clear && nodemon haversineFormula.ts",
+    "remPD": "clear && nodemon removePolishDiacritics.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
