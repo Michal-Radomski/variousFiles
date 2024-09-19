@@ -60,4 +60,4 @@ Various files and exercises
 
 28. React.js exercises
 
-29. Node.js exercises
+29. Node.js and TS exercises

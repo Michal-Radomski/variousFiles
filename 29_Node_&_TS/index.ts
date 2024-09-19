@@ -224,3 +224,11 @@ const goal: HeuristicNode = { x: 5, y: 5 };
 
 const distance = heuristicFunction(start, goal);
 console.log(`Heuristic distance from start to goal: ${distance}`);
+
+//* The do...while loop guarantees that the code block will execute at least once, even if the condition is false on the first evaluation.
+let i: number = 0;
+
+do {
+  console.log({ i });
+  i++;
+} while (i < 5);
