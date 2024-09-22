@@ -11,7 +11,8 @@
     "paradigms": "nodemon paradigms.ts",
     "csv-parser": "nodemon csvParser.ts",
     "gh-colors": "nodemon githubLanguagesColors.ts",
-    "crypto": "nodemon crypto.ts"
+    "crypto": "nodemon crypto.ts",
+    "bitwise": "nodemon bitwiseOperators.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
