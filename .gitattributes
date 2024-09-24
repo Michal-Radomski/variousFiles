@@ -19,5 +19,5 @@
 *.csv linguist-detectable=true
 *.csv linguist-language=CSV
 
-*.json linguist-detectable=true
-*.json linguist-language=JSON
+# *.json linguist-detectable=true
+# *.json linguist-language=JSON
