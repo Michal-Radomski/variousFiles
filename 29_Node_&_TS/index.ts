@@ -232,3 +232,41 @@ do {
   console.log({ i });
   i++;
 } while (i < 5);
+
+//* In operator
+// 1. Checking Property Existence: the operator allows you to determine if a specific property exists within an object or its prototype chain
+const car = { make: "Honda", model: "Accord" };
+console.log('"make" in car:', "make" in car); // true
+console.log('"year" in car:', "year" in car); // false
+
+// 2. Type Guard for Narrowing Types: It helps narrow down union types based on whether a specific property exists in an object
+interface Fish {
+  swim: () => void;
+}
+
+interface Bird {
+  fly: () => void;
+}
+
+const fish: Fish = {
+  swim: function (): void {
+    console.log("Fish swims");
+  },
+};
+
+const bird: Bird = {
+  fly: function (): void {
+    console.log("Birds flies");
+  },
+};
+
+function move(pet: Fish | Bird): void {
+  if ("swim" in pet) {
+    pet.swim(); // TypeScript knows 'pet' is of type 'Fish' here
+  } else {
+    pet.fly(); // TypeScript knows 'pet' is of type 'Bird' here
+  }
+}
+
+move(fish); // Fish swims
+move(bird); // Birds flies
