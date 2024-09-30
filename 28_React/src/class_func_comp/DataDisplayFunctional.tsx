@@ -14,10 +14,12 @@ const DataDisplayFunctional: React.FC<{ url: string }> = ({ url }: { url: string
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
-      <h3 style={{ fontWeight: "bold", textDecoration: "underline" }}>Functional Component</h3>
-      {data && data?.map((item: Item) => <div key={item.id}>{item.name}</div>)}
-    </div>
+    <React.Fragment>
+      <div>
+        <h3 style={{ fontWeight: "bold", textDecoration: "underline" }}>Functional Component</h3>
+        {data && data?.map((item: Item) => <div key={item.id}>{item.name}</div>)}
+      </div>
+    </React.Fragment>
   );
 };
 
