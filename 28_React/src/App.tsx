@@ -16,6 +16,7 @@ import Form from "./Form";
 import Decorator from "./Decorator";
 import { decryptData, encryptData, generateKey } from "./utils/helpers";
 import MemoHOC from "./MemoHOC";
+import ComponentsWrapper from "./class_func_comp/ComponentsWrapper";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -103,6 +104,10 @@ const App = (): JSX.Element => {
       <hr />
 
       <MemoHOC />
+      <br />
+      <hr />
+
+      <ComponentsWrapper />
       <br />
       <hr />
     </React.Fragment>
