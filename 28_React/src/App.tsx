@@ -18,6 +18,7 @@ import { decryptData, encryptData, generateKey } from "./utils/helpers";
 import MemoHOC from "./MemoHOC";
 import ComponentsWrapper from "./class_func_comp/ComponentsWrapper";
 import DataFetcherClassComponent from "./DataFetchedClassComponent";
+import MyForm from "./MyForm";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -113,6 +114,10 @@ const App = (): JSX.Element => {
       <hr />
 
       <DataFetcherClassComponent url={"https://jsonplaceholder.typicode.com/users"} />
+      <br />
+      <hr />
+
+      <MyForm />
       <br />
       <hr />
     </React.Fragment>
