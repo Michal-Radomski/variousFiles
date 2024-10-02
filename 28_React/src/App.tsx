@@ -19,6 +19,7 @@ import MemoHOC from "./MemoHOC";
 import ComponentsWrapper from "./class_func_comp/ComponentsWrapper";
 import DataFetcherClassComponent from "./DataFetchedClassComponent";
 import MyForm from "./MyForm";
+import CodeBlock from "./CodeBlock";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -118,6 +119,10 @@ const App = (): JSX.Element => {
       <hr />
 
       <MyForm />
+      <br />
+      <hr />
+
+      <CodeBlock />
       <br />
       <hr />
     </React.Fragment>
