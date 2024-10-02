@@ -2,7 +2,7 @@
 
 Various files and exercises
 
-0. 00 Linux Files: scripts and settings for (Ubuntu) Linux.
+0. 00 Linux Files: scripts and settings and exercises for (Ubuntu) Linux.
 
 1. 01 Files created during tutorial with **this in JS** + **bind(), apply()** and **call()**, details in the folder.
 
