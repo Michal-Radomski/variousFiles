@@ -16,6 +16,10 @@ const useFetch = <T,>(url: string): { data: T | null; loading: boolean; error: s
         setData(result);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
+
+        if (err instanceof Error) {
+          console.log("err.message", err.message);
+        }
       } finally {
         setLoading(false);
       }
