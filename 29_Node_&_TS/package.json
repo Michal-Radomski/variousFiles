@@ -12,7 +12,8 @@
     "csv-parser": "nodemon csvParser.ts",
     "gh-colors": "nodemon githubLanguagesColors.ts",
     "crypto": "nodemon crypto.ts",
-    "bitwise": "nodemon bitwiseOperators.ts"
+    "bitwise": "nodemon bitwiseOperators.ts",
+    "catch": " nodemon catchError.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
