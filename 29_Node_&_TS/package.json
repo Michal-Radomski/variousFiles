@@ -13,7 +13,8 @@
     "gh-colors": "nodemon githubLanguagesColors.ts",
     "crypto": "nodemon crypto.ts",
     "bitwise": "nodemon bitwiseOperators.ts",
-    "catch": " nodemon catchError.ts"
+    "catch": " nodemon catchError.ts",
+    "utils": "nodemon utilities.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
