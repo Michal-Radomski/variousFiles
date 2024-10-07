@@ -1,0 +1,76 @@
+In React, the order of method calls during the lifecycle of class and functional components varies significantly due to their inherent structures. Below is a detailed breakdown of the exact order of calls for both types of components.
+
+## Class Components Lifecycle Order
+
+1. **Constructor**: 
+   - Called when the component is initialized.
+   - Sets up initial state and binds methods.
+
+2. **getDerivedStateFromProps**: 
+   - Invoked right before rendering, both on the initial mount and on subsequent updates.
+   - Allows state to be derived from props.
+
+3. **Render**: 
+   - The `render()` method is called to produce the component's output (JSX).
+   - This method can be called multiple times during the component's lifecycle.
+
+4. **componentDidMount**: 
+   - Called once immediately after the component is mounted in the DOM.
+   - Ideal for side effects like data fetching or subscriptions.
+
+5. **Updating Phase (on state or prop changes)**:
+   - **shouldComponentUpdate**: 
+     - Invoked before rendering when new props or state are received.
+     - Determines whether the component should update.
+   - **getDerivedStateFromProps**: 
+     - Called again if props change.
+   - **Render**: 
+     - Called again to re-render the component with updated state or props.
+   - **componentDidUpdate**: 
+     - Invoked immediately after updating occurs.
+     - Useful for operations that need to happen after a re-render.
+
+6. **Unmounting Phase**:
+   - **componentWillUnmount**: 
+     - Called immediately before a component is unmounted and destroyed.
+     - Ideal for cleanup tasks like invalidating timers or canceling network requests.
+
+## Functional Components Lifecycle Order
+
+Functional components utilize hooks to achieve similar lifecycle behavior:
+
+1. **Initial Render**:
+   - The function body executes, producing the JSX output.
+
+2. **useEffect (with empty dependency array)**:
+   - If `useEffect` is used with an empty dependency array, it runs after the first render, similar to `componentDidMount`.
+
+3. **Updating Phase (on state or prop changes)**:
+   - The function body executes again on re-renders due to state or prop changes.
+   - Each time it executes, it produces new JSX output.
+
+4. **useEffect (with dependencies)**:
+   - If dependencies are specified, `useEffect` runs after every render where those dependencies change, similar to `componentDidUpdate`.
+
+5. **Cleanup Phase**:
+   - If a cleanup function is returned from `useEffect`, it runs before the next effect execution and before unmounting, similar to `componentWillUnmount`.
+
+### Summary Table
+
+| Phase                  | Class Components Order                                    | Functional Components Order                     |
+|------------------------|----------------------------------------------------------|------------------------------------------------|
+| Mounting               | 1. Constructor<br>2. getDerivedStateFromProps<br>3. Render<br>4. componentDidMount | 1. Initial Render<br>2. useEffect (first run) |
+| Updating               | 1. shouldComponentUpdate<br>2. getDerivedStateFromProps<br>3. Render<br>4. componentDidUpdate | 1. Function body (re-executes)<br>2. useEffect (on dependency change) |
+| Unmounting             | 1. componentWillUnmount                                   | 1. Cleanup function from useEffect             |
+
+Understanding these orders helps in managing side effects and optimizing performance in React applications effectively, whether using class-based or functional components with hooks [1][2][3][5].
+
+Citations:
+[1] https://fireart.studio/blog/react-component-lifecycle-methods-and-hooks/
+[2] https://www.geeksforgeeks.org/reactjs-lifecycle-methods-order-in-mounting/
+[3] https://www.freecodecamp.org/news/react-component-lifecycle-methods/
+[4] https://www.ifourtechnolab.com/blog/mount-vs-render-in-react
+[5] https://retool.com/blog/the-react-lifecycle-methods-and-hooks-explained
+[6] https://tsh.io/blog/react-component-lifecycle-methods-vs-hooks/
+[7] https://legacy.reactjs.org/docs/hooks-effect.html
+[8] https://legacy.reactjs.org/docs/react-component.html
