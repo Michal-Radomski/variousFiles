@@ -20,12 +20,20 @@ import ComponentsWrapper from "./class_func_comp/ComponentsWrapper";
 import DataFetcherClassComponent from "./DataFetchedClassComponent";
 import MyForm from "./MyForm";
 import CodeBlock from "./CodeBlock";
+import SearchComponent from "./SearchComponent";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
 };
 
 const App = (): JSX.Element => {
+  const params: URLSearchParams = new URL("https://example.com/?name=Jonathan%20Smith&age=18").searchParams;
+  const name = params.get("name") as string;
+  const age = parseInt(params.get("age") as string) as number;
+
+  console.log(`name: ${name}`); // name: Jonathan Smith
+  console.log(`age: ${age}`); // age: 18
+
   (async () => {
     //* Web Crypto API with: Encrypting and Decrypting with AES-GCM
     const message: string = "Hello, World!"; // Message to encrypt
@@ -43,8 +51,17 @@ const App = (): JSX.Element => {
     console.log("Decrypted:", decryptedMessage); // Log the original message
   })();
 
+  //*This version runs the effect after every render of the component.
+  // React.useEffect(() => {});
+  //* Here, the empty array [] signifies that the effect should only run once—when the component mounts.
+  // React.useEffect(() => {},[]);
+
   return (
     <React.Fragment>
+      <SearchComponent />
+      <br />
+      <hr />
+
       <h1 style={{ textAlign: "center" }}>React App: useReducer/useContext vs Redux + other exercises</h1>
       <br />
       <hr />
