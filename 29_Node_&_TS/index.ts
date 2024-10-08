@@ -270,3 +270,20 @@ function move(pet: Fish | Bird): void {
 
 move(fish); // Fish swims
 move(bird); // Birds flies
+
+// Tuple
+type User = [string, number];
+
+// Initialize a tuple
+let user: User;
+
+// Assign values to the tuple
+user = ["Alice", 30]; // Correct
+
+// Accessing elements
+// console.log(user[0]); // Outputs: Alice
+// console.log(user[1]); // Outputs: 30
+console.log("user:", user);
+
+// Attempting to assign incorrect types will result in an error
+// user = [30, "Alice"]; // Error: Type 'number' is not assignable to type 'string'.
