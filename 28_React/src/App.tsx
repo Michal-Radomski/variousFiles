@@ -23,6 +23,7 @@ import CodeBlock from "./CodeBlock";
 import SearchComponent from "./SearchComponent";
 import RefsForm from "./RefsForm";
 import SignalCounterWrapper from "./SignalCounter";
+import UserContextProfile from "./context/UserContextProfile";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -150,6 +151,10 @@ const App = (): JSX.Element => {
       <hr />
 
       <SignalCounterWrapper />
+      <br />
+      <hr />
+
+      <UserContextProfile />
       <br />
       <hr />
     </React.Fragment>
