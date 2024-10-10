@@ -22,6 +22,7 @@ import MyForm from "./MyForm";
 import CodeBlock from "./CodeBlock";
 import SearchComponent from "./SearchComponent";
 import RefsForm from "./RefsForm";
+import SignalCounterWrapper from "./SignalCounter";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -145,6 +146,10 @@ const App = (): JSX.Element => {
       <hr />
 
       <RefsForm />
+      <br />
+      <hr />
+
+      <SignalCounterWrapper />
       <br />
       <hr />
     </React.Fragment>
