@@ -1,0 +1,83 @@
+In Express.js, default headers are automatically set for HTTP responses, but you can customize them as needed. Here’s a detailed overview of the default headers and how to modify or set them.
+
+## Default Headers in Express.js
+
+When an Express.js application sends a response, several default headers are included:
+
+- **Content-Type**: Indicates the media type of the resource (e.g., `text/html` for HTML documents).
+- **X-Powered-By**: By default, this header indicates that the application is powered by Express. You can disable it for security reasons.
+- **Cache-Control**: Manages caching behavior; defaults may vary based on middleware used.
+- **Content-Length**: Automatically set to indicate the size of the response body.
+
+## Setting Custom Headers
+
+You can set custom headers in Express.js using the `set` method of the response object or middleware. Here are methods to do so:
+
+### 1. Using Middleware
+
+You can define middleware to set headers for all responses or specific routes:
+
+```javascript
+const express = require('express');
+const app = express();
+
+// Middleware to set custom headers
+app.use((req, res, next) => {
+    res.set('X-Custom-Header', 'MyValue'); // Set a custom header
+    next(); // Proceed to the next middleware or route handler
+});
+
+// Route handler
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+```
+
+### 2. Setting Headers in Route Handlers
+
+You can also set headers directly within route handlers:
+
+```javascript
+app.get('/example', (req, res) => {
+    res.set('Cache-Control', 'no-store'); // Example of setting Cache-Control
+    res.send('Example response with custom header.');
+});
+```
+
+### 3. Using `res.header` Method
+
+Another way to set headers is using the `header` method:
+
+```javascript
+app.get('/data', (req, res) => {
+    res.header('Content-Disposition', 'attachment; filename=data.json');
+    res.json({ key: 'value' });
+});
+```
+
+## Disabling Default Headers
+
+To disable the `X-Powered-By` header, you can use:
+
+```javascript
+app.disable('x-powered-by');
+```
+
+## Conclusion
+
+Express.js provides flexibility in managing HTTP response headers. By using middleware or setting them directly in route handlers, you can customize your application's responses to meet specific requirements. This capability is essential for improving security and optimizing performance through caching mechanisms.
+
+Citations:
+[1] https://www.geeksforgeeks.org/how-to-set-response-header-on-express-js-assets/
+[2] https://content-security-policy.com/examples/express-js/
+[3] https://deadsimplechat.com/blog/setting-headers-with-axios-in-nodejs/
+[4] https://expressjs.com/en/api.html
+[5] https://www.youtube.com/watch?v=gY2VK-vdE68
+[6] https://expressjs.com/en/resources/middleware/cors.html
+[7] https://stackoverflow.com/questions/32365960/setting-default-response-headers-in-express
+[8] https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers

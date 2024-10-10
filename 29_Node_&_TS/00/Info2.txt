@@ -1,0 +1,33 @@
+CORS (Cross-Origin Resource Sharing) and HTTP headers are related concepts in web development, but they serve different purposes. Here’s a breakdown of their differences:
+
+## CORS
+
+- **Definition**: CORS is a security feature implemented in web browsers that allows or restricts web applications running at one origin (domain) to make requests to resources on a different origin. It helps manage cross-origin requests, which are necessary for modern web applications that often interact with multiple APIs and services.
+
+- **Mechanism**: CORS operates through HTTP headers that specify which origins are permitted to access resources. For example, the `Access-Control-Allow-Origin` header tells the browser whether a resource from one origin can be accessed by another origin. If the origin is allowed, the browser will permit the request; otherwise, it will block it[1][2].
+
+- **Preflight Requests**: For certain types of requests (like those using methods other than GET or POST), browsers send a "preflight" request using the OPTIONS method to determine if the actual request is safe to send. This includes checking what headers are allowed and what methods are permitted[1][5].
+
+## HTTP Headers
+
+- **Definition**: HTTP headers are key-value pairs sent between the client and server in an HTTP request or response. They provide essential information about the request or response, such as content type, length, caching policies, and more.
+
+- **Types**: There are various types of headers, including:
+  - **Request Headers**: Sent by the client (e.g., `User-Agent`, `Accept`, `Authorization`).
+  - **Response Headers**: Sent by the server (e.g., `Content-Type`, `Cache-Control`, `Set-Cookie`).
+
+- **Usage**: While CORS uses specific headers to manage cross-origin requests, general HTTP headers can be used for a wide range of purposes unrelated to CORS, such as defining content types or controlling caching behavior[3][4].
+
+## Summary
+
+In essence, CORS is a specific application of HTTP headers that governs cross-origin requests for security purposes, while HTTP headers encompass a broader set of information exchanged between clients and servers in all types of web communications.
+
+Citations:
+[1] https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS.
+[2] https://www.stackhawk.com/blog/what-is-cors/
+[3] https://portswigger.net/web-security/cors/access-control-allow-origin
+[4] https://stackoverflow.com/questions/28107459/in-the-http-cors-spec-whats-the-difference-between-allow-headers-and-expose-he
+[5] https://aws.amazon.com/what-is/cross-origin-resource-sharing/
+[6] https://dev.to/thisurathenuka/demystifying-cors-everything-you-need-to-know-4523
+[7] https://expressjs.com/en/resources/middleware/cors.html
+[8] https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
