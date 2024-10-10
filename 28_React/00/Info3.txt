@@ -1,0 +1,127 @@
+To use `createBrowserRouter` in a React application with TypeScript, follow these steps:
+
+### Step 1: Install React Router
+
+First, ensure you have React Router installed in your project:
+
+```bash
+npm install react-router-dom@6
+```
+
+### Step 2: Create Your Routes
+
+Create a file for your routes, for example, `routes.tsx`, where you will define your routes using `createBrowserRouter`.
+
+```typescript
+// routes.tsx
+import { createBrowserRouter } from 'react-router-dom';
+import App from './App';
+import NotFoundPage from './NotFoundPage';
+import Prices from './Prices';
+import LoginForm from './LoginForm';
+import SignInForm from './SignInForm';
+import Trade from './Trade';
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <App />,
+        errorElement: <NotFoundPage />,
+        children: [
+            {
+                path: 'prices/:crypto',
+                element: <Prices />,
+            },
+        ],
+    },
+    {
+        path: '/login',
+        element: <LoginForm />,
+    },
+    {
+        path: '/signin',
+        element: <SignInForm />,
+    },
+    {
+        path: '/trade',
+        element: <Trade />,
+    },
+]);
+
+export default router;
+```
+
+### Step 3: Set Up the Router Provider in Your App
+
+In your main application file (e.g., `index.tsx`), wrap your application with the `RouterProvider` and pass the router you created.
+
+```typescript
+// index.tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
+);
+```
+
+### Step 4: Create Components
+
+Make sure you have the components referenced in your routes (`App`, `NotFoundPage`, `Prices`, `LoginForm`, `SignInForm`, and `Trade`) implemented. Here's a simple example of one of those components:
+
+```typescript
+// App.tsx
+import React from 'react';
+
+const App: React.FC = () => {
+    return (
+        <div>
+            <h1>Welcome to the App</h1>
+            {/* Other components or content */}
+        </div>
+    );
+};
+
+export default App;
+```
+
+### Step 5: Navigating Between Routes
+
+You can use the `Link` component from `react-router-dom` to navigate between routes. For example, in a navigation component:
+
+```typescript
+// NavBar.tsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const NavBar: React.FC = () => {
+    return (
+        <nav>
+            <Link to="/">Home</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/signin">Sign In</Link>
+            <Link to="/trade">Trade</Link>
+        </nav>
+    );
+};
+
+export default NavBar;
+```
+
+### Summary
+
+This setup allows you to define routes using `createBrowserRouter`, manage nested routes, and handle errors with an error element. The use of TypeScript ensures type safety throughout your routing logic. You can expand this structure by adding more routes and components as needed.
+
+Citations:
+[1] https://blog.stackademic.com/createbrowserrouter-57a8955c4076?gi=1fd6932ca09f
+[2] https://reactrouter.com/en/main/routers/create-browser-router
+[3] https://galaxies.dev/quickwin/react-router-typescript
+[4] https://www.youtube.com/watch?v=G7UzhrNX60o
+[5] https://sevda.com.au/how-to-use-react-router-v6-in-a-react-typescript-application
+[6] https://www.pluralsight.com/resources/blog/guides/react-router-typescript
+[7] https://github.com/remix-run/react-router/issues/10637
+[8] https://blog.logrocket.com/how-to-use-react-context-typescript/
