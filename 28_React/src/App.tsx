@@ -21,6 +21,7 @@ import DataFetcherClassComponent from "./DataFetchedClassComponent";
 import MyForm from "./MyForm";
 import CodeBlock from "./CodeBlock";
 import SearchComponent from "./SearchComponent";
+import RefsForm from "./RefsForm";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -140,6 +141,10 @@ const App = (): JSX.Element => {
       <hr />
 
       <CodeBlock />
+      <br />
+      <hr />
+
+      <RefsForm />
       <br />
       <hr />
     </React.Fragment>
