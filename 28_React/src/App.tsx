@@ -59,6 +59,8 @@ const App = (): JSX.Element => {
   //* Here, the empty array [] signifies that the effect should only run once—when the component mounts.
   // React.useEffect(() => {},[]);
 
+  const ParagraphComponent: JSX.Element = <p>Paragraph Component</p>;
+
   return (
     <React.Fragment>
       <SearchComponent />
@@ -155,6 +157,10 @@ const App = (): JSX.Element => {
       <hr />
 
       <UserContextProfile />
+      <br />
+      <hr />
+
+      {ParagraphComponent}
       <br />
       <hr />
     </React.Fragment>
