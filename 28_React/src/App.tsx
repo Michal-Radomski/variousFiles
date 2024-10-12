@@ -24,6 +24,7 @@ import SearchComponent from "./SearchComponent";
 import RefsForm from "./RefsForm";
 import SignalCounterWrapper from "./SignalCounter";
 import UserContextProfile from "./context/UserContextProfile";
+import CanvasSvgWrapper from "./canvas_svg/CanvasSvgWrapper";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -63,6 +64,11 @@ const App = (): JSX.Element => {
 
   return (
     <React.Fragment>
+      <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+      <CanvasSvgWrapper />
+      <br />
+      <hr />
+
       <SearchComponent />
       <br />
       <hr />
@@ -161,8 +167,6 @@ const App = (): JSX.Element => {
       <hr />
 
       {ParagraphComponent}
-      <br />
-      <hr />
     </React.Fragment>
   );
 };
