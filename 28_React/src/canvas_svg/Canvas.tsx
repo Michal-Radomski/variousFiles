@@ -10,9 +10,9 @@ const Canvas: React.FC<CanvasProps> = ({ width, height, color }): JSX.Element =>
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 
   React.useEffect(() => {
-    const canvas = canvasRef.current as HTMLCanvasElement;
+    const canvas = canvasRef?.current as HTMLCanvasElement;
     if (canvas) {
-      const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+      const context = canvas?.getContext("2d") as CanvasRenderingContext2D;
       if (context) {
         // Draw a circle
         context.beginPath();

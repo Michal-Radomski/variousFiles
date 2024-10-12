@@ -2,6 +2,7 @@ import React from "react";
 
 import Canvas from "./Canvas";
 import SvgComponent from "./SvgComponent";
+import CanvasSVG from "./CanvasSVG";
 
 const CanvasSvgWrapper: React.FC = (): JSX.Element => {
   return (
@@ -12,6 +13,9 @@ const CanvasSvgWrapper: React.FC = (): JSX.Element => {
 
         <h1>SVG Component</h1>
         <SvgComponent color_1={"green"} color_2={"yellow"} />
+
+        <h1>Canvas with SVG Example</h1>
+        <CanvasSVG width={400} height={200} color_1={"blue"} color_2={"green"} />
       </div>
     </React.Fragment>
   );
