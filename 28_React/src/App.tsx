@@ -25,6 +25,7 @@ import RefsForm from "./RefsForm";
 import SignalCounterWrapper from "./SignalCounter";
 import UserContextProfile from "./context/UserContextProfile";
 import CanvasSvgWrapper from "./canvas_svg/CanvasSvgWrapper";
+import RefsWrapper from "./refs/RefsWrapper";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -65,6 +66,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+      <RefsWrapper />
+      <br />
+      <hr />
+
       <CanvasSvgWrapper />
       <br />
       <hr />
