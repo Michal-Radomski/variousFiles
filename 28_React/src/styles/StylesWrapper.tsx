@@ -3,6 +3,7 @@ import React from "react";
 import EmotionButton from "./StyledButton";
 import JSSButton from "./JSS_Button";
 import StyledComponentsButton from "./StyledComponentsButton";
+import PragmaButton from "./PragmaButton";
 
 const StylesWrapper = (): JSX.Element => {
   return (
@@ -27,6 +28,13 @@ const StylesWrapper = (): JSX.Element => {
         <h3>Styled-Components library</h3>
         <div>
           <StyledComponentsButton />
+        </div>
+      </div>
+
+      <div>
+        <h3>Pragma example</h3>
+        <div>
+          <PragmaButton label="Click Me!" />
         </div>
       </div>
     </React.Fragment>
