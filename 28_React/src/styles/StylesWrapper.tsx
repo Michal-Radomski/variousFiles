@@ -2,6 +2,7 @@ import React from "react";
 
 import EmotionButton from "./StyledButton";
 import JSSButton from "./JSS_Button";
+import StyledComponentsButton from "./StyledComponentsButton";
 
 const StylesWrapper = (): JSX.Element => {
   return (
@@ -19,6 +20,13 @@ const StylesWrapper = (): JSX.Element => {
         <div>
           <JSSButton primary={true} label="Primary Button" />
           <JSSButton label="Secondary Button" />
+        </div>
+      </div>
+
+      <div>
+        <h3>Styled-Components library</h3>
+        <div>
+          <StyledComponentsButton />
         </div>
       </div>
     </React.Fragment>
