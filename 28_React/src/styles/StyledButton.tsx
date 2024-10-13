@@ -20,8 +20,8 @@ const StyledButton = styled.button<ButtonProps>`
   }
 `;
 
-const Button: React.FC<ButtonProps> = ({ primary, label }): JSX.Element => {
+const EmotionButton: React.FC<ButtonProps> = ({ primary, label }): JSX.Element => {
   return <StyledButton primary={primary}>{label}</StyledButton>;
 };
 
-export default Button;
+export default EmotionButton;
