@@ -1,7 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import styled from "styled-components";
+
+const FormWrapper = styled.div`
+  input[type="file"] {
+    display: none; /* Hide the default input */
+  }
+
+  .custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+`;
 
 const FileUpload: React.FC = (): JSX.Element => {
-  const [files, setFiles] = useState<FileList | null>(null);
+  const [files, setFiles] = React.useState<FileList | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (event.target.files) {
@@ -9,20 +22,33 @@ const FileUpload: React.FC = (): JSX.Element => {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent): void => {
+  const handleSubmit = async (event: React.FormEvent): Promise<void> => {
     event.preventDefault();
     if (files) {
-      // Process the files here
-      console.log("files:", files);
+      const formData = new FormData();
+      Array.from(files).forEach((file: File) => {
+        formData.append("files[]", file);
+      });
+
+      // Example of sending the files to an API
+      // await fetch("/upload", {
+      //   method: "POST",
+      //   body: formData,
+      // });
+      console.log("formData:", formData);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="fileInput">Upload File:</label>
-      <input type="file" id="fileInput" accept=".jpg,.png,.pdf" multiple onChange={handleFileChange} required={true} />
-      <button type="submit">Submit</button>
-    </form>
+    <FormWrapper>
+      <form onSubmit={handleSubmit}>
+        <label className="custom-file-upload">
+          Upload File:
+          <input type="file" id="fileInput" accept=".jpg,.png,.pdf" multiple onChange={handleFileChange} required={true} />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    </FormWrapper>
   );
 };
 
