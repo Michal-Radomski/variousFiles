@@ -5,6 +5,8 @@
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-private-property-in-object": "^7.24.7",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@preact/signals-react": "^2.2.0",
     "@redux-devtools/extension": "^3.3.0",
     "@types/node": "^16.18.101",
