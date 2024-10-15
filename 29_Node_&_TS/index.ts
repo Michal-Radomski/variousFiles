@@ -287,3 +287,66 @@ console.log("user:", user);
 
 // Attempting to assign incorrect types will result in an error
 // user = [30, "Alice"]; // Error: Type 'number' is not assignable to type 'string'.
+
+//* Find vs Filter
+const numbers: number[] = [1, 2, 3, 4, 5, 6];
+const evenNumbers: number[] = numbers.filter((number: number) => number % 2 === 0);
+console.log("evenNumbers:", evenNumbers); // Output: [2, 4, 6]
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+const people: Person[] = [
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 35 },
+];
+
+const person: Person | undefined = people.find((p: Person) => p.age === 30);
+console.log("person:", person); // Output: { name: 'Bob', age: 30 }
+
+//* Interface Error
+// Standard Error Interface below
+//* interface Error {
+//*   name: string;
+//*   message: string;
+//*   stack?: string;
+//* }
+
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  .then((res) => res.json())
+  .then((data) => console.log("data:", data))
+  .catch((error: unknown) => {
+    // console.error("error:", error);
+    if (error instanceof Error) {
+      console.error("error?.name:", error?.name);
+      console.error("error?.message:", error?.message);
+      console.error("error?.stack:", error?.stack);
+      console.error("error?.cause:", error?.cause);
+    }
+  });
+
+class CustomError extends Error {
+  public statusCode: number;
+
+  constructor(message: string, statusCode: number) {
+    super(message); // Call the parent constructor
+    this.statusCode = statusCode;
+
+    // Set the prototype explicitly
+    Object.setPrototypeOf(this, CustomError.prototype);
+  }
+}
+
+// Usage
+try {
+  throw new CustomError("An error occurred", 404);
+} catch (error) {
+  if (error instanceof CustomError) {
+    console.log(`Error: ${error.message}, Status Code: ${error.statusCode}`);
+  } else {
+    console.log("Unknown error:", error);
+  }
+}
