@@ -14,10 +14,15 @@
     "crypto": "nodemon crypto.ts",
     "bitwise": "nodemon bitwiseOperators.ts",
     "catch": " nodemon catchError.ts",
-    "utils": "nodemon utilities.ts"
+    "utils": "nodemon utilities.ts",
+    "stats": "nodemon statisticalCalculations.ts",
+    "astro": "nodemon astronomy.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "mathjs": "^13.2.0"
+  }
 }
