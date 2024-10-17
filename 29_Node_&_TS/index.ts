@@ -350,3 +350,31 @@ try {
     console.log("Unknown error:", error);
   }
 }
+
+//* Throw Error
+(async function getData(): Promise<void> {
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+    const data = await res.json();
+    console.log("data:", data);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("error?.name:", error?.name);
+      console.error("error?.message:", error?.message);
+    }
+  } finally {
+    console.log("Job getData done!");
+  }
+})();
+
+(async function getData2(): Promise<void> {
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+    const data = await res.json();
+    console.log("data:", data);
+  } catch (error) {
+    throw new Error("getData2 Error");
+  } finally {
+    console.log("Job getData2 done!");
+  }
+})();
