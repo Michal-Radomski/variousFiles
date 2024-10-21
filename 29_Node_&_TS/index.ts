@@ -378,3 +378,32 @@ try {
     console.log("Job getData2 done!");
   }
 })();
+
+//* Nested try_catch block
+function outerFunction(): void {
+  try {
+    console.log("Outer function start");
+    innerFunction();
+    console.log("Outer function end");
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Caught in outer catch:", error.message);
+    }
+  }
+}
+
+function innerFunction(): void {
+  try {
+    console.log("Inner function start");
+    throw new Error("An error occurred in inner function");
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Caught in inner catch:", error.message);
+    }
+    // Optionally re-throw to propagate to outer catch
+    // throw error;
+  }
+}
+
+// Call the outer function
+outerFunction();
