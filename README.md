@@ -58,6 +58,8 @@ Various files and exercises
 
 27. Playground React App
 
-28. React.js exercises
+28. React.js with TS exercises
 
 29. Node.js and TS exercises
+
+30. React canary with TS exercises

@@ -1,0 +1,43 @@
+{
+  "name": "30_react_canary",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "BROWSER=NONE react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.24.7",
+    "@types/node": "^16.18.114",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@webpack-cli/generators": "^3.0.7",
+    "sass": "^1.80.3",
+    "sass-loader": "^16.0.2",
+    "typescript": "^4.9.5"
+  }
+}
