@@ -407,3 +407,57 @@ function innerFunction(): void {
 
 // Call the outer function
 outerFunction();
+
+//* Errors
+// throw new Error("Something went wrong"); //* 1. -> Creates a New Error Instance
+// const error: Error = new Error("An existing error"); //* 2. -> Throws an Existing Error Object
+// throw error;
+
+//+ toString() methods
+//* 1. Number.toString()
+const num = 255;
+// Default to decimal
+console.log(num.toString(10)); // Outputs: '255'
+// Convert to binary (base 2)
+console.log(num.toString(2)); // Outputs: '11111111'
+// Convert to hexadecimal (base 16)
+console.log(num.toString(16)); // Outputs: 'ff'
+// Convert to octal (base 8)
+console.log(num.toString(8)); // Outputs: '377'
+
+//* 2. Date.toString()
+const date = new Date();
+// Get the current date and time as a string
+console.log(date.toString()); // Outputs: e.g., 'Thu Oct 24 2024 17:52:07 GMT+0200 (Central European Summer Time)'
+
+//* 3. Object.toString()
+const obj = { name: "Alice", age: 25 };
+
+// Default object toString()
+console.log(obj.toString()); // Outputs: '[object Object]'
+
+// Customizing toString in a class
+class PersonClass {
+  name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+  toString() {
+    return `Person: ${this.name}`;
+  }
+}
+
+const personClass = new PersonClass("Alice");
+console.log(personClass.toString()); // Outputs: 'Person: Alice'
+
+//* 4. Buffer.toString()
+const buffer = Buffer.from("Hello, World!");
+
+// Convert buffer to string using default UTF-8 encoding
+console.log(buffer.toString("utf8")); // Outputs: 'Hello, World!'
+
+// Convert buffer to Base64 encoded string
+console.log(buffer.toString("base64")); // Outputs: 'SGVsbG8sIFdvcmxkIQ=='
+
+// Convert buffer to hexadecimal string
+console.log(buffer.toString("hex")); // Outputs: '48656c6c6f2c20576f726c6421'
