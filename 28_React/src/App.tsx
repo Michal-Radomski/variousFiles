@@ -29,6 +29,7 @@ import RefsWrapper from "./refs/RefsWrapper";
 import StylesWrapper from "./styles/StylesWrapper";
 import ParallelRouting from "./ParallelRouting";
 import FormDataComponent from "./FormDataComponent";
+import WithComponent from "./WithComponent";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -69,6 +70,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+      <WithComponent />
+      <br />
+      <hr />
+
       <FormDataComponent />
       <br />
       <hr />
