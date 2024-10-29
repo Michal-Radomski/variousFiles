@@ -31,6 +31,7 @@ import ParallelRouting from "./ParallelRouting";
 import FormDataComponent from "./FormDataComponent";
 import WithComponent from "./WithComponent";
 import RevalidateIndex from "./revalidate/RevalidateIndex";
+import TableWrapper from "./table/TableWrapper";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -71,6 +72,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+      <TableWrapper />
+      <br />
+      <hr />
+
       <RevalidateIndex />
       <br />
       <hr />
