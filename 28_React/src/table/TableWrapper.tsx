@@ -37,7 +37,7 @@ const TableWrapper = (): JSX.Element => {
 
   return (
     <div>
-      <h3>User Table</h3>
+      <h3>User Table - React-Table Library</h3>
       <ReactTable data={data} columns={columns} />
     </div>
   );
