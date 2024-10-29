@@ -16,13 +16,15 @@
     "catch": " nodemon catchError.ts",
     "utils": "nodemon utilities.ts",
     "stats": "nodemon statisticalCalculations.ts",
-    "astro": "nodemon astronomy.ts"
+    "astro": "nodemon astronomy.ts",
+    "axios": "nodemon axiosError.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
   "license": "MIT",
   "description": "",
   "dependencies": {
+    "axios": "^1.7.7",
     "mathjs": "^13.2.0"
   }
 }
