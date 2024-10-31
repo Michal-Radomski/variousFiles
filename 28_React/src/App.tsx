@@ -32,7 +32,8 @@ import FormDataComponent from "./FormDataComponent";
 import WithComponent from "./WithComponent";
 import RevalidateIndex from "./revalidate/RevalidateIndex";
 import TableWrapper from "./table/TableWrapper";
-import WrapperComponent from "./toolkit/WrapperComponent";
+import WrapperComponent from "./toolkitQuery/WrapperComponent";
+import ReduxToolkitWrapper from "./reduxToolkit/ReduxToolkitWrapper";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -73,6 +74,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+      <ReduxToolkitWrapper />
+      <br />
+      <hr />
+
       <WrapperComponent />
       <br />
       <hr />
