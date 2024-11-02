@@ -1,0 +1,74 @@
+ReactDOM is a crucial package in React that provides methods for interacting with the Document Object Model (DOM). It allows developers to render React components into the actual DOM, manage component lifecycles, and perform various DOM manipulations. Below are the key methods available in ReactDOM, particularly focusing on those introduced or emphasized in React 18.
+
+## Key Methods of ReactDOM
+
+### 1. **render()**
+The `render()` method is fundamental for rendering React components into the DOM. It takes three parameters: the element to render, the container where it should be rendered, and an optional callback function.
+
+```javascript
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+### 2. **createRoot()**
+Introduced in React 18, `createRoot()` is used to create a new root for a React application. This method replaces the traditional `ReactDOM.render()` method for better performance and concurrent rendering capabilities.
+
+```javascript
+import ReactDOM from 'react-dom/client';
+
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+root.render(<App />);
+```
+
+### 3. **hydrate()**
+This method is used for server-side rendering (SSR) to hydrate a server-rendered application, allowing it to become interactive on the client side.
+
+```javascript
+ReactDOM.hydrate(<App />, document.getElementById('root'));
+```
+
+### 4. **createPortal()**
+`createPortal()` allows you to render a component outside of its parent component's hierarchy, which is useful for modals and tooltips.
+
+```javascript
+ReactDOM.createPortal(child, container);
+```
+
+### 5. **flushSync()**
+This method forces React to flush updates synchronously, ensuring that any state updates are reflected immediately in the DOM. It should be used sparingly due to potential performance impacts.
+
+```javascript
+import { flushSync } from 'react-dom';
+
+flushSync(() => {
+  setCount(count + 1);
+});
+```
+
+### 6. **unmountComponentAtNode()**
+This method unmounts a component from a specific container, cleaning up any associated resources.
+
+```javascript
+ReactDOM.unmountComponentAtNode(container);
+```
+
+### 7. **findDOMNode()**
+Although this method is considered legacy and discouraged in favor of using refs, it can still be used to access the underlying DOM node of a mounted component.
+
+```javascript
+const domNode = ReactDOM.findDOMNode(componentInstance);
+```
+
+## Summary
+
+ReactDOM provides essential methods that enhance how developers interact with the DOM when building applications with React. The introduction of new methods like `createRoot()` and improvements in rendering efficiency underscore the ongoing evolution of React for better performance and user experience. As developers transition to newer versions, it's important to adopt these methods for optimal application development.
+
+Citations:
+[1] https://www.geeksforgeeks.org/reactjs-reactdom/
+[2] https://www.geeksforgeeks.org/new-dom-methods-in-react-18/
+[3] https://www.copycat.dev/blog/reactdom/
+[4] https://stackoverflow.com/questions/34114350/react-vs-reactdom
+[5] https://legacy.reactjs.org/docs/react-dom.html
+[6] https://react.dev/reference/react-dom
+[7] https://legacy.reactjs.org/docs/react-dom-server.html
+[8] https://react.dev/learn/manipulating-the-dom-with-refs
