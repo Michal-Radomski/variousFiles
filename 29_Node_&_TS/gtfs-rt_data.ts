@@ -106,3 +106,15 @@ root.add(
     console.error("Error fetching or decoding GTFS-RT data:", error);
   }
 })(url_TU);
+
+//* 3. Buffer vs ArrayBuffer
+const buf = Buffer.from("Hello World", "utf-8") as Buffer;
+console.log("buf:", buf); // <Buffer 48 65 6c 6c 6f 20 57 6f 72 6c 64>
+console.log("buf.toString():", buf.toString()); // "Hello World"
+
+const arrayBuffer = new ArrayBuffer(16) as ArrayBuffer;
+console.log("arrayBuffer:", arrayBuffer);
+const view = new Uint8Array(arrayBuffer) as Uint8Array;
+console.log("view:", view);
+view[0] = 255;
+console.log("view[0]:", view[0]); // 255
