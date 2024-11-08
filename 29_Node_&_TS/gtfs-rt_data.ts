@@ -1,4 +1,5 @@
 import GtfsRealtimeBindings from "gtfs-realtime-bindings";
+
 import * as dotenv from "dotenv";
 
 //* DetEnv config
