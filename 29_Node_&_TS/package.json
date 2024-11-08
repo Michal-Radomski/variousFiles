@@ -18,7 +18,8 @@
     "stats": "nodemon statisticalCalculations.ts",
     "astro": "nodemon astronomy.ts",
     "axios": "nodemon axiosError.ts",
-    "proto": "nodemon protobuf.ts"
+    "proto": "nodemon protobuf.ts",
+    "gtfs": "nodemon gtfs-rt_data"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
@@ -26,6 +27,9 @@
   "description": "",
   "dependencies": {
     "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "gtfs-realtime-bindings": "^1.1.1",
+    "gtfs-rt-bindings": "^4.6.0",
     "mathjs": "^13.2.0",
     "protobufjs": "^7.4.0"
   }
