@@ -461,3 +461,59 @@ console.log(buffer.toString("base64")); // Outputs: 'SGVsbG8sIFdvcmxkIQ=='
 
 // Convert buffer to hexadecimal string
 console.log(buffer.toString("hex")); // Outputs: '48656c6c6f2c20576f726c6421'
+
+{
+  //* Example 1 of a Generic Interface
+  interface Pair<K, V> {
+    key: K;
+    value: V;
+  }
+
+  // Using the Pair interface with different types
+  const month: Pair<string, number> = {
+    key: "January",
+    value: 1,
+  };
+
+  const user: Pair<number, string> = {
+    key: 1,
+    value: "Alice",
+  };
+
+  console.log({ month }); // Output: { key: 'January', value: 1 }
+  console.log({ user }); // Output: { key: 1, value: 'Alice' }
+
+  //* Example 21 of a Generic Interface
+  interface Collection<T> {
+    add(item: T): void;
+    remove(item: T): void;
+    getItems(): T[];
+  }
+
+  class List<T> implements Collection<T> {
+    private items: T[] = [];
+
+    add(item: T): void {
+      this.items.push(item);
+    }
+
+    remove(item: T): void {
+      const index = this.items.indexOf(item);
+      if (index > -1) {
+        this.items.splice(index, 1);
+      }
+    }
+
+    getItems(): T[] {
+      return this.items;
+    }
+  }
+
+  // Creating a list of numbers
+  const numberList = new List<number>();
+  numberList.add(1);
+  numberList.add(2);
+
+  console.log("numberList:", numberList);
+  console.log("numberList.getItems():", numberList.getItems()); // Output: [1, 2]
+}
