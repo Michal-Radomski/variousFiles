@@ -4,6 +4,7 @@ import Link from "next/link";
 import { TodoI } from "@/Interfaces";
 
 const TodoList = ({ todos }: { todos: TodoI[] }): JSX.Element => {
+  console.log("todos:", todos);
   return (
     <React.Fragment>
       <div>
@@ -11,9 +12,9 @@ const TodoList = ({ todos }: { todos: TodoI[] }): JSX.Element => {
         {todos.map(
           (todo: TodoI): JSX.Element => (
             <div key={todo._id as string}>
-              <Link href={`api/${todo._id}`}>
+              <Link href={`todos/${todo._id}`}>
                 <h3 style={{ cursor: "pointer" }}>
-                  {todo.item} - {todo.completed ? "completed" : "incomplete"}
+                  {todo.item} - {todo.completed ? "completed" : "incomplete"} {todo?._id as string}
                 </h3>
               </Link>
             </div>

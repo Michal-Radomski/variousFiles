@@ -41,7 +41,6 @@ const TodoDetail = ({ selectedTodo, url }: { selectedTodo: TodoI; url: string })
     router.push("/");
   };
 
-  //return JSX
   return (
     <div>
       <h1>{todo.item}</h1>
@@ -61,12 +60,12 @@ const TodoDetail = ({ selectedTodo, url }: { selectedTodo: TodoI; url: string })
 
 // Define Server Side Props
 export async function getServerSideProps(context: { query: { id: string } }) {
-  // fetch the todo, the param was received via context.query.id
-  const res = await fetch(process.env.API_URL + "/" + context.query.id);
-  const todo = await res.json();
+  console.log("context.query.id:", context.query.id);
+  const res = await fetch((process.env.API_URL as string) + "/" + context.query.id);
+  const selectedTodo = await res.json();
 
   //return the serverSideProps the todo and the url from out env variables for frontend api calls
-  return { todo, url: process.env.API_URL };
+  return { props: { selectedTodo, url: process.env.API_URL } };
 }
 
 // export component
