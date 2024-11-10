@@ -5,18 +5,18 @@ import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
 import { TodoI } from "@/Interfaces";
 
-const HomePage = (): JSX.Element => {
-  const [todos, setTodos] = React.useState<TodoI[]>([]);
+const HomePage = ({ todos }: { todos: TodoI[] }): JSX.Element => {
+  // const [todos, setTodos] = React.useState<TodoI[]>([]);
 
   const fetchTodos = async (): Promise<void> => {
-    const response: Response = await fetch("/api/todos");
-    const data = (await response.json()) as TodoI[];
-    setTodos(data);
+    // const response: Response = await fetch("/api/todos");
+    // const data = (await response.json()) as TodoI[];
+    // setTodos(data);
   };
 
-  React.useEffect(() => {
-    fetchTodos();
-  }, []);
+  // React.useEffect(() => {
+  //   fetchTodos();
+  // }, []);
 
   return (
     <React.Fragment>
@@ -28,7 +28,7 @@ const HomePage = (): JSX.Element => {
       </Head>
       <main>
         <div>
-          <h1>Todo List</h1>
+          <h1>My Todo List</h1>
           <TodoForm onAdd={fetchTodos} />
           <TodoList todos={todos} />
         </div>
@@ -36,5 +36,15 @@ const HomePage = (): JSX.Element => {
     </React.Fragment>
   );
 };
+
+export async function getServerSideProps() {
+  const response: Response = await fetch(`${process.env.API_URL as string}/api/todos`);
+  const todos = (await response.json()) as TodoI[];
+
+  // return props
+  return {
+    props: { todos },
+  };
+}
 
 export default HomePage;
