@@ -1,17 +1,20 @@
 import React from "react";
+import { useRouter } from "next/router";
 
-const TodoForm = ({ onAdd }: { onAdd: () => void }): JSX.Element => {
+const TodoForm = ({ url }: { url: string }): JSX.Element => {
+  const router = useRouter();
+
   const [item, setItem] = React.useState<string>("");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    await fetch("/api/todos", {
+    await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ item }),
     });
-    onAdd();
     setItem("");
+    router.push("/");
   };
 
   return (
