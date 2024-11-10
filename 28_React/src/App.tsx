@@ -35,6 +35,7 @@ import TableWrapper from "./table/TableWrapper";
 import WrapperComponent from "./toolkitQuery/WrapperComponent";
 import ReduxToolkitWrapper from "./reduxToolkit/ReduxToolkitWrapper";
 import PortalModalWrapper from "./portal/PortalModalWrapper";
+import HooksWrapper from "./hooks/HooksWrapper";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -75,6 +76,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+      <HooksWrapper />
+      <br />
+      <hr />
+
       <PortalModalWrapper />
       <br />
       <hr />
