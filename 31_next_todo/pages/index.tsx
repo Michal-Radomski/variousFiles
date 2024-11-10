@@ -1,8 +1,23 @@
 import React from "react";
-
 import Head from "next/head";
 
-const HomeComponent = (): JSX.Element => {
+import TodoForm from "../components/TodoForm";
+import TodoList from "../components/TodoList";
+import { TodoI } from "@/Interfaces";
+
+const HomePage = (): JSX.Element => {
+  const [todos, setTodos] = React.useState<TodoI[]>([]);
+
+  const fetchTodos = async (): Promise<void> => {
+    const response: Response = await fetch("/api/todos");
+    const data = (await response.json()) as TodoI[];
+    setTodos(data);
+  };
+
+  React.useEffect(() => {
+    fetchTodos();
+  }, []);
+
   return (
     <React.Fragment>
       <Head>
@@ -11,9 +26,15 @@ const HomeComponent = (): JSX.Element => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>NextApp</main>
+      <main>
+        <div>
+          <h1>Todo List</h1>
+          <TodoForm onAdd={fetchTodos} />
+          <TodoList todos={todos} />
+        </div>
+      </main>
     </React.Fragment>
   );
 };
 
-export default HomeComponent;
+export default HomePage;

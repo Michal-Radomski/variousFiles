@@ -2,7 +2,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import connect from "@/lib/mongodb";
-import Todo, { TodoI } from "@/models/Todo";
+import Todo from "@/models/Todo";
+import { TodoI } from "@/Interfaces";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<TodoI[] | TodoI>) {
   await connect();

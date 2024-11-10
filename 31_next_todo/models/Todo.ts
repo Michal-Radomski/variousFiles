@@ -1,10 +1,6 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-export interface TodoI extends Document {
-  item: string;
-  completed: boolean;
-  createdAt: Date;
-}
+import { TodoI } from "@/Interfaces";
 
 const TodoSchema: Schema = new mongoose.Schema(
   {
