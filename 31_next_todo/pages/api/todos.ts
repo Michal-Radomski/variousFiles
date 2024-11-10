@@ -6,6 +6,8 @@ import Todo from "@/models/Todo";
 import { TodoI } from "@/Interfaces";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
+  // console.log("req.method:", req.method);
+
   await connect();
 
   try {
