@@ -517,3 +517,39 @@ console.log(buffer.toString("hex")); // Outputs: '48656c6c6f2c20576f726c6421'
   console.log("numberList:", numberList);
   console.log("numberList.getItems():", numberList.getItems()); // Output: [1, 2]
 }
+
+//* Finally method
+(function fetchWithFinally(url: string): void {
+  let isLoading: boolean = true;
+
+  fetch(url)
+    .then((response: Response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("data:", data);
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    })
+    .finally((): void => {
+      isLoading = false;
+      console.log("Loading finished");
+      console.log({ isLoading });
+    });
+})("https://jsonplaceholder.typicode.com/todos/1");
+
+(async function fetchWithFinally2(url: string): Promise<void> {
+  try {
+    const response: Response = await fetch(url);
+    const data = await response.json();
+    console.log("data:", data);
+  } catch (error) {
+    console.log("error:", error);
+  } finally {
+    console.log("Loading finished");
+  }
+})("https://jsonplaceholder.typicode.com/todos/1");
