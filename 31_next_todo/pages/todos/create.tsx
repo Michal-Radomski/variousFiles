@@ -2,8 +2,7 @@ import React from "react";
 
 import TodoForm from "@/components/TodoForm";
 
-// Define Component
-function Create({ url }: { url: string }) {
+function Create({ url }: { url: string }): JSX.Element {
   return <TodoForm url={url} />;
 }
 

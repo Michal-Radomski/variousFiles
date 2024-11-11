@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import { Button } from "react-bootstrap";
 
 import TodoList from "../components/TodoList";
 import { TodoI } from "@/Interfaces";
@@ -14,11 +15,12 @@ const HomePage = ({ todos }: { todos: TodoI[] }): JSX.Element => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main>
         <div>
           <h1>My Todo List</h1>
           <Link href="/todos/create">
-            <button>Create a New Todo</button>
+            <Button variant="primary">Create a New Todo</Button>
           </Link>
           <TodoList todos={todos} />
         </div>

@@ -9,7 +9,7 @@ const connect = async (): Promise<void> => {
     return;
   }
 
-  const client = await mongoose
+  const client: void = await mongoose
     .connect(mongoUrl)
     .then((con: { connection: { host: string } }) => {
       console.log(`MongoDB Database connected with HOST: ${con.connection.host}`);

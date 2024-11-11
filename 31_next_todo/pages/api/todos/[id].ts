@@ -12,16 +12,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   try {
     if (req.method === "GET") {
       const currentTodo = (await Todo.findById(id)) as TodoI;
-      console.log({ currentTodo });
+      // console.log({ currentTodo });
       return res.status(200).json(currentTodo as TodoI);
     } else if (req.method === "PUT") {
       const updatedTodo = await Todo.findByIdAndUpdate(id, req.body, { new: true });
-      console.log({ updatedTodo });
+      // console.log({ updatedTodo });
       return res.status(200).json(updatedTodo as TodoI);
     } else if (req.method === "DELETE") {
       const deletionRes = await Todo.findByIdAndDelete(id);
-      console.log({ deletionRes: deletionRes });
-      return res.status(204).json(deletionRes);
+      // console.log({ deletionRes: deletionRes });
+      return res.status(200).json(deletionRes);
     }
   } catch (error) {
     console.log("error:", error);
