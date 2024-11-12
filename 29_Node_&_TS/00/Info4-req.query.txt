@@ -1,0 +1,112 @@
+To include a question mark (`?`) in a URL within a MERN (MongoDB, Express, React, Node.js) application, you need to ensure that the question mark is treated correctly as part of the query string. Here are some methods to achieve this:
+
+## Using React Router
+
+If you're using **React Router**, you can manage query parameters using the `useLocation` and `useHistory` hooks. Here’s how to append a query parameter:
+
+```javascript
+import { useLocation, useHistory } from 'react-router-dom';
+
+const MyComponent = () => {
+    const location = useLocation();
+    const history = useHistory();
+
+    const addQueryParam = () => {
+        const searchParams = new URLSearchParams(location.search);
+        searchParams.set('page', 2); // Set or update the 'page' parameter
+        history.push({ search: searchParams.toString() }); // Update the URL
+    };
+
+    return (
+        <button onClick={addQueryParam}>Add Query Param</button>
+    );
+};
+```
+This code snippet uses `URLSearchParams` to manage query strings without manually encoding or decoding the URL.
+
+## Using Express.js
+
+On the server side with **Express.js**, you can handle incoming requests with query parameters directly. For example:
+
+```javascript
+app.get('/api/items', (req, res) => {
+    const page = req.query.page; // Access the 'page' parameter
+    res.send(`Page number is: ${page}`);
+});
+```
+
+When a request is made like `/api/items?page=2`, Express will automatically parse the query string and make it available in `req.query`.
+
+## Manual URL Construction
+
+If you need to construct URLs manually (for example, for API calls), ensure that you encode parameters properly. You can use `encodeURIComponent()` for this purpose:
+
+```javascript
+const pageNumber = 2;
+const url = `http://example.com/api/items?page=${encodeURIComponent(pageNumber)}`;
+```
+
+This ensures that any special characters in your parameters are encoded correctly.
+
+## Conclusion
+
+In summary, to include a question mark in a URL in a MERN application, utilize built-in methods for managing query strings provided by libraries like React Router and Express.js. This approach avoids manual encoding issues and keeps your code clean and maintainable.
+
+Citations:
+[1] https://stackoverflow.com/questions/15197837/how-to-pass-question-mark-in-url-javascript
+[2] https://github.com/psf/requests/issues/2912
+[3] https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys/
+[4] https://www.youtube.com/watch?v=mrHNSanmqQ4
+[5] https://www.simplilearn.com/tutorials/nodejs-tutorial/nodejs-interview-questions
+[6] https://www.mongodb.com/resources/languages/mern-stack-tutorial
+[7] https://stackoverflow.com/questions/64335787
+
+
+
+The symbols `?` and `&` in URLs are used to manage **query parameters**, which are essential for passing additional data to web applications. Here’s a breakdown of their meanings and functions:
+
+## Question Mark (`?`)
+
+- **Indicates the Start of Query Parameters**: The question mark marks the beginning of the query string in a URL. Everything that follows it consists of key-value pairs that can be used to modify the request or filter content.
+  
+  **Example**: In the URL `http://example.com/page?key1=value1&key2=value2`, the `?` separates the main URL path from the query parameters.
+
+## Ampersand (`&`)
+
+- **Separates Multiple Parameters**: The ampersand is used to separate different key-value pairs within the query string. Each key-value pair is formatted as `key=value`.
+
+  **Example**: In the same URL, `key1=value1&key2=value2`, the `&` separates the two parameters: `key1` with its value `value1`, and `key2` with its value `value2`.
+
+## Structure of a Query String
+
+A typical URL with query parameters follows this structure:
+
+```
+https://www.example.com/page?key1=value1&key2=value2
+```
+
+- **Key1**: The first parameter name.
+- **Value1**: The value associated with Key1.
+- **Key2**: The second parameter name.
+- **Value2**: The value associated with Key2.
+- **`?`**: Indicates the start of the query string.
+- **`&`**: Separates multiple parameters.
+
+## Usage of Query Parameters
+
+Query parameters are commonly used for:
+
+- **Filtering Content**: For example, in an e-commerce site, you might filter products by category or price range using parameters like `category=shoes&price_min=20&price_max=100`.
+- **Tracking Information**: They can also be used for tracking purposes, such as in marketing campaigns, where parameters like `utm_source=newsletter&utm_medium=email` help identify traffic sources [2][4].
+
+In summary, the `?` and `&` symbols are crucial for constructing URLs that include dynamic data, enabling more interactive and personalized web experiences.
+
+Citations:
+[1] https://fastapi.tiangolo.com/tutorial/query-params/
+[2] https://www.semrush.com/blog/url-parameters/
+[3] https://stackoverflow.com/questions/39266970/what-is-the-difference-between-url-parameters-and-query-strings
+[4] https://www.claravine.com/a-query-on-using-query-strings-parameters/
+[5] https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams...
+[6] https://www.botify.com/insight/what-are-url-parameters
+[7] https://guides.emberjs.com/v5.1.0/routing/query-params/
+[8] https://en.wikipedia.org/wiki/Query_string
