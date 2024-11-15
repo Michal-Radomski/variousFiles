@@ -553,3 +553,57 @@ console.log(buffer.toString("hex")); // Outputs: '48656c6c6f2c20576f726c6421'
     console.log("Loading finished");
   }
 })("https://jsonplaceholder.typicode.com/todos/1");
+
+{
+  //* Extending interfaces - example 1
+  // Define base interfaces
+  interface Name {
+    name: string;
+  }
+
+  interface Weight {
+    weight: number;
+  }
+
+  interface Height {
+    height: number;
+  }
+
+  // Create a new interface that extends multiple interfaces
+  interface Animal extends Name, Weight, Height {}
+
+  // Using the extended interface
+  let animal: Animal = {
+    name: "Bruno",
+    weight: 5,
+    height: 3,
+  };
+
+  console.log({ animal }); // Output: { name: 'Bruno', weight: 5, height: 3 }
+}
+
+{
+  //* Extending interfaces - example 2
+  interface Name {
+    name: string;
+  }
+
+  interface Weight extends Name {
+    weight: number;
+  }
+
+  interface Height extends Weight {
+    height: number;
+  }
+
+  // Now Animal only needs to extend Height
+  interface Animal extends Height {}
+
+  let animal: Animal = {
+    name: "Bruno",
+    weight: 5,
+    height: 3,
+  };
+
+  console.log({ animal }); // Output: { name: 'Bruno', weight: 5, height: 3 }
+}
