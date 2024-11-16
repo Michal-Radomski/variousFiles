@@ -1,0 +1,89 @@
+To connect multiple `tsconfig.json` files in a TypeScript project, you can utilize the **extends** property, project references, or modify your build scripts. Each method serves different purposes and can help maintain a clean and organized configuration.
+
+## Purpose of Multiple `tsconfig.json` Files
+
+Having multiple `tsconfig.json` files allows for:
+
+- **Different Configurations**: You can tailor configurations for various parts of your application, such as client and server code, which may require different compiler options (e.g., targeting different ECMAScript versions).
+- **Code Organization**: By separating configurations, you can manage large projects more effectively, especially when dealing with shared code across different modules.
+- **Build Optimization**: It allows for more efficient builds by only compiling necessary parts of the project.
+
+## Methods to Connect Multiple `tsconfig.json` Files
+
+### 1. Using the `extends` Property
+
+You can create a base configuration file (e.g., `tsconfig.base.json`) that contains common settings and then extend it in other `tsconfig.json` files:
+
+```json
+// tsconfig.base.json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "strict": true
+  }
+}
+
+// tsconfig.client.json
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist/client"
+  }
+}
+
+// tsconfig.server.json
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist/server"
+  }
+}
+```
+
+This setup allows you to maintain shared configurations while customizing specific settings for different parts of your application[1][2].
+
+### 2. Project References
+
+For larger projects with multiple sub-projects, you can use project references. Each subdirectory can contain its own `tsconfig.json`, and you can reference them in a parent configuration:
+
+```json
+// tsconfig.json (root)
+{
+  "references": [
+    { "path": "./client" },
+    { "path": "./server" }
+  ]
+}
+```
+
+Each referenced project will have its own `tsconfig.json`, allowing for independent compilation while maintaining a cohesive structure[3][4].
+
+### 3. Modifying Build Scripts
+
+You can also set up your build process to switch between different configurations using scripts in your `package.json`. For example:
+
+```json
+{
+  "scripts": {
+    "build:client": "cp tsconfig.client.json tsconfig.json && tsc",
+    "build:server": "cp tsconfig.server.json tsconfig.json && tsc"
+  }
+}
+```
+
+This approach allows you to dynamically change the active configuration before building your project[1][5].
+
+## Conclusion
+
+Using multiple `tsconfig.json` files effectively enhances the maintainability and organization of TypeScript projects. Whether through inheritance with the `extends` property, leveraging project references, or adjusting build scripts, these methods provide flexibility to cater to various development needs.
+
+Citations:
+[1] https://dev.to/rajeshkumaryadavdotcom/angular-how-can-we-have-multiple-tsconfig-file-for-angular-app-3ha3
+[2] https://www.totaltypescript.com/workshops/typescript-pro-essentials/configuring-typescript/share-configuration-across-multiple-tsconfig-files
+[3] https://www.typescriptlang.org/docs/handbook/project-references.html
+[4] https://github.com/microsoft/TypeScript/issues/3645
+[5] https://stackoverflow.com/questions/37579969/how-to-use-multiple-tsconfig-files-in-vs-code
+[6] https://www.reddit.com/r/typescript/comments/19bilsl/is_it_possible_to_have_a_tsconfigjson_that/
+[7] https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000356264-Multiple-tsconfig
+[8] https://github.com/microsoft/TypeScript/issues/50898
