@@ -15,8 +15,11 @@
     "@types/node": "^16.18.101",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "bootstrap": "^5.3.3",
     "prismjs": "^1.29.0",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.6",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.2",
     "react-jss": "^10.10.0",
@@ -53,6 +56,8 @@
     ]
   },
   "devDependencies": {
-    "@types/prismjs": "^1.26.4"
+    "@types/bootstrap": "^5.2.10",
+    "@types/prismjs": "^1.26.4",
+    "@types/prop-types": "^15.7.13"
   }
 }
