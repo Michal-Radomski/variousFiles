@@ -1,0 +1,142 @@
+In an Express application, there are several methods to implement authentication and authorization. Here’s a summary of the most common strategies:
+
+## Authentication Methods
+
+### 1. **Basic Authentication**
+Basic authentication involves sending user credentials (username and password) with each request. This method is simple but should only be used over HTTPS due to security concerns.
+
+**Implementation Example:**
+```javascript
+const express = require("express");
+const basicAuth = require("express-basic-auth");
+
+const app = express();
+app.use(basicAuth({
+    users: { 'username': 'password' },
+    challenge: true,
+    unauthorizedResponse: "Unauthorized access."
+}));
+
+app.get("/secure-data", (req, res) => {
+    res.send("This is secure data.");
+});
+```
+This method is easy to set up but not recommended for sensitive applications without additional security measures.
+
+### 2. **Token-Based Authentication**
+This method uses tokens (commonly JSON Web Tokens - JWT) for authentication. After logging in, the server generates a token that the client stores and sends with subsequent requests.
+
+**Implementation Example:**
+```javascript
+const jwt = require('jsonwebtoken');
+
+app.post('/login', (req, res) => {
+    const user = { id: 1 }; // Example user
+    const token = jwt.sign({ user }, 'your_jwt_secret');
+    res.json({ token });
+});
+
+// Middleware to verify token
+function authenticateToken(req, res, next) {
+    const token = req.headers['authorization'];
+    if (!token) return res.sendStatus(401);
+    jwt.verify(token, 'your_jwt_secret', (err, user) => {
+        if (err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    });
+}
+
+app.get('/protected', authenticateToken, (req, res) => {
+    res.send('This is protected data.');
+});
+```
+Token-based authentication is more secure and scalable than basic authentication.
+
+### 3. **Session-Based Authentication**
+Using sessions involves storing user information on the server side after they log in. This method often uses `express-session` to manage sessions.
+
+**Implementation Example:**
+```javascript
+const session = require('express-session');
+
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true,
+}));
+
+app.post('/login', (req, res) => {
+    req.session.userId = user.id; // Store user ID in session
+    res.send('Logged in');
+});
+
+app.get('/dashboard', (req, res) => {
+    if (!req.session.userId) return res.sendStatus(401);
+    res.send('Welcome to your dashboard!');
+});
+```
+Session-based authentication allows you to maintain user state across requests.
+
+### 4. **OAuth and Third-Party Authentication**
+OAuth allows users to authenticate using third-party services like Google or Facebook. Libraries like Passport.js can simplify this process.
+
+**Implementation Example with Passport.js:**
+```javascript
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+passport.use(new GoogleStrategy({
+    clientID: 'YOUR_CLIENT_ID',
+    clientSecret: 'YOUR_CLIENT_SECRET',
+    callbackURL: "/auth/google/callback"
+}, (accessToken, refreshToken, profile, done) => {
+    // User authentication logic here
+}));
+
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
+    // Successful authentication
+    res.redirect('/dashboard');
+});
+```
+OAuth provides a secure way to authenticate users without handling their passwords directly.
+
+### 5. **Middleware for Authorization**
+Authorization checks can be implemented using middleware functions that verify if a user has permission to access certain resources based on their roles or permissions.
+
+**Example of Authorization Middleware:**
+```javascript
+function authorizeRoles(roles) {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            return res.status(403).send('Forbidden');
+        }
+        next();
+    };
+}
+
+app.get('/admin', authenticateToken, authorizeRoles(['admin']), (req, res) => {
+    res.send('Welcome Admin');
+});
+```
+This middleware checks if the authenticated user has the required roles before granting access.
+
+## Summary
+These methods provide various ways to authenticate and authorize users in an Express application:
+
+- **Basic Authentication** for simple use cases.
+- **Token-Based Authentication** for stateless applications.
+- **Session-Based Authentication** for maintaining state.
+- **OAuth** for third-party integrations.
+- **Authorization Middleware** for role-based access control.
+
+Choosing the right method depends on your application's specific requirements and security considerations.
+
+Citations:
+[1] https://www.geeksforgeeks.org/authentication-strategies-available-in-express/
+[2] https://www.scaler.com/topics/expressjs-tutorial/authentication_and_authorization_in_express/
+[3] https://auth0.com/blog/create-a-simple-and-secure-node-express-app/
+[4] https://developers.onelogin.com/quickstart/authentication/nodejs
+[5] https://authjs.dev/reference/express
+[6] https://www.tutorialspoint.com/expressjs/expressjs_authentication.htm

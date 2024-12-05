@@ -1,0 +1,126 @@
+Combining token-based authentication (like JWT) with session-based authentication can create a robust and flexible authentication system in an Express application. This hybrid approach leverages the strengths of both methods, allowing for statelessness while maintaining the ability to manage user sessions effectively. Here’s how to implement this combined approach:
+
+## Overview of the Combined Approach
+
+1. **JWT for Stateless Authentication**: Use JWTs to authenticate users without maintaining session state on the server. This allows for easy scalability and reduces server load.
+  
+2. **Session for State Management**: Use sessions to track user activity and manage session state on the server. This is useful for invalidating sessions when users log out or when security concerns arise.
+
+## Implementation Steps
+
+### Step 1: Set Up Your Environment
+
+Make sure you have the necessary packages installed:
+
+```bash
+npm install express jsonwebtoken express-session
+```
+
+### Step 2: Configure Express App
+
+Set up your Express application with both JWT and session middleware.
+
+```javascript
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const session = require('express-session');
+
+const app = express();
+app.use(express.json());
+app.use(session({
+    secret: 'your_session_secret',
+    resave: false,
+    saveUninitialized: true,
+}));
+
+const JWT_SECRET = 'your_jwt_secret';
+```
+
+### Step 3: User Login and Token Generation
+
+When a user logs in, generate a JWT and create a session.
+
+```javascript
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    // Authenticate user (this is just a placeholder)
+    if (username === 'user' && password === 'password') {
+        const userId = 1; // Example user ID
+        const token = jwt.sign({ id: userId }, JWT_SECRET, { expiresIn: '1h' });
+
+        // Store user info in session
+        req.session.userId = userId;
+
+        res.json({ token, sessionId: req.session.id });
+    } else {
+        res.status(401).send('Invalid credentials');
+    }
+});
+```
+
+### Step 4: Middleware for Authentication
+
+Create middleware to verify both the JWT and the session.
+
+```javascript
+function authenticateToken(req, res, next) {
+    const token = req.headers['authorization']?.split(' ')[1];
+
+    if (!token) return res.sendStatus(401);
+
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403);
+        
+        // Check if session is valid
+        if (!req.session.userId || req.session.userId !== user.id) {
+            return res.sendStatus(403); // Forbidden
+        }
+
+        req.user = user;
+        next();
+    });
+}
+```
+
+### Step 5: Protect Routes
+
+Use the authentication middleware to protect routes.
+
+```javascript
+app.get('/protected', authenticateToken, (req, res) => {
+    res.send('This is protected data.');
+});
+```
+
+### Step 6: Logout Functionality
+
+Implement logout functionality that invalidates the session.
+
+```javascript
+app.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) return res.sendStatus(500);
+        res.send('Logged out successfully');
+    });
+});
+```
+
+## Benefits of Combining JWT and Session Authentication
+
+- **Flexibility**: Clients can choose whether to use session-based or token-based authentication depending on their needs.
+- **Scalability**: The stateless nature of JWT allows for easier scaling of services.
+- **Security**: Sessions can be invalidated on the server side, providing better control over user access.
+- **User Experience**: Users can remain logged in across different sessions while still having secure access to resources.
+
+## Conclusion
+
+By combining JWT with session-based authentication, you can create a secure and adaptable authentication system that meets various application requirements. This hybrid approach effectively balances statelessness with the need for managing user sessions, enhancing both security and usability in your Express application.
+
+Citations:
+[1] https://dev.to/titre123/creating-a-robust-authentication-system-harnessing-the-power-of-jwt-and-session-authentication-2efc
+[2] https://clerk.com/blog/combining-the-benefits-of-session-tokens-and-jwts
+[3] https://www.linkedin.com/pulse/exploring-token-based-session-based-authentication-joe-flower
+[4] https://stackoverflow.com/questions/75346765/difference-between-token-based-and-session-based-authentication
+[5] https://www.criipto.com/blog/session-token-based-authentication
+[6] https://dev.to/ibukunsoremekun/authentication-token-based-auth-vs-session-based-auth-f88

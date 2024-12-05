@@ -607,3 +607,24 @@ console.log(buffer.toString("hex")); // Outputs: '48656c6c6f2c20576f726c6421'
 
   console.log({ animal }); // Output: { name: 'Bruno', weight: 5, height: 3 }
 }
+
+{
+  //* Logical Assignment Operators
+  // 1. Logical OR Assignment (||=)
+  let score: number | null = null;
+  score ||= 10; // score is now 10 because it was null
+  console.log({ score }); // Output: 10
+
+  // 2. Logical AND Assignment (&&=) -> x &&= y; /x &&= y is equivalent to x = x && y/
+  let x = true;
+  x &&= false; // x becomes false
+
+  let y = false;
+  y &&= true; // y remains false because y was initially falsy
+  console.log({ x, y });
+
+  // 3. Nullish Coalescing Assignment (??=)
+  let userId: number | undefined = undefined;
+  userId ??= 1; // userId is now 1 because it was undefined
+  console.log({ userId }); // Output: 1
+}
