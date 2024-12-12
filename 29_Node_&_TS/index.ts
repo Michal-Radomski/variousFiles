@@ -628,3 +628,14 @@ console.log(buffer.toString("hex")); // Outputs: '48656c6c6f2c20576f726c6421'
   userId ??= 1; // userId is now 1 because it was undefined
   console.log({ userId }); // Output: 1
 }
+
+{
+  //* ES2024 /Min Node21/
+  // const products = [
+  //   { name: "apples", category: "fruits" },
+  //   { name: "oranges", category: "fruits" },
+  //   { name: "potatoes", category: "vegetables" },
+  // ];
+  // const groupedProducts = Object.groupBy(products, (product) => product.category);
+  // console.log("groupedProducts:", groupedProducts);
+}
