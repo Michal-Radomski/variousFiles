@@ -3,7 +3,7 @@ conky.config = {
   pad_percents = 3,
   background = false,
   double_buffer = true,
-  font = 'DejaVu Sans Mono Bold:size=12',
+  font = 'DejaVu Sans:size=12',
   use_xft = true,
   alignment = 'top_right',
   gap_x = 10,
