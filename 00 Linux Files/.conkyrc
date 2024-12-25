@@ -74,8 +74,8 @@ ${color green}Publiczne IP: ${color magenta} ${alignr} ${execi 3600 wget -q -O /
 #${endif}
 #${else} ${color red}Sieć niedostępna ${endif}
 ${color yellow}Temperatury dysków twardych: ${alignr} ${color green} Liczba security updates: ${color yellow} ${execi 3600 apt-get dist-upgrade -s --quiet=2 | grep ^Inst | wc -l} ${color orange}
-Dysk /dev/sda (1TB - HDD): ${alignr} ${color magenta}${exec hddtemp /dev/sda | cut -c 31-32}°C ${color orange}
+Dysk /dev/sda (1TB - HDD): ${alignr} ${color magenta}${exec sensors drivetemp-scsi-0-0 | grep temp1| cut -c 16-19}°C ${color orange}
 Dysk /dev/nvme0 (500GB - SSD): ${alignr} ${color magenta}${exec sensors | grep Composite | cut -c 16-22} ${color white}
-${color green}Grafika:  ${color magenta}Temp GPU: ${color}${nvidia temp}°C${color magenta}; GPU-Util: ${color}${exec nvidia-smi | grep % | cut -c 72-75}${color magenta}; VRAM-Util: ${color}${exec nvidia-smi | grep % | cut -c 50-64}${color green}; ${exec nvidia-smi | grep Driver | cut -c 66-84}
+${color green}Grafika:  ${color magenta}Temp GPU: ${color}${nvidia temp}°C${color magenta}; GPU-Util: ${color}${exec nvidia-smi | grep % | cut -c 73-76}${color magenta}; VRAM-Util: ${color}${exec nvidia-smi | grep % | cut -c 50-66}${color green}; ${exec nvidia-smi | grep Driver | cut -c 67-85}
 ${color white}${hr}
 ]]
