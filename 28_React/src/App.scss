@@ -23,3 +23,13 @@ body {
   margin-right: auto;
   overflow-y: auto;
 }
+
+//* OL + RLayers map
+div.example-map {
+  height: 600px;
+  width: 100%;
+}
+div.example-overlay {
+  color: red;
+  cursor: pointer;
+}

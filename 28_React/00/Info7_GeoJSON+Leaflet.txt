@@ -1,0 +1,123 @@
+To add a `FeatureCollection` in JSON format to a React Leaflet application, you can follow these steps. This example will demonstrate how to visualize GeoJSON data using the `react-leaflet` library.
+
+### Step-by-Step Guide
+
+1. **Install Dependencies**: Make sure you have `leaflet` and `react-leaflet` installed in your React project:
+
+   ```bash
+   npm install leaflet react-leaflet
+   ```
+
+2. **Create a GeoJSON FeatureCollection**: Define your GeoJSON data. Below is an example of a simple `FeatureCollection`:
+
+   ```javascript
+   const geojsonData = {
+       "type": "FeatureCollection",
+       "features": [
+           {
+               "type": "Feature",
+               "properties": {
+                   "name": "Location A"
+               },
+               "geometry": {
+                   "type": "Point",
+                   "coordinates": [-104.99404, 39.75621]
+               }
+           },
+           {
+               "type": "Feature",
+               "properties": {
+                   "name": "Location B"
+               },
+               "geometry": {
+                   "type": "Point",
+                   "coordinates": [-105.0, 39.75]
+               }
+           }
+       ]
+   };
+   ```
+
+3. **Create the Map Component**: Use the `MapContainer`, `TileLayer`, and `GeoJSON` components from `react-leaflet` to render the map and the GeoJSON data.
+
+```javascript
+import React from 'react';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+
+const MapComponent = () => {
+    const geojsonData = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Location A"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-104.99404, 39.75621]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {
+                    "name": "Location B"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-105.0, 39.75]
+                }
+            }
+        ]
+    };
+
+    return (
+        <MapContainer center={[39.75, -104.99]} zoom={10} style={{ height: '100vh', width: '100%' }}>
+            <TileLayer
+                url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <GeoJSON data={geojsonData} />
+        </MapContainer>
+    );
+};
+
+export default MapComponent;
+```
+
+### Explanation of Key Components
+
+- **MapContainer**: This component initializes the map with a specified center and zoom level.
+- **TileLayer**: This component adds a base layer to the map using OpenStreetMap tiles.
+- **GeoJSON**: This component takes the GeoJSON data as a prop and automatically renders it on the map.
+
+### Usage
+
+To use this `MapComponent`, simply import and include it in your main application file or another component:
+
+```javascript
+import React from 'react';
+import MapComponent from './MapComponent';
+
+const App = () => {
+    return (
+        <div>
+            <MapComponent />
+        </div>
+    );
+};
+
+export default App;
+```
+
+### Conclusion
+
+This example demonstrates how to add a `FeatureCollection` in JSON format to a React Leaflet application using the `GeoJSON` component. You can customize the GeoJSON data and styles as needed for your specific use case.
+
+Citations:
+[1] https://andrejgajdos.com/leaflet-developer-guide-to-high-performance-map-visualizations-in-react/
+[2] https://leafletjs.com/examples/geojson/
+[3] https://jsdev.space/mastering-react-leaflet/
+[4] https://docs.stadiamaps.com/tutorials/getting-started-with-react-leaflet/
+[5] https://www.youtube.com/watch?v=D4jq5Bd9bTA

@@ -39,6 +39,7 @@ import HooksWrapper from "./hooks/HooksWrapper";
 import ReactHookForm from "./ReactHookForm";
 import PaginationWrapper from "./pagination/PaginationWrapper";
 import ClipPathCard from "./ClipPathCard";
+import MapOlComponent from "./MapOlComponent";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -79,6 +80,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+
+      <MapOlComponent />
+      <br />
+      <hr />
 
       <ClipPathCard />
       <br />
