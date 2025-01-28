@@ -13,10 +13,11 @@ import compression from "compression";
 
 //* GraphQL
 import gql from "graphql-tag";
-import { ApolloServer } from "@apollo/server";
+import { ApolloServer, BaseContext } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
-
 import { buildSubgraphSchema } from "@apollo/subgraph";
+import { ApolloServerPluginLandingPageDisabled } from "@apollo/server/plugin/disabled";
+import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 
 // Import routes
 import indexRouter from "./indexRouter";
@@ -72,9 +73,17 @@ const httpPort = (process.env.PORT || 4000) as number;
   //* TypeDefs
   const typeDefs = gql(fs.readFileSync("./schema.graphql", { encoding: "utf-8" }));
   // console.log("typeDefs:", typeDefs);
+  // console.log("process.env.NODE_ENV:", process.env.NODE_ENV);
 
-  const apolloServer = await new ApolloServer({
+  const apolloServer: ApolloServer<BaseContext> = await new ApolloServer({
     schema: buildSubgraphSchema({ typeDefs, resolvers }),
+    // introspection: process.env.NODE_ENV !== "production", // Disable in production mode!
+    introspection: process.env.NODE_ENV === "development" ? true : false, // Disable in production mode!
+    plugins: [
+      process.env.NODE_ENV !== "development"
+        ? ApolloServerPluginLandingPageDisabled() // Disable landing page in production
+        : ApolloServerPluginLandingPageLocalDefault(), // Use local landing page in development
+    ],
   });
 
   await apolloServer.start();
