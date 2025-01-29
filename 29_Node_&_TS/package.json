@@ -19,7 +19,8 @@
     "astro": "nodemon astronomy.ts",
     "axios": "nodemon axiosError.ts",
     "proto": "nodemon protobuf.ts",
-    "gtfs": "nodemon gtfs-rt_data"
+    "gtfs": "nodemon gtfs-rt_data",
+    "normalize": "nodemon normalize.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
