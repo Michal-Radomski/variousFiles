@@ -639,3 +639,13 @@ console.log(buffer.toString("hex")); // Outputs: '48656c6c6f2c20576f726c6421'
   // const groupedProducts = Object.groupBy(products, (product) => product.category);
   // console.log("groupedProducts:", groupedProducts);
 }
+
+{
+  //* TimeZone
+  const timezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  console.log("timezone:", timezone); // e.g., "Europe/Warsaw"
+
+  const date = new Date();
+  const offset: number = date.getTimezoneOffset();
+  console.log("offset:", offset); // e.g., -60 for "Europe/Warsaw"
+}
