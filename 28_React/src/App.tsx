@@ -40,6 +40,7 @@ import ReactHookForm from "./ReactHookForm";
 import PaginationWrapper from "./pagination/PaginationWrapper";
 import ClipPathCard from "./ClipPathCard";
 import MapOlComponent from "./MapOlComponent";
+import CustomIntrinsicProp from "./CustomIntrinsicProp";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -80,6 +81,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+
+      <CustomIntrinsicProp />
+      <br />
+      <hr />
 
       <MapOlComponent />
       <br />
