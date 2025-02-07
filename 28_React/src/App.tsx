@@ -41,6 +41,7 @@ import PaginationWrapper from "./pagination/PaginationWrapper";
 import ClipPathCard from "./ClipPathCard";
 import MapOlComponent from "./MapOlComponent";
 import CustomIntrinsicProp from "./CustomIntrinsicProp";
+import ParentComponent, { Person } from "./PropsComponent";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -78,9 +79,19 @@ const App = (): JSX.Element => {
 
   const ParagraphComponent: JSX.Element = <p>Paragraph Component</p>;
 
+  const person: Person = {
+    name: "MR",
+    age: 100,
+    city: "Gdańsk",
+  };
+
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+
+      <ParentComponent person={person} />
+      <br />
+      <hr />
 
       <CustomIntrinsicProp />
       <br />

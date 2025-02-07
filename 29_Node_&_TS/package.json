@@ -21,7 +21,8 @@
     "proto": "nodemon protobuf.ts",
     "gtfs": "nodemon gtfs-rt_data",
     "normalize": "nodemon normalize.ts",
-    "gpu": "nodemon gpu.ts"
+    "gpu": "nodemon gpu.ts",
+    "export_import": "nodemon ./export/import.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
