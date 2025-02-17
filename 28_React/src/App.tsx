@@ -42,6 +42,7 @@ import ClipPathCard from "./ClipPathCard";
 import MapOlComponent from "./MapOlComponent";
 import CustomIntrinsicProp from "./CustomIntrinsicProp";
 import ParentComponent, { Person } from "./PropsComponent";
+import AddEventListener from "./AddEventListener";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -88,6 +89,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+
+      <AddEventListener />
+      <br />
+      <hr />
 
       <ParentComponent person={person} />
       <br />
