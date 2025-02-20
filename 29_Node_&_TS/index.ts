@@ -649,3 +649,49 @@ console.log(buffer.toString("hex")); // Outputs: '48656c6c6f2c20576f726c6421'
   const offset: number = date.getTimezoneOffset();
   console.log("offset:", offset); // e.g., -60 for "Europe/Warsaw"
 }
+
+{
+  //* Void expression -> void someFunction(); // Executes someFunction but ignores any return value
+  const result: undefined = void (2 + 2); // result is undefined
+  console.log({ result }); // Outputs: undefined
+
+  // button.onclick = function () {
+  //   void alert("Button clicked!"); // Alert shows, but returns undefined
+  // };
+
+  function logMessage(message: string): void {
+    console.log({ message });
+  }
+  logMessage("test");
+
+  const nothing: void = undefined; // Valid
+  //* let somethingElse: void = "string"; // Error: Type 'string' is not assignable to type 'void'
+  console.log({ nothing });
+
+  function doNothing(): void {
+    console.log("This function does nothing and returns undefined.");
+  }
+
+  const result2: void = doNothing(); // result2 will be undefined
+  console.log({ result2 }); // Outputs: undefined
+
+  void (function (): void {
+    console.log("This runs without returning anything.");
+  })();
+
+  // document.getElementById("myButton")?.addEventListener("click", function (event: MouseEvent): void {
+  //   void event.preventDefault(); // Calls preventDefault but ignores the return value.
+  // });
+
+  function returnValue(): number {
+    return 42;
+  }
+
+  // Using void to ignore the result of the function
+  const result3: undefined = void returnValue(); // result3 is undefined
+  console.log({ result3 }); // output: undefined
+
+  // Without using void
+  const result4: number = returnValue(); // result2 is 42
+  console.log({ result4 }); // output: 42
+}
