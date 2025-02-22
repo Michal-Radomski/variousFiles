@@ -43,6 +43,7 @@ import MapOlComponent from "./MapOlComponent";
 import CustomIntrinsicProp from "./CustomIntrinsicProp";
 import ParentComponent, { Person } from "./PropsComponent";
 import AddEventListener from "./AddEventListener";
+import PolymorphicComponent from "./PolymorphicComponent";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -89,6 +90,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+
+      <PolymorphicComponent />
+      <br />
+      <hr />
 
       <AddEventListener />
       <br />
