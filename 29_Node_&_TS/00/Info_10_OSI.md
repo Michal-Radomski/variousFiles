@@ -48,3 +48,31 @@ https://www.antaira.com/Blog-The-OSI-Model-Layers-Explained [5] https://www.bmc.
 https://www.splunk.com/en_us/blog/learn/osi-model.html [7]
 https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/ [8]
 https://stackoverflow.com/questions/5927196/how-do-applications-know-which-osi-protocol-to-use
+
+JavaScript with WebGL and GLSL does interact with the GPU, but this interaction does not occur at the **Physical Layer
+(Layer 1)** of the OSI model. Instead, WebGL and GLSL operate at the **Application Layer (Layer 7)**, as they are part of the
+high-level protocols and APIs that allow web applications to communicate with the GPU for rendering and computations.
+
+Here's how it works:
+
+- **WebGL**: This is a JavaScript API that allows web pages to use the GPU for rendering 3D and 2D graphics. It is based on
+  OpenGL ES 2.0 and operates at the Application Layer, as it provides a high-level interface for interacting with the
+  GPU[7][8].
+
+- **GLSL (OpenGL Shading Language)**: This is used to write shaders that run on the GPU. Shaders are small programs that
+  execute on the GPU to perform specific tasks like lighting and texture mapping. While GLSL interacts directly with the
+  GPU's processing capabilities, this interaction is facilitated through WebGL, which is part of the Application Layer[7][8].
+
+- **Physical Layer (Layer 1)**: This layer is responsible for the physical transmission of data between devices. It does not
+  directly involve interactions with the GPU or any high-level programming languages like JavaScript or GLSL.
+
+In summary, while JavaScript with WebGL and GLSL can leverage the GPU's capabilities, this interaction occurs at the
+Application Layer of the OSI model, not the Physical Layer. The Physical Layer is concerned with the raw transmission of bits
+over physical media, which is a much lower level of abstraction than what WebGL or GLSL operate on.
+
+Citations: [1] https://stackoverflow.com/questions/15213216/accessing-gpu-via-web-browser [2]
+https://developer.chrome.com/blog/from-webgl-to-webgpu [3] https://scribbler.live/2024/10/05/GPU-Processing-with-GPU-js.html
+[4] https://developer.chrome.com/blog/webgpu-io2023 [5] https://github.com/gpujs/gpu.js/ [6]
+https://www.reddit.com/r/threejs/comments/10jc74n/how_to_make_webgl_use_gpu_and_not_cpu/ [7]
+https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API [8]
+https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL
