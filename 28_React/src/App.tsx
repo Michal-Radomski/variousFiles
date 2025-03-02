@@ -45,6 +45,7 @@ import ParentComponent, { Person } from "./PropsComponent";
 import AddEventListener from "./AddEventListener";
 import PolymorphicComponent from "./PolymorphicComponent";
 import EventMethods from "./EventMethods";
+import ApisWrapper from "./apis/ApisWrapper";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -91,6 +92,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+
+      <ApisWrapper />
+      <br />
+      <hr />
 
       <EventMethods />
       <br />
