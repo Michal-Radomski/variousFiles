@@ -1,3 +1,5 @@
+Todo: Errors!
+
 ## Overview of Event Methods
 
 In JavaScript, particularly when working with React applications, three key methods are used to manage events:

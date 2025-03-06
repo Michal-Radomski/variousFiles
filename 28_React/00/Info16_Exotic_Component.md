@@ -1,3 +1,5 @@
+Todo: Errors!
+
 ## What are Exotic Components in React?
 
 Exotic components in React are special types of components that do not behave like regular function or class components. They
