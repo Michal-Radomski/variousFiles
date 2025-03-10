@@ -47,6 +47,7 @@ import PolymorphicComponent from "./PolymorphicComponent";
 import EventMethods from "./EventMethods";
 import ApisWrapper from "./apis/ApisWrapper";
 import PatternsWrapper from "./patterns/PatternsWrapper";
+import ForwardRef2 from "./ForwardRef2";
 
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
@@ -93,6 +94,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+
+      <ForwardRef2 />
+      <br />
+      <hr />
 
       <PatternsWrapper />
       <br />
