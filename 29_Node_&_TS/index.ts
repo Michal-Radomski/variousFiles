@@ -648,6 +648,25 @@ console.log(buffer.toString("hex")); // Outputs: '48656c6c6f2c20576f726c6421'
   const date = new Date();
   const offset: number = date.getTimezoneOffset();
   console.log("offset:", offset); // e.g., -60 for "Europe/Warsaw"
+
+  //* Numbers
+  const numbers = [999, 1000, 12500, 9123456];
+
+  // Create a NumberFormat instance for compact notation
+  const formatter = new Intl.NumberFormat("en-US", {
+    notation: "compact", // Options: 'compact', 'scientific', 'engineering', 'standard'
+    maximumFractionDigits: 1, // Limit fractional digits
+  });
+
+  // Format each number
+  numbers.forEach((num: number): void => {
+    console.log("formatter.format(num):", formatter.format(num));
+  });
+  // Output:
+  // 999
+  // 1K
+  // 12.5K
+  // 9.1M
 }
 
 {
