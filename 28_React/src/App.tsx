@@ -53,6 +53,17 @@ const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
 };
 
+const cssProperties: React.CSSProperties = {
+  fontSize: "16px",
+  fontWeight: "bold",
+  backgroundColor: "lightblue",
+  padding: "10px",
+};
+
+const CSSPropertiesComponent: React.FC = (): JSX.Element => {
+  return <div style={cssProperties}>Hello, TypeScript! - React.CSSProperties</div>;
+};
+
 const App = (): JSX.Element => {
   const params: URLSearchParams = new URL("https://example.com/?name=Jonathan%20Smith&age=18").searchParams;
   const name = params.get("name") as string;
@@ -94,6 +105,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+
+      <CSSPropertiesComponent />
+      <br />
+      <hr />
 
       <ForwardRef2 />
       <br />
