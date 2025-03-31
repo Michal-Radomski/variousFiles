@@ -23,7 +23,8 @@
     "normalize": "nodemon normalize.ts",
     "gpu": "nodemon gpu.ts",
     "export_import": "nodemon ./export/import.ts",
-    "generics": "nodemon ./generics.ts"
+    "generics": "nodemon ./generics.ts",
+    "math": "nodemon ./math.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",

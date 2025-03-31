@@ -49,6 +49,10 @@ import ApisWrapper from "./apis/ApisWrapper";
 import PatternsWrapper from "./patterns/PatternsWrapper";
 import ForwardRef2 from "./ForwardRef2";
 
+const MemoizedComponent: React.MemoExoticComponent<() => React.JSX.Element> = React.memo(() => {
+  return <div>Hello, MemoizedComponent!</div>;
+});
+
 const ReactNodeComponent = (): React.ReactNode => {
   return <div>React Node Component</div>;
 };
@@ -106,6 +110,7 @@ const App = (): JSX.Element => {
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
 
+      <MemoizedComponent />
       <CSSPropertiesComponent />
       <br />
       <hr />
