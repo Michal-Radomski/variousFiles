@@ -49,7 +49,7 @@ import ApisWrapper from "./apis/ApisWrapper";
 import PatternsWrapper from "./patterns/PatternsWrapper";
 import ForwardRef2 from "./ForwardRef2";
 
-const MemoizedComponent: React.MemoExoticComponent<() => React.JSX.Element> = React.memo(() => {
+const MemoizedComponent: React.MemoExoticComponent<() => React.JSX.Element> = React.memo((): JSX.Element => {
   return <div>Hello, MemoizedComponent!</div>;
 });
 
