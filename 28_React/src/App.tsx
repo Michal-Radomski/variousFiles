@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  ReactDOMServerReadableStream,
+  renderToReadableStream,
+  renderToStaticMarkup,
+  renderToString,
+} from "react-dom/server";
 
 import "./App.scss";
 import CounterRedux from "./CounterRedux";
@@ -48,6 +54,20 @@ import EventMethods from "./EventMethods";
 import ApisWrapper from "./apis/ApisWrapper";
 import PatternsWrapper from "./patterns/PatternsWrapper";
 import ForwardRef2 from "./ForwardRef2";
+
+const Test1 = (): JSX.Element => <div>Hello, this is an interactive React component!</div>;
+const html1: string = renderToString(<Test1 />);
+console.log("html1:", html1);
+
+const Test2 = (): JSX.Element => <div>Hello, this is a static React component!</div>;
+const html2: string = renderToStaticMarkup(<Test2 />);
+console.log("html2:", html2);
+
+(async function handleRequest2(): Promise<Response> {
+  const stream: ReactDOMServerReadableStream = await renderToReadableStream(<div>Hello, Web Streams!</div>);
+  console.log("stream:", stream);
+  return new Response(stream, { headers: { "Content-Type": "text/html" } });
+})();
 
 const MemoizedComponent: React.MemoExoticComponent<() => React.JSX.Element> = React.memo((): JSX.Element => {
   return <div>Hello, MemoizedComponent!</div>;
