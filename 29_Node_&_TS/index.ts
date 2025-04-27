@@ -714,3 +714,36 @@ console.log(buffer.toString("hex")); // Outputs: '48656c6c6f2c20576f726c6421'
   const result4: number = returnValue(); // result2 is 42
   console.log({ result4 }); // output: 42
 }
+
+//* Switch example
+let day: number = 6;
+let dayName: string;
+
+switch (day) {
+  case 1:
+    dayName = "Monday";
+    break;
+  case 2:
+    dayName = "Tuesday";
+    break;
+  case 3:
+    dayName = "Wednesday";
+    break;
+  case 4:
+    dayName = "Thursday";
+    break;
+  case 5:
+    dayName = "Friday";
+    break;
+  case 6:
+    dayName = "Saturday";
+    break;
+  case 7:
+    dayName = "Sunday";
+    break;
+  default:
+    dayName = "Invalid day";
+    break;
+}
+
+console.log(`Today is ${dayName}.`);
