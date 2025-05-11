@@ -54,6 +54,7 @@ import EventMethods from "./EventMethods";
 import ApisWrapper from "./apis/ApisWrapper";
 import PatternsWrapper from "./patterns/PatternsWrapper";
 import ForwardRef2 from "./ForwardRef2";
+import ObserverRxJs from "./observable/ObserverRxJs";
 
 const Test1 = (): JSX.Element => <div>Hello, this is an interactive React component!</div>;
 const html1: string = renderToString(<Test1 />);
@@ -129,6 +130,10 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+
+      <ObserverRxJs />
+      <br />
+      <hr />
 
       <MemoizedComponent />
       <CSSPropertiesComponent />
