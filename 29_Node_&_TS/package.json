@@ -24,7 +24,8 @@
     "gpu": "nodemon gpu.ts",
     "export_import": "nodemon ./export/import.ts",
     "generics": "nodemon ./generics.ts",
-    "math": "nodemon ./math.ts"
+    "math": "nodemon ./math.ts",
+    "interval": "nodemon interval.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
