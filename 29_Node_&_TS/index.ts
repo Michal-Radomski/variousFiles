@@ -747,3 +747,15 @@ switch (day) {
 }
 
 console.log(`Today is ${dayName}.`);
+
+{
+  //* flatMap
+  const numbers: number[] = [1, 2, 3, 4];
+
+  const doubledAndFlattened: number[] = numbers.flatMap((num: number) => [num, num * 2]);
+  console.log("doubledAndFlattened:", doubledAndFlattened); // Output: [1, 2, 2, 4, 3, 6, 4, 8]
+
+  const sentences: string[] = ["Hello world", "TypeScript is great"];
+  const words: string[] = sentences.flatMap((sentence: string) => sentence.split(" "));
+  console.log("words:", words); // Output: ["Hello", "world", "TypeScript", "is", "great"]
+}
