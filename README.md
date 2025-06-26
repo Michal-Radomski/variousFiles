@@ -63,3 +63,7 @@ Various files and exercises
 29. Node.js and TS exercises
 
 30. React canary with TS exercises
+
+31. Next exercise
+
+32. Other exercises
