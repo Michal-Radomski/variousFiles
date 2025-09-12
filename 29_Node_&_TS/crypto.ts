@@ -162,3 +162,27 @@ console.log("Password Match:", isMatch); // Outputs: true or false
   const hashedPasswordWithPepper = crypto.pbkdf2Sync(password + pepper, salt, iterations, keylen, digest).toString("hex");
   console.log({ hashedPassword, hashedPasswordWithPepper });
 }
+
+{
+  //* Crypto
+  // Secure random integer between 0 (inclusive) and 100 (exclusive)
+  crypto.randomInt(100, (err: Error | null, n: number) => {
+    if (err) throw err;
+    console.log(1, { n });
+  });
+
+  const n: number = crypto.randomInt(0, 100);
+  console.log(2, { n });
+
+  function secureRandom(): number {
+    // Generate 4 random bytes (32 bits)
+    const buffer: Buffer<ArrayBufferLike> = crypto.randomBytes(4);
+    console.log("buffer:", buffer);
+    // Convert buffer to a 32-bit unsigned integer
+    const uint: number = buffer.readUInt32BE(0);
+    console.log({ uint });
+    // Divide by 2^32 to get a float between 0 (inclusive) and 1 (exclusive)
+    return uint / (0xffffffff + 1);
+  }
+  console.log(3, "secureRandom():", secureRandom());
+}

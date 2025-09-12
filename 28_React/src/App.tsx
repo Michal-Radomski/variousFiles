@@ -339,3 +339,22 @@ const App = (): JSX.Element => {
 };
 
 export default App;
+
+// Get a random number between 0 and 10 (exclusive), then floor it to get an integer
+const randomNum: number = Math.floor(Math.random() * 10);
+console.log({ randomNum }); //* Insecure!
+
+// Create typed array with one 32-bit unsigned integer
+const array = new Uint32Array(1);
+// Fill the array with secure random values
+window.crypto.getRandomValues(array);
+// Secure random integer
+const secureRandomInt: number = array[0];
+console.log({ secureRandomInt }); //* Secure
+
+function secureRandom(): number {
+  const array = new Uint32Array(1);
+  window.crypto.getRandomValues(array);
+  return array[0] / (0xffffffff + 1);
+}
+console.log("secureRandom():", secureRandom());
