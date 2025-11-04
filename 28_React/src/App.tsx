@@ -55,6 +55,8 @@ import ApisWrapper from "./apis/ApisWrapper";
 import PatternsWrapper from "./patterns/PatternsWrapper";
 import ForwardRef2 from "./ForwardRef2";
 import ObserverRxJs from "./observable/ObserverRxJs";
+import D3Three from "./D3_Three";
+import D3Three2 from "./D3_Three2";
 
 const Test1 = (): JSX.Element => <div>Hello, this is an interactive React component!</div>;
 const html1: string = renderToString(<Test1 />);
@@ -130,6 +132,11 @@ const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
+
+      <D3Three />
+      <D3Three2 />
+      <br />
+      <hr />
 
       <ObserverRxJs />
       <br />
