@@ -59,6 +59,7 @@ import D3Three from "./charts/D3_Three";
 // import D3Three2 from "./charts/D3_Three2";
 import Syncfusion3D from "./charts/Syncfusion3D";
 import Plotly3D from "./charts/Plotly3D";
+import PlotlySurface3D from "./charts/PlotlySurface3D";
 
 const Test1 = (): JSX.Element => <div>Hello, this is an interactive React component!</div>;
 const html1: string = renderToString(<Test1 />);
@@ -135,6 +136,7 @@ const App = (): JSX.Element => {
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>New Exercises</h1>
 
+      <PlotlySurface3D />
       <Plotly3D />
       <Syncfusion3D />
       <D3Three />
