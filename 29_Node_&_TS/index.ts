@@ -759,3 +759,29 @@ console.log(`Today is ${dayName}.`);
   const words: string[] = sentences.flatMap((sentence: string) => sentence.split(" "));
   console.log("words:", words); // Output: ["Hello", "world", "TypeScript", "is", "great"]
 }
+
+{
+  // * Higher-order function -> function that takes another function as argument
+  function applyFunction(func: (x: number) => number, value: number): number {
+    return func(value);
+  }
+
+  // A simple function to be passed to the higher-order function
+  const square = (x: number): number => x * x;
+
+  const result_1 = applyFunction(square, 5); // Pass 'square' function as argument
+  console.log({ result_1 }); //* Output: 25
+
+  // * Compound function -> function that combines two functions into one
+  function compose<T>(f: (x: T) => T, g: (x: T) => T): (x: T) => T {
+    return (x: T) => f(g(x));
+  }
+
+  // Functions to be composed
+  const add2 = (x: number): number => x + 2;
+  const multiply3 = (x: number): number => x * 3;
+
+  // Composing add2 and multiply3 (add2 after multiply3)
+  const result_2 = compose(add2, multiply3)(5); // First multiply by 3, then add 2
+  console.log({ result_2 }); //* Output: 17 (5 * 3 = 15, 15 + 2 = 17)
+}
