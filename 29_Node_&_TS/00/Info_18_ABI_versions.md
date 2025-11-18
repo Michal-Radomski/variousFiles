@@ -35,5 +35,5 @@ Node.js ABI registry as of November 2025). Each ABI is unique to one major versi
   the mapping holds.
 - Current LTS versions (as of November 2025): Node 20.x (Gallium, ABI 115), 22.x (Iron, ABI 127), and 18.x (Hydrogen,
   ABI 102) in maintenance.
-- To check the ABI for a running Node instance, use `process.versions.modules`.
+- To check the ABI for a running Node instance, use `node -p process.versions.modules`.
 - Source: Official Node.js ABI version registry.
