@@ -25,7 +25,8 @@
     "export_import": "nodemon ./export/import.ts",
     "generics": "nodemon ./generics.ts",
     "math": "nodemon ./math.ts",
-    "interval": "nodemon interval.ts"
+    "interval": "nodemon interval.ts",
+    "inheritance": "nodemon inheritance.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
