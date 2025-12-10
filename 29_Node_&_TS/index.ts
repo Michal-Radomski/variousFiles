@@ -1,4 +1,5 @@
 import os from "os";
+import util from "util";
 
 (function getSystemInfo(): void {
   console.log("OS platform:", os.platform());
@@ -784,4 +785,19 @@ console.log(`Today is ${dayName}.`);
   // Composing add2 and multiply3 (add2 after multiply3)
   const result_2 = compose(add2, multiply3)(5); // First multiply by 3, then add 2
   console.log({ result_2 }); //* Output: 17 (5 * 3 = 15, 15 + 2 = 17)
+}
+
+{
+  //* Inspect()
+
+  class Point {
+    constructor(public x: number, public y: number) {}
+
+    [util.inspect.custom](): string {
+      return `Point(x: ${this.x}, y: ${this.y})`;
+    }
+  }
+
+  const p = new Point(3, 4);
+  console.log("p:", p); // Outputs: Point(x: 3, y: 4)
 }
